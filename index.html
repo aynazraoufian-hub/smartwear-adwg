@@ -156,6 +156,10 @@ tbody tr:hover td.factor{background:#fff}
 
 footer.wrap{margin-top:36px;border-top:1px solid var(--line);padding:22px 28px 56px;color:var(--muted);font-size:12.5px;font-weight:300}
 footer b{color:var(--ink);font-weight:500}
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.footer-credit{margin:0;font-size:11.5px;font-weight:300;color:var(--navy-300);letter-spacing:.04em}
+.footer-credit-link{color:var(--navy-500);text-decoration:none;font-weight:500;transition:color .18s}
+.footer-credit-link:hover{color:var(--wine)}
 .fade{opacity:0;transform:translateY(10px);animation:fade .7s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes fade{to{opacity:1;transform:none}}
 .d1{animation-delay:.05s}.d2{animation-delay:.13s}.d3{animation-delay:.21s}.d4{animation-delay:.29s}
@@ -470,7 +474,10 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
   </div></main>
 
 <footer class="wrap"><div class="srcwrap" id="srcwrap">
-  <button class="src-trigger" id="srcToggle" type="button" aria-expanded="false" aria-controls="srcMore"><span class="caret" aria-hidden="true">&rsaquo;</span>Source:&nbsp;<b id="src-label">ADWG Open Calls Checklist</b></button>
+  <div class="footer-row">
+    <button class="src-trigger" id="srcToggle" type="button" aria-expanded="false" aria-controls="srcMore"><span class="caret" aria-hidden="true">&rsaquo;</span>Source:&nbsp;<b id="src-label">ADWG Open Calls Checklist</b></button>
+    <p class="footer-credit">Designed by <a href="mailto:joel@howl.marketing" class="footer-credit-link">howl.marketing</a> &nbsp;&middot;&nbsp; &copy;&nbsp;2026</p>
+  </div>
   <p class="src-more" id="srcMore" data-calls="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (calls where the factor applies). Not-applicable and unrecorded entries are excluded from the denominator." data-smartwear="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Draft open-call text, in development. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (factors assessed)." data-guidelines="&mdash; Accessibility Best Practices compiled from 12 international access guides. Coverage&nbsp;% = Yes &divide; (guides where the practice was assessed). Binary yes/no entries only." data-smartwear="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Draft open-call text, in development.">&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (calls where the factor applies). Not-applicable and unrecorded entries are excluded from the denominator.</p>
 </div></footer>
 
