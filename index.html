@@ -285,8 +285,7 @@ body[data-page="guidelines"] .tm-bar{
 .sw-prose p:last-child{margin-bottom:0}
 .sw-prose em{font-style:italic}
 .sw-prose strong{font-weight:600;color:var(--ink)}
-.sw-quote{font-size:18px;line-height:1.6;font-weight:400;color:var(--ink);font-style:italic;
-  border-left:3px solid var(--wine);padding-left:22px;margin:0 0 18px}
+.sw-quote{font-size:14.5px;line-height:1.8;font-weight:300;color:var(--ink);font-style:italic;margin:0 0 18px}
 .sw-card{border:1px solid var(--line);border-radius:var(--r);padding:22px 26px;background:var(--soft-2);margin:18px 0;max-width:70ch}
 .sw-qlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
 .sw-qlist li{font-size:14.5px;line-height:1.55;color:var(--ink);font-weight:400;padding-left:24px;position:relative}
@@ -301,12 +300,133 @@ body[data-page="guidelines"] .tm-bar{
 .sw-btn-secondary{display:inline-block;border:1px solid var(--line);background:var(--bg);color:var(--ink);
   font:500 13.5px Poppins,sans-serif;padding:11px 26px;border-radius:9px;text-decoration:none;transition:border-color .15s}
 .sw-btn-secondary:hover{border-color:var(--wine)}
-body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:24ch}
+body[data-page="smartwear"] #hero-h1{font-size:clamp(20px,2.6vw,28px);max-width:100%;letter-spacing:.04em}
+.hero-dates{display:inline-flex;gap:0;margin:12px 0 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--soft-2)}
+.hd-item{padding:7px 12px;border-right:1px solid var(--line);white-space:nowrap}
+.hd-item:last-child{border-right:none}
+.hd-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px}
+.hd-date{font-size:12px;font-weight:600;color:var(--navy);letter-spacing:-.01em}
 .sw-anchor{text-decoration:none}
 #smartwear-sec .sec{scroll-margin-top:92px}
 
 
+/* h1 accent span */
+.h1-accent{color:var(--wine);font-size:1.18em;letter-spacing:.05em}
+/* af footer contact line */
+.af-foot{padding:9px 16px;border-top:1px solid var(--line);background:var(--soft)}
+.af-foot a{font-size:11px;color:var(--wine);text-decoration:none;font-weight:500;display:block;line-height:1.4}
+.af-foot a:hover{text-decoration:underline}
+/* project name emphasis */
+.sw-project{font-weight:600;color:var(--wine);font-style:italic;letter-spacing:.01em}
+/* help section */
+.sw-help-note{font-size:14px;line-height:1.75;color:var(--ink);font-weight:400;margin:0 0 20px;padding:15px 20px;background:var(--soft);border:1px solid var(--line);border-radius:10px;border-left:3px solid var(--wine)}
+.sw-help-note a{color:var(--wine);text-decoration:underline;text-underline-offset:2px}
+.sw-help-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.sw-help-list li{font-size:14px;line-height:1.65;color:var(--ink);font-weight:300;padding:13px 18px 13px 44px;border:1px solid var(--line);border-radius:10px;background:var(--soft-2);position:relative}
+.sw-help-list li::before{content:'';position:absolute;left:17px;top:21px;width:8px;height:8px;border-radius:50%;background:var(--wine);flex:none}
+
 /* Smartwear call page uses the root warm palette (matches Art-Based Open Calls) */
+
+/* ===== Accessible Formats sidebar ===== */
+body[data-page="smartwear"] .hero-text{padding-right:262px}
+.af-hero{display:none;position:fixed;width:238px;right:max(28px,calc((100vw - 1240px)/2 + 28px));top:168px;z-index:500}
+body[data-page="smartwear"] .af-hero{display:block}
+.af-card{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);overflow:hidden;box-shadow:0 2px 16px rgba(60,45,28,.07)}
+.af-header{padding:16px 18px 13px;border-bottom:1px solid var(--line);background:var(--soft)}
+.af-title{margin:0;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)}
+.af-sub{margin:5px 0 0;font-size:11px;color:var(--muted);font-weight:300;line-height:1.45}
+.af-list{list-style:none;margin:0;padding:6px 0}
+.af-item a{display:flex;align-items:center;gap:10px;padding:9px 16px;text-decoration:none;color:var(--ink);transition:background .14s}
+.af-item a:hover{background:var(--soft-2)}
+.af-item a:hover .af-icon{background:var(--pale);border-color:var(--navy-300)}
+.af-icon{width:36px;height:36px;border-radius:8px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex:none;color:var(--navy);transition:background .14s,border-color .14s}
+.af-icon svg{width:20px;height:20px}
+.af-label{flex:1;min-width:0}
+.af-label b{display:block;font-size:12px;font-weight:500;color:var(--ink);line-height:1.25}
+.af-label small{font-size:10.5px;color:var(--muted);font-weight:300}
+.af-arr{color:var(--pale);font-size:13px;line-height:1;flex:none;transition:color .14s;font-weight:300}
+.af-item a:hover .af-arr{color:var(--navy-300)}
+.af-divider{height:1px;background:var(--line-2);margin:5px 16px}
+@media(max-width:900px){body[data-page="smartwear"] .hero-text{padding-right:0}.af-hero{display:none!important}}
+/* ===== Feedback page ===== */
+#feedback-sec{display:none;padding:72px 0 80px}
+.feedback-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.feedback-card{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:52px 60px;max-width:800px;margin:0 auto;box-shadow:0 4px 36px rgba(53,42,29,.09)}
+.feedback-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 18px}
+.feedback-heading{font-size:clamp(18px,2.2vw,26px);font-weight:600;color:var(--wine);margin:0 0 36px;line-height:1.3;letter-spacing:-.01em}
+.feedback-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:20px}
+.feedback-list li{display:flex;gap:14px;font-size:15.5px;color:var(--ink);line-height:1.65;font-weight:300}
+.feedback-list li::before{content:'—';color:var(--wine);font-weight:600;flex-shrink:0;margin-top:.05em}
+/* ===== Accessibility Widget ===== */
+#a11y-widget{position:fixed;bottom:24px;left:24px;z-index:9000;font-family:'Poppins',sans-serif}
+#a11y-btn{width:56px;height:56px;border-radius:50%;background:#352A1D;border:none;box-shadow:0 0 0 3.5px #7A2E3A,0 8px 24px rgba(53,42,29,.38);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:transform .15s;position:relative}
+#a11y-btn:hover{transform:scale(1.07)}
+#a11y-btn svg.a11y-person{width:30px;height:30px}
+.a11y-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;background:#7A2E3A;border-radius:50%;border:2.5px solid #FCFAF4;display:flex;align-items:center;justify-content:center}
+.a11y-badge svg{width:11px;height:11px}
+#a11y-panel{position:absolute;bottom:68px;left:0;width:348px;background:#FCFAF4;border-radius:16px;box-shadow:0 24px 64px rgba(53,42,29,.26);overflow:hidden;transform-origin:bottom left}
+#a11y-panel[hidden]{display:none}
+.a11y-head{background:#352A1D;color:#FCFAF4;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.a11y-head-title{font-size:13px;font-weight:500;letter-spacing:.01em;line-height:1}
+.a11y-head kbd{font-size:10px;background:rgba(252,250,244,.15);border-radius:4px;padding:2px 7px;font-family:inherit;margin-left:6px;letter-spacing:.05em}
+.a11y-close-btn{background:none;border:1.5px solid rgba(252,250,244,.35);color:#FCFAF4;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex:none;transition:background .12s;line-height:1}
+.a11y-close-btn:hover{background:rgba(252,250,244,.18)}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E9E0D1}
+.a11y-opt{background:#FCFAF4;padding:20px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;border:none;font-family:'Poppins',sans-serif;transition:background .12s;position:relative;outline:none}
+.a11y-opt:hover{background:#F4EEE2}
+.a11y-opt.on{background:#F4EEE2;outline:2.5px solid #7A2E3A;outline-offset:-2.5px}
+.a11y-opt.on::after{content:'✓';position:absolute;top:7px;right:8px;width:17px;height:17px;background:#7A2E3A;border-radius:50%;color:#FCFAF4;font-size:10px;font-weight:700;line-height:17px;text-align:center}
+.a11y-opt-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#352A1D}
+.a11y-opt-icon svg{width:40px;height:40px}
+.a11y-opt-label{font-size:11.5px;font-weight:500;color:#352A1D;text-align:center;line-height:1.25}
+/* ===== Presentation Tab ===== */
+#presentation-sec{padding:56px 0 60px;display:none}
+.pres-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.pres-stage{position:relative;width:100%;aspect-ratio:16/9;background:var(--soft-2);border-radius:16px;border:1px solid var(--line);overflow:hidden;box-shadow:0 4px 40px rgba(53,42,29,.10)}
+.pres-slide{display:none;position:absolute;inset:0;padding:4.5% 6%;box-sizing:border-box;flex-direction:column}
+.pres-slide.active{display:flex}
+.pres-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.pres-h1{font-size:clamp(36px,5.5vw,82px);font-weight:700;color:var(--wine);letter-spacing:-.02em;line-height:1}
+.pres-h1-sub{font-size:clamp(18px,2.4vw,34px);font-weight:600;color:var(--wine);margin-top:.35em}
+.pres-h2{font-size:clamp(18px,2.6vw,44px);font-weight:700;color:var(--wine);text-align:center;margin:0 0 .45em;line-height:1.05;flex-shrink:0}
+.pres-cat-wrap{flex:1;display:flex;align-items:center;justify-content:center}
+.pres-cat-table{border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.pres-cat-table tr:not(:last-child) td{border-bottom:1px solid var(--line)}
+.pres-cat-num{font-size:clamp(14px,1.8vw,28px);font-weight:700;color:var(--wine);padding:.65em 1.4em .65em 1.8em;border-right:1px solid var(--line);background:var(--bg);text-align:center}
+.pres-cat-name{font-size:clamp(13px,1.7vw,26px);font-weight:500;color:var(--ink);padding:.65em 2.5em;background:var(--bg)}
+.pres-grid-title{font-size:clamp(14px,1.8vw,26px);font-weight:700;color:var(--wine);text-align:center;margin:0 0 1.2% 0;flex-shrink:0}
+.pres-org-grid{flex:1;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;align-content:stretch}
+.pres-org-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.pres-org-cell{background:var(--bg);padding:.45em .65em;font-size:clamp(7px,.95vw,13px);font-weight:400;color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+.pres-body{flex:1;display:flex;align-items:center;justify-content:center}
+.pres-stat-row{display:flex;flex-direction:row;gap:4%;align-items:flex-start;justify-content:center;width:100%}
+.pres-stat-col{display:flex;flex-direction:column;align-items:center;gap:5%;flex:1}
+.pres-stat-lbl{font-size:clamp(13px,1.6vw,24px);font-weight:700;color:var(--ink);text-align:center}
+.pres-stat-lbl em{color:var(--wine);font-style:normal}
+.pres-circles-row{display:flex;gap:4%;flex-wrap:wrap;justify-content:center}
+.pres-circle{width:clamp(100px,12vw,155px);height:clamp(100px,12vw,155px);border-radius:50%;border:2.5px solid var(--wine);display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(8px,1vw,13px);font-weight:500;color:var(--ink);padding:10%;box-sizing:border-box;line-height:1.3;flex-shrink:0;overflow:hidden}
+.pres-bubble-svg{flex:1;width:100%;display:block;min-height:0}
+/* Logo watermark backgrounds */
+.pres-logos-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.pres-logos-layer img{position:absolute;object-fit:contain;filter:grayscale(1);opacity:.12;user-select:none}
+.pres-slide>.pres-grid-title,.pres-slide>.pres-org-grid{position:relative;z-index:1}
+.pres-insight-text{font-size:clamp(17px,2.3vw,34px);font-weight:300;font-style:italic;color:var(--ink);max-width:78%;line-height:1.55}
+.pres-insight-text em{font-weight:600;font-style:normal;color:var(--wine)}
+.pres-calls-list{flex:1;display:flex;flex-direction:column;justify-content:center;gap:5%}
+.pres-calls-item{font-size:clamp(14px,2vw,30px);font-weight:400;color:var(--ink);display:flex;align-items:flex-start;gap:.6em;line-height:1.4}
+.pres-calls-num{font-weight:700;color:var(--wine);flex-shrink:0}
+.pres-patterns-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2.5%;flex:1;width:100%}
+.pres-pattern-card{background:rgba(122,46,58,.055);border:1.5px solid rgba(122,46,58,.18);border-radius:10px;padding:4.5% 5%;display:flex;flex-direction:column;gap:10%}
+.pres-pattern-num{font-size:clamp(20px,3vw,46px);font-weight:700;color:var(--wine);line-height:1}
+.pres-pattern-text{font-size:clamp(11px,1.5vw,22px);font-weight:600;color:var(--ink);line-height:1.35}
+.pres-nav-bar{display:flex;align-items:center;gap:14px;padding:13px 0 4px;flex-wrap:wrap}
+.pres-btn{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--navy);height:34px;padding:0 15px;border-radius:8px;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;transition:border-color .15s,color .15s;display:inline-flex;align-items:center;gap:5px}
+.pres-btn:hover:not(:disabled){border-color:var(--wine);color:var(--wine)}
+.pres-btn:disabled{opacity:.3;cursor:default}
+.pres-count{font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap}
+.pres-dots{display:flex;gap:5px;align-items:center;flex-wrap:wrap;flex:1;justify-content:center}
+.pres-dot{width:7px;height:7px;border-radius:50%;background:var(--pale);cursor:pointer;transition:background .15s,transform .15s;border:none;padding:0;flex-shrink:0}
+.pres-dot.active{background:var(--wine);transform:scale(1.35)}
 </style>
 </head>
 <body>
@@ -316,9 +436,11 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
       <img src="data:image/png;base64,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RLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMhEsAIAyESwAgDIRLACAMjk3xGxjIifCtdRwpfSBQAA3fL/AcvZXnneAX59AAAAAElFTkSuQmCC" alt="PLEXTEX logo mark">
     </a>
     <nav class="page-nav" role="navigation" aria-label="Site sections">
-      <button class="pnav-btn" data-page="guidelines" id="pnav-guidelines">Access Guidelines</button>
-      <button class="pnav-btn active" data-page="calls" id="pnav-calls">Art-Based Open Calls</button>
+      <button class="pnav-btn" data-page="presentation" id="pnav-presentation">Presentation</button>
+      <button class="pnav-btn active" data-page="guidelines" id="pnav-guidelines">Access Guidelines</button>
+      <button class="pnav-btn" data-page="calls" id="pnav-calls">Art-Based Open Calls</button>
       <button class="pnav-btn" data-page="smartwear" id="pnav-smartwear">Smartwear Open Calls Draft</button>
+      <button class="pnav-btn" data-page="feedback" id="pnav-feedback">Give us Feedback</button>
     </nav>
     <button class="top-pdf" type="button" onclick="window.print()">Export PDF</button>
   </div>
@@ -326,11 +448,363 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
 
 <main class="wrap">
   <section class="hero" id="hero-sec">
+  <div class="hero-text">
     <div class="eyebrow fade d1" id="hero-eyebrow">Art &amp; Design Working Group · Open Calls Review</div>
     <h1 class="fade d2" id="hero-h1">Art-Based Open Calls Comparison</h1>
     <p class="fade d3" id="hero-sub">A review of public art opportunities, analyzed according to accessibility, eligibility, application design and applicant support. Each factor is marked Yes, Partial or No across every call, with coverage rates aggregated by category.</p>
     <div class="tabs fade d4" role="tablist" id="tabs"></div>
+  </div>
+  <aside class="af-hero" aria-label="Accessible formats">
+    <div class="af-card">
+      <div class="af-header">
+        <p class="af-title">Accessible formats</p>
+      </div>
+      <ul class="af-list" role="list">
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 3-2 5.5-2.5 7.5-.3 1-.5 2-.5 3.5"/><path d="M10.5 20h3"/><path d="M10 9a2 2 0 0 1 4 0"/></svg></span>
+            <span class="af-label"><b>Audio version</b><small>Listen to this call</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 9C0 6 1 2 5 1L12 0C17 0 19 3 18 7L16 13C15 17 11 19 7 17L3 14C0 12 1 10 1 9ZM5 9C5 7 6 5 9 5L13 7C15 8 15 11 13 12L10 14C8 15 6 14 5 12Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M23 15C24 18 23 22 19 23L12 24C7 24 5 21 6 17L8 11C9 7 13 5 17 7L21 10C24 12 23 14 23 15ZM19 15C19 17 18 19 15 19L11 17C9 16 9 13 11 12L14 10C16 9 18 10 19 12Z"/></svg></span>
+            <span class="af-label"><b>Sign Language</b><small>BSL / ASL version</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l2-6 2 6"/><line x1="4.2" y1="15" x2="6.8" y2="15"/><path d="M10 17l4-12 4 12"/><line x1="11.5" y1="13" x2="16.5" y2="13"/></svg></span>
+            <span class="af-label"><b>Large Print</b><small>Enlarged text version</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+            <span class="af-label"><b>Easy Read</b><small>Simplified language</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></span>
+            <span class="af-label"><b>Dyslexia-friendly</b><small>Adapted typography</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-divider" role="separator"></li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+            <span class="af-label"><b>Download PDF</b><small>Print-ready version</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>
+            <span class="af-label"><b>Word document</b><small>Editable .docx file</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+      </ul>
+      <div class="af-foot"><a href="#">Need this call in another format? Contact us &rsaquo;</a></div>
+    </div>
+  </aside>
   </section>
+
+  <!-- ===== PRESENTATION TAB ===== -->
+  <section id="presentation-sec" aria-label="Presentation slides">
+  <div class="pres-wrap">
+    <div class="pres-stage">
+
+      <!-- Slide 1 — Title -->
+      <div class="pres-slide active" id="pslide-1">
+        <div class="pres-center">
+          <div class="pres-h1">Accessibility</div>
+          <div class="pres-h1-sub">best practices</div>
+        </div>
+      </div>
+
+      <!-- Slide 2 — Accessibility Organizations Grid -->
+      <div class="pres-slide" id="pslide-2">
+        <!-- LOGO-BACKGROUNDS: remove this block to revert -->
+        <div class="pres-logos-layer" aria-hidden="true">
+          <img src="https://www.si.edu/sites/default/themes/siedu/logo.svg"                                                                                         style="left:2%;top:4%;width:15%" alt="" onerror="this.style.display='none'">
+          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:40%;top:3%;width:14%" alt="" onerror="this.style.display='none'">
+          <img src="https://kineticlight.org/images/KL_WoNEW.png"                                                                                                   style="left:80%;top:4%;width:12%" alt="" onerror="this.style.display='none'">
+          <img src="https://sinsinvalid.org/wp-content/uploads/2024/05/Sins-Invalid-Logo-021.png"                                                                    style="left:3%;top:67%;width:13%" alt="" onerror="this.style.display='none'">
+          <img src="https://bodiesintranslation.ca/wp-content/uploads/2020/07/black_web-e1594212424543.png"                                                          style="left:78%;top:65%;width:15%" alt="" onerror="this.style.display='none'">
+        </div>
+        <!-- END LOGO-BACKGROUNDS -->
+        <div class="pres-grid-title">Local and International Organizations</div>
+        <div class="pres-org-grid cols-3">
+          <div class="pres-org-cell">Shape Arts (UK)</div>
+          <div class="pres-org-cell">Tangled Art + Disability &amp; Humber College (Canada)</div>
+          <div class="pres-org-cell">Smithsonian (US)</div>
+          <div class="pres-org-cell">Arts for All (New Zealand)</div>
+          <div class="pres-org-cell">Accessibility Without Limits (Netherlands)</div>
+          <div class="pres-org-cell">Bodies in Translation — Vital Practices in Art (Canada)</div>
+          <div class="pres-org-cell">Shift in Perspective (Ireland)</div>
+          <div class="pres-org-cell">Kinetic Light Access Glossary (US)</div>
+          <div class="pres-org-cell">The Access Toolkit for Art Workers (UK / Ireland)</div>
+          <div class="pres-org-cell">Accessibility in the Arts: A Promise and a Practice (US)</div>
+          <div class="pres-org-cell">Creativity is Mistakes Toolkit (Wales, UK)</div>
+          <div class="pres-org-cell">Access Suggestions for Public Events — Sins Invalid (US)</div>
+        </div>
+      </div>
+
+      <!-- Slide 3 — Categories -->
+      <div class="pres-slide" id="pslide-3">
+        <div class="pres-cat-wrap">
+          <table class="pres-cat-table">
+            <tr><td class="pres-cat-num">1</td><td class="pres-cat-name">Venue</td></tr>
+            <tr><td class="pres-cat-num">2</td><td class="pres-cat-name">Presenting Artwork</td></tr>
+            <tr><td class="pres-cat-num">3</td><td class="pres-cat-name">Programming</td></tr>
+            <tr><td class="pres-cat-num">4</td><td class="pres-cat-name">Communication and Marketing</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Slide 3b — Accessibility Best Practices spreadsheet -->
+      <div class="pres-slide" id="pslide-3b" style="padding:3% 4%">
+        <img src="spreadsheet.png" alt="Accessibility Best Practices matrix" style="width:100%;height:100%;object-fit:contain;border-radius:8px">
+      </div>
+
+      <!-- Slide 4 — Venue -->
+      <div class="pres-slide" id="pslide-4">
+        <div class="pres-h2">Venue</div>
+        <div class="pres-body">
+          <div class="pres-stat-row">
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>10/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Accessible Seating (integrated wheelchair spaces)</div>
+                <div class="pres-circle">Accessible Circulation Space</div>
+              </div>
+            </div>
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>9/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Accessible Washrooms</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5 — Presenting Artwork -->
+      <div class="pres-slide" id="pslide-5">
+        <div class="pres-h2">Presenting Artwork</div>
+        <div class="pres-body">
+          <div class="pres-stat-row">
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>12/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Audio Description for Artworks</div>
+              </div>
+            </div>
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>11/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Large prints</div>
+              </div>
+            </div>
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>10/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Sign Language Description for Artworks</div>
+                <div class="pres-circle">Tactile Engagement</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6 — Programming -->
+      <div class="pres-slide" id="pslide-6">
+        <div class="pres-h2">Programming</div>
+        <div class="pres-body">
+          <div class="pres-stat-row">
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>9/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">On-site / Off-site ASL / BSL Interpreters</div>
+                <div class="pres-circle">Live Captioning for Panel Events and Talks</div>
+              </div>
+            </div>
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>8/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Accessible Website</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7 — Communication and Marketing -->
+      <div class="pres-slide" id="pslide-7">
+        <div class="pres-h2">Communication and Marketing</div>
+        <div class="pres-body">
+          <div class="pres-stat-row">
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>9/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Transparency and Honesty in Information</div>
+                <div class="pres-circle">Inclusive Language Use</div>
+              </div>
+            </div>
+            <div class="pres-stat-col">
+              <div class="pres-stat-lbl">Highest <em>7/12</em></div>
+              <div class="pres-circles-row">
+                <div class="pres-circle">Accessibility Information Sharing for Space &amp; Exhibition</div>
+                <div class="pres-circle">Sensory Alert in Marketing Materials</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8 — Insight bridge -->
+      <div class="pres-slide" id="pslide-8">
+        <div class="pres-center">
+          <div class="pres-insight-text">The less frequently mentioned factors are often<br>what make accessibility <em>truly distinctive</em>.</div>
+        </div>
+      </div>
+
+      <!-- Slide 9 — Bubble chart: rarely mentioned factors -->
+      <div class="pres-slide" id="pslide-bubble">
+        <div class="pres-h2">Rarely Mentioned</div>
+        <svg class="pres-bubble-svg" id="bubble-chart"></svg>
+      </div>
+
+      <!-- Slide 10 — Open Calls title -->
+      <div class="pres-slide" id="pslide-9">
+        <div class="pres-center">
+          <div class="pres-h1">Open Calls</div>
+        </div>
+      </div>
+
+      <!-- Slide 10 — Open Calls Organizations (part 1) -->
+      <div class="pres-slide" id="pslide-10">
+        <!-- LOGO-BACKGROUNDS: remove this block to revert -->
+        <div class="pres-logos-layer" aria-hidden="true">
+          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:2%;top:4%;width:14%" alt="" onerror="this.style.display='none'">
+          <img src="https://weareunlimited.org.uk/wp-content/themes/Unlimited/assets/images/unlimited-logo-pink.png"                                                 style="left:43%;top:3%;width:13%" alt="" onerror="this.style.display='none'">
+          <img src="https://www.dadafest.co.uk/images/logo.png"                                                                                                      style="left:81%;top:4%;width:12%" alt="" onerror="this.style.display='none'">
+          <img src="https://www.arts.on.ca/getmedia/ffebb4dd-b4c2-4a24-8d11-079e6b92c9ba/2015-OAC-logo-RGB-JPG.aspx?width=720&amp;height=200"                       style="left:3%;top:68%;width:14%" alt="" onerror="this.style.display='none'">
+          <img src="https://bodiesintranslation.ca/wp-content/uploads/2020/07/black_web-e1594212424543.png"                                                          style="left:40%;top:70%;width:14%" alt="" onerror="this.style.display='none'">
+          <img src="https://images.squarespace-cdn.com/content/v1/5c450883f7939273c6d876e4/1548028104162-HCXSKGO50FY2LJZFM0JT/new+logo+latitude+53+grey.jpg"        style="left:79%;top:68%;width:13%" alt="" onerror="this.style.display='none'">
+        </div>
+        <!-- END LOGO-BACKGROUNDS -->
+        <div class="pres-grid-title">Local and International Organizations</div>
+        <div class="pres-org-grid cols-3">
+          <div class="pres-org-cell">The Disability Collective</div>
+          <div class="pres-org-cell">The Music Gallery, Phoenix the Fire, VibraFusionLab</div>
+          <div class="pres-org-cell">Propeller Dance</div>
+          <div class="pres-org-cell">Art Accessibility Network Manitoba</div>
+          <div class="pres-org-cell">AccessCBC and Reelabilities</div>
+          <div class="pres-org-cell">Shape Art</div>
+          <div class="pres-org-cell">Unlimited</div>
+          <div class="pres-org-cell">DaDaFest</div>
+          <div class="pres-org-cell">Remedy Photo Festival</div>
+          <div class="pres-org-cell">Edmonton Art Council</div>
+          <div class="pres-org-cell">Tangled Art + Disability</div>
+          <div class="pres-org-cell">Bodies in Translation</div>
+          <div class="pres-org-cell">Latitude53</div>
+          <div class="pres-org-cell">Ontario Arts Council</div>
+          <div class="pres-org-cell">Our Culture push Disability Arts + Dreaming Fellowship</div>
+          <div class="pres-org-cell">Level Centre</div>
+          <div class="pres-org-cell">John Hansard Gallery</div>
+          <div class="pres-org-cell">Art Gallery of Windsor</div>
+        </div>
+      </div>
+
+      <!-- Slide 11 — Open Calls Organizations (part 2) -->
+      <div class="pres-slide" id="pslide-11">
+        <!-- LOGO-BACKGROUNDS: remove this block to revert -->
+        <div class="pres-logos-layer" aria-hidden="true">
+          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:2%;top:4%;width:14%" alt="" onerror="this.style.display='none'">
+          <img src="https://opulentmobility.com/uploads/1/1/6/3/1163067/published/1447185057.png?1565316038"                                                         style="left:80%;top:3%;width:13%" alt="" onerror="this.style.display='none'">
+          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:38%;top:67%;width:14%" alt="" onerror="this.style.display='none'">
+          <img src="https://opulentmobility.com/uploads/1/1/6/3/1163067/published/1447185057.png?1565316038"                                                         style="left:78%;top:68%;width:13%" alt="" onerror="this.style.display='none'">
+        </div>
+        <!-- END LOGO-BACKGROUNDS -->
+        <div class="pres-org-grid cols-3" style="flex:1">
+          <div class="pres-org-cell">The Critical Design Lab / Tangled Art + Disability / Doris McCarthy Gallery</div>
+          <div class="pres-org-cell">University of Atypical</div>
+          <div class="pres-org-cell">Tangled Art + Disability — Public Access</div>
+          <div class="pres-org-cell">Opulent Mobility</div>
+          <div class="pres-org-cell">The John F. Kennedy Center for the Performing Arts</div>
+          <div class="pres-org-cell">Tangled Art + Disability / Frictions of Futurity</div>
+          <div class="pres-org-cell">Art Space</div>
+          <div class="pres-org-cell">Science and Art Lab</div>
+          <div class="pres-org-cell">The Art House</div>
+          <div class="pres-org-cell">Futurity in Transplant Medicine and Tangled Art + Disability</div>
+          <div class="pres-org-cell">Arcade Campfa</div>
+          <div class="pres-org-cell">Open Style Lab</div>
+          <div class="pres-org-cell">Multicultural Artists' Coalition</div>
+        </div>
+      </div>
+
+      <!-- Slide 13b — Patterns across open calls -->
+      <div class="pres-slide" id="pslide-patterns">
+        <div class="pres-h2">What the Open Calls Covered</div>
+        <div class="pres-body" style="align-items:stretch">
+          <div class="pres-patterns-grid">
+            <div class="pres-pattern-card">
+              <div class="pres-pattern-num">01</div>
+              <div class="pres-pattern-text">General Criteria</div>
+            </div>
+            <div class="pres-pattern-card">
+              <div class="pres-pattern-num">02</div>
+              <div class="pres-pattern-text">Accessible Formats</div>
+            </div>
+            <div class="pres-pattern-card">
+              <div class="pres-pattern-num">03</div>
+              <div class="pres-pattern-text">What might need support in the application process?</div>
+            </div>
+            <div class="pres-pattern-card">
+              <div class="pres-pattern-num">04</div>
+              <div class="pres-pattern-text">What might need support after the application process?</div>
+            </div>
+            <div class="pres-pattern-card">
+              <div class="pres-pattern-num">05</div>
+              <div class="pres-pattern-text">Accessibility Statements</div>
+            </div>
+            <div class="pres-pattern-card">
+              <div class="pres-pattern-num">06</div>
+              <div class="pres-pattern-text">Shape and Order of the Calls</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 14 — Calls order -->
+      <div class="pres-slide" id="pslide-12">
+        <div class="pres-h2">Calls order</div>
+        <div class="pres-calls-list">
+          <div class="pres-calls-item"><span class="pres-calls-num">1.</span>Applicant-journey order</div>
+          <div class="pres-calls-item"><span class="pres-calls-num">2.</span>Decision-funnel order</div>
+          <div class="pres-calls-item"><span class="pres-calls-num">3.</span>Access-led / values-first order</div>
+        </div>
+      </div>
+
+    </div><!-- /pres-stage -->
+
+    <div class="pres-nav-bar">
+      <button class="pres-btn" id="pres-prev" disabled aria-label="Previous slide">&#8592; Prev</button>
+      <button class="pres-btn" id="pres-next" aria-label="Next slide">Next &#8594;</button>
+      <div class="pres-dots" id="pres-dots"></div>
+      <span class="pres-count" id="pres-count">1 / 12</span>
+    </div>
+  </div>
+  </section>
+  <!-- ===== END PRESENTATION TAB ===== -->
 
   <div class="stats" id="stats"></div>
 
@@ -391,7 +865,7 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
 
     <section class="sec sw-first">
       <div class="sw-prose">
-        <p><em>Co-Designing a Smartwear Revolution</em> is an international research project led by the University of Alberta and funded by Canada&rsquo;s New Frontiers in Research Fund. Through collaborations between researchers, artists, designers, technologists, and People with Lived Experience (PLEX), the project explores the creative and social possibilities of smartwear technologies and intelligent fibres designed to support movement, care, and everyday life. With sensing, actuating, and battery-power capabilities built directly into the fibres, the Smartwear Revolution project aims to adapt clothing stiffness and shape to provide physical support and movement augmentation as needed. These smartwear fibres incorporate intelligent technologies that identify user intent and dynamically adjust the fabric&rsquo;s properties to support trunk, arm, and leg movements during daily activities such as self-care, reaching, and carrying loads. The theme of SUPPORT thus mirrors the technical goals of the Smartwear Revolution project which include providing trunk support by 2028 and augmentation of arm and leg movement by 2031.</p>
+        <p><em class="sw-project">Co-Designing a Smartwear Revolution</em> is an international research project led by the University of Alberta and funded by Canada&rsquo;s New Frontiers in Research Fund. Through collaborations between researchers, artists, designers, technologists, and People with Lived Experience (PLEX), the project explores the creative and social possibilities of smartwear technologies and intelligent fibres designed to support movement, care, and everyday life. With sensing, actuating, and battery-power capabilities built directly into the fibres, the Smartwear Revolution project aims to adapt clothing stiffness and shape to provide physical support and movement augmentation as needed. These smartwear fibres incorporate intelligent technologies that identify user intent and dynamically adjust the fabric&rsquo;s properties to support trunk, arm, and leg movements during daily activities such as self-care, reaching, and carrying loads. The theme of SUPPORT thus mirrors the technical goals of the Smartwear Revolution project which include providing trunk support by 2028 and augmentation of arm and leg movement by 2031.</p>
         <p>Support shapes everyday life in many different ways: through people, environments, objects, technologies, routines, and forms of care. It can be physical, emotional, social, cultural, or technological, intentionally designed or developed through lived experience and adaptation.</p>
         <p>Within the context of smartwear and assistive technologies, support is often understood as something that helps movement, access, safety, communication, or participation. At the same time, support is not a fixed or universal idea; it is shaped by relationships, systems, values, and the diverse experiences of those who use and create it. Support comes in different textures and temporalities.</p>
       </div>
@@ -420,7 +894,7 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
       <div class="sec-head"><div><h2>The context</h2></div></div>
       <div class="sw-prose">
         <p>In order to spark conversation, critique and co-design with the communities that our smart garments aim to serve, the Smartwear Revolution&rsquo;s Art &amp; Design Working Group is organizing two international art and technology festivals. The first of these, around the overarching theme of SUPPORT, is slated for 2028, and will likely feature exhibitions, dance or theatre performances, live dress or fashion events, creative research presentations, open lab activities, and public discussions in both in-person and online formats. A second festival, with a theme to be decided, is planned for 2031.</p>
-        <p>Festival activities will be free of charge, and featured artists will receive fees for their work. In some cases, like commissions and artist residencies, additional production and material fees may be offered. Other resources, like rehearsal space, studio space, or facilities may be available.</p>
+        <p>Festival activities will be free of charge, and featured artists will receive recommended CARFAC/CADA fees for their work. In some cases, like commissions and artist residencies, additional production and material fees may be offered. Other resources, like rehearsal space, studio space, or facilities may be available. More information can be found here.</p>
       </div>
     </section>
 
@@ -433,11 +907,23 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
       </div>
     </section>
 
+    <section class="sec" id="sw-artforms">
+      <div class="sec-head"><div><h2>What we are looking for</h2></div></div>
+      <div class="sw-prose">
+        <ul>
+          <li>Visual artworks</li>
+          <li>Live performances</li>
+          <li>Capsule collections</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="sec" id="sw-formats">
       <div class="sec-head"><div><h2>Possible formats for your proposals</h2></div></div>
       <div class="sw-prose">
         <p>We are interested in proposals to include works that have already been made, works-in-progress, and new work. We strongly encourage artists to engage with the research team and can facilitate meetings and lab tours (either virtual or in person). For more information on the labs and technologies that you could work with, please feel free to contact us.</p>
-        <p>We are also facilitating two artistic residencies in Spring 2027, where artists will engage with one or more of the laboratories, technologies and research methods in our Smartwear Revolution project, and make work in response to these engagements.</p>
+        <p>The festival will be hosted across multiple sites across the University of Alberta including UCommons, FAB Gallery, Gallery A, Sound Studies Institute Sound Arts Gallery, McMullen Art Gallery and the Timms Centre for the Arts. More information about the venues can be found here. There are opportunities for solo and group exhibitions. Our hope is to fit the festivals to the works submitted, not to fit the works to the festivals.</p>
+        <p>We are also facilitating two artistic residencies in Spring 2027, where artists will engage with one or more of the laboratories, technologies and research methods in our Smartwear Revolution project, and make work in response to these engagements. (add link to artist in residence call).</p>
         <p>We are committed to hybrid access to all art works, performance and fashion events, and look forward to collaborating with makers to devise exciting ways for artworks to exist online.</p>
       </div>
     </section>
@@ -445,33 +931,45 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
     <section class="sec" id="sw-expect">
       <div class="sec-head"><div><h2>What to expect if you apply</h2></div></div>
       <div class="sw-prose">
-        <p>The application process is in two stages. The first stage is this Expression of Interest (EoI), where you tell us about yourself and your practice, and pitch ideas about a possible project you&rsquo;d like to propose. This is meant to be fairly simple and not overly detailed or labor-intensive.</p>
-        <p>If your EoI is selected to move to stage two, we will meet with you to discuss your ideas, and ask you to complete a longer and more detailed application, where you will specify what you intend to make or contribute. We will provide a small honorarium or gift card if preferable, to those who complete the full application.</p>
-        <p>EoIs are due on <strong>15th December 2026</strong> and will be reviewed by an interdisciplinary committee from the Smartwear Revolution team. Successful EoIs will be announced on <strong>15th January</strong> with full applications due <strong>15th February</strong>.</p>
-        <p>We will accept EoIs after these dates but due to the complexity of contracts we cannot guarantee inclusion in the 2028 festival.</p>
+        <p>The application process is in two stages. The first stage is this Expression of Interest (EOI), where you tell us about yourself and your practice, and pitch ideas about a possible project you&rsquo;d like to propose. This is meant to be fairly simple and not overly detailed or labor-intensive.</p>
+        <p>If your EOI is selected to move to stage two, we will meet with you to discuss your ideas, and ask you to complete a longer and more detailed application, where you will specify what you intend to make or contribute. We will provide a small honorarium or gift card if preferable, to those who complete the full application.</p>
+        <p>As this project is being administered by the University of Alberta, all artists will have to be registered as suppliers to the university and submit invoices for payments after the initial honorarium. We have a team that will help you navigate this process and ensure that payments do not conflict with support programs such as AISH, PIP,</p>
+        <p>EOIs are due on <strong>15th December 2026</strong> and will be reviewed by an interdisciplinary committee from the Smartwear Revolution team. Successful EOIs will be announced on <strong>15th January</strong> with full applications due <strong>15th February</strong>.</p>
+        <p>We will accept EOIs after these dates, but due to the complexity of contracts we cannot guarantee inclusion in the 2028 festival.</p>
       </div>
     </section>
 
     <section class="sec" id="sw-help">
       <div class="sec-head"><div><h2>How to get help with your application</h2></div></div>
       <div class="sw-prose">
-        <p>If you want this call in another format, please contact &hellip;</p>
-        <p>If you want assistance completing the application, please contact &mdash; or attend one of our info sessions.</p>
-        <p>If you have questions or would like to consult with a staff member, please contact &hellip;</p>
+        <p class="sw-help-note">We welcome Expressions of Interest in any format that works best for you — including written text, audio or video recordings, or a live interview with a member of our team. If you would like to submit in an alternative format, please <a href="#">contact us</a> and we will be happy to make arrangements.</p>
+        <ul class="sw-help-list">
+          <li>If you want assistance completing the Expression of Interest, please contact ... or attend one of our info sessions.</li>
+          <li>If you have questions or would like to consult with a staff member, please contact &hellip;</li>
+        </ul>
       </div>
     </section>
 
-    <section class="sec">
-      <div class="sw-cta">
-        <p>Expressions of Interest are due <strong>15th December 2026</strong>.</p>
-        <div class="sw-cta-btns">
-          <a href="#" class="sw-btn-primary">Submit your Expression of Interest</a>
-          <a href="#" class="sw-btn-secondary">Contact us for help</a>
-        </div>
-      </div>
-    </section>
 
-  </div></main>
+  </div>
+
+  <!-- ===== FEEDBACK TAB ===== -->
+  <section id="feedback-sec" aria-label="Give us Feedback">
+    <div class="feedback-wrap">
+      <div class="feedback-card">
+        <p class="feedback-label">Your input shapes our commitment to accessibility</p>
+        <h2 class="feedback-heading">Look at our Open Calls Draft and share your thoughts with us</h2>
+        <ul class="feedback-list">
+          <li>What additional information would you need at this first stage of the call to feel confident enough to apply?</li>
+          <li>How do you feel about the Expression of Interest (EOI) format as a first step — does it make the application process more accessible?</li>
+          <li>Is there any information you felt was unnecessary or overwhelming to include at this stage?</li>
+          <li>What other accessibility features or tools would you like to see added to this platform?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer class="wrap"><div class="srcwrap" id="srcwrap">
   <div class="footer-row">
@@ -482,6 +980,69 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(27px,3.6vw,40px);max-width:
 </div></footer>
 
 <div id="tip"></div>
+
+<!-- ===== Accessibility Widget ===== -->
+<div id="a11y-widget">
+  <button id="a11y-btn" aria-label="Open Accessibility Menu" aria-expanded="false" aria-controls="a11y-panel">
+    <svg class="a11y-person" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="12" cy="5.5" r="2.5" fill="#fff"/>
+      <path d="M7.5 11.5h9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 11.5v4.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <path d="M9 20l3-4 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="a11y-badge" aria-hidden="true">
+      <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </button>
+  <div id="a11y-panel" hidden role="dialog" aria-modal="false" aria-label="Accessibility options">
+    <div class="a11y-head">
+      <span class="a11y-head-title">Accessibility Menu<kbd>CTRL+U</kbd></span>
+      <button class="a11y-close-btn" id="a11y-close" aria-label="Close accessibility menu">&#x2715;</button>
+    </div>
+    <div class="a11y-grid">
+      <button class="a11y-opt" aria-pressed="false" data-a11y="contrast">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        <span class="a11y-opt-label">Contrast +</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="links">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <span class="a11y-opt-label">Highlight Links</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="bigtext">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><text x="2" y="18" font-size="16" font-weight="700" stroke="none" fill="currentColor" font-family="serif">A</text><text x="14" y="14" font-size="10" stroke="none" fill="currentColor" font-family="serif">a</text></svg></span>
+        <span class="a11y-opt-label">Bigger Text</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="spacing">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="12" x2="15" y2="12"/><line x1="5" y1="16" x2="19" y2="16"/><path d="M21 5l-2-2-2 2"/><path d="M21 19l-2 2-2-2"/><line x1="19" y1="3" x2="19" y2="21"/></svg></span>
+        <span class="a11y-opt-label">Heavy Spacing</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="pause">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9" stroke-dasharray="5 2.8"/><rect x="9.5" y="9" width="2" height="6" rx="0.5" fill="currentColor" stroke="none"/><rect x="12.5" y="9" width="2" height="6" rx="0.5" fill="currentColor" stroke="none"/></svg></span>
+        <span class="a11y-opt-label">Pause Animations</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="images">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-4 4 3.5 3-3 6 5.5"/><circle cx="8.5" cy="9.5" r="1.5"/><line x1="16" y1="3" x2="21" y2="8"/><line x1="21" y1="3" x2="16" y2="8"/></svg></span>
+        <span class="a11y-opt-label">Hide Images</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="dyslexia">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h7a5 5 0 0 1 0 10H4V6z"/><path d="M4 11h6"/><line x1="17" y1="8" x2="17" y2="16"/><line x1="14" y1="8" x2="20" y2="8"/><line x1="14" y1="16" x2="20" y2="16"/></svg></span>
+        <span class="a11y-opt-label">Dyslexia Friendly</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="cursor">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-7 1.5-4.5 7z"/></svg></span>
+        <span class="a11y-opt-label">Cursor</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="tooltips">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="15"/><circle cx="12" cy="8.5" r=".8" fill="currentColor" stroke="none"/></svg></span>
+        <span class="a11y-opt-label">Tooltips</span>
+      </button>
+      <button class="a11y-opt" aria-pressed="false" data-a11y="lineheight">
+        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="14" y2="7"/><line x1="4" y1="12" x2="12" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/><line x1="20" y1="4" x2="20" y2="20"/><polyline points="17,6 20,4 23,6"/><polyline points="17,18 20,20 23,18"/></svg></span>
+        <span class="a11y-opt-label">Line Height</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <script>const DATA = [{"category": "Artist Call-Performance", "calls": ["The Disability Collective", "The Music Gallery, Phoenix the Fire, VibraFusionLab", "Propeller Dance", "Art Accessibility Network Manitoba", "AccessCBC and Reelabilities"], "sections": [{"name": "Accessibility and Formats", "factors": [{"name": "Standard online (website) version", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Downloadable plain-text Word document", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Downloadable PDF document", "desc": "", "vals": ["N", "N", "Y", "N", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Sign Language video", "desc": "", "vals": ["N", "Y", "N", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Easy Read version", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Large print version", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Audio version", "desc": "", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Dyslexia-friendly version", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Other format on request", "desc": "", "vals": ["Y", "N", "Y", "N", "Y"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}]}, {"name": "Description of the Call", "factors": [{"name": "What the call is", "desc": "A 1-3 paragraph description of the opportunity.", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Description of organizations involved", "desc": "Who is hosting it, who is funding it, who is partnering.", "vals": ["Y", "N", "Y", "N", "Y"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}, {"name": "Defining target groups", "desc": "Who the call is for: disabled artists, d/Deaf, Mad, neurodivergent, curators, etc.", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Theme - full descriptive version", "desc": "The longer, contextual description of this year's theme.", "vals": ["N", "N", "N", "Y", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Theme - Easy Read or plain version", "desc": "A short, accessible version of the theme.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Theme directly or indirectly", "desc": "Whether work must address the theme directly or can engage indirectly.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Plain-language definitions of the call's key terms", "desc": "", "vals": ["N", "N", "P", "N", "Y"], "y": 1, "p": 1, "n": 3, "na": 0, "pct": 40}]}, {"name": "Eligibility - Who Can Apply", "factors": [{"name": "Age", "desc": "Minimum age (e.g., 18+) and any maximum.", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Individual or collective", "desc": "", "vals": ["N", "Y", "N", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Commitment to a professional practice", "desc": "Existing committed practice, or history of professional activity in the arts.", "vals": ["N", "Y", "N", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Geographic eligibility (residency)", "desc": "City / region / country an applicant must live in.", "vals": ["N", "N", "Y", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Tax identification (SIN / Citizenship)", "desc": "SIN, equivalent national tax ID, or citizenship requirements.", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Active grants policy", "desc": "Whether applicants can hold another active grant at the same time.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Submission limit", "desc": "How many submissions per applicant per deadline.", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Concurrent applications", "desc": "Whether applying to other open programs is allowed.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Who is a good fit (a list)", "desc": "A short bulleted list of qualities/practices that fit this call. Or Examples.", "vals": ["N", "N", "Y", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Spoken language", "desc": "Required language(s) for application and participation.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Disability identification", "desc": "Whether applicants must self-identify as disabled.", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}]}, {"name": "Application Process", "factors": [{"name": "Deadline date and time", "desc": "Date plus exact time and time zone.", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Online portal", "desc": "Where applicants apply (Submittable, SmartSimple, Google Form, etc.).", "vals": ["Y", "N", "N", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Application form", "desc": "", "vals": ["N", "Y", "N", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Selection timeline", "desc": "", "vals": ["Y", "Y", "Y", "N", "N"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}, {"name": "Notification", "desc": "How and when applicants are told the result.", "vals": ["N", "Y", "Y", "N", "N"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Exhibition arrangement", "desc": "Steps after selection: contact for installation, dates, install support.", "vals": ["N", "N", "Y", "Y", "NA"], "y": 2, "p": 0, "n": 2, "na": 1, "pct": 50}, {"name": "Assessment process / criteria", "desc": "What the panel looks for: quality, fit to theme, feasibility, etc.", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Project streams (target groups)", "desc": "Whether the call has multiple streams for different applicants.", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Application fee", "desc": "Free, or amount; whether fee waivers exist.", "vals": ["N", "Y", "N", "N", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Final Report", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}]}, {"name": "Application Form", "factors": [{"name": "Project title", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Short project description", "desc": "Word-limited description (e.g., 30 words).", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Project start and end date", "desc": "", "vals": ["N", "Y", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "Grant amount requested", "desc": "Fixed or applicant-specified amount.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Artist background", "desc": "Name, primary discipline, statement, biography, CV, online presence.", "vals": ["N", "Y", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "Supporting material", "desc": "Images, video, audio, links.", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Image labels", "desc": "Title, size, materials, year for each image.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Image descriptions / alt text", "desc": "Descriptions for accessibility and for the panel.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Alternative submission formats", "desc": "Video or audio alternatives to written/image material.", "vals": ["Y", "N", "Y", "N", "Y"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}]}, {"name": "What Work Can Be Submitted", "factors": [{"name": "Already-made work", "desc": "", "vals": ["N", "N", "N", "Y", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Works in progress", "desc": "", "vals": ["N", "Y", "N", "Y", "Y"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}, {"name": "R&Ds (Research and Development)", "desc": "Whether early-stage exploratory work is accepted.", "vals": ["N", "Y", "Y", "N", "Y"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}, {"name": "New work", "desc": "", "vals": ["N", "Y", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "Art forms accepted", "desc": "Painting, sculpture, video, sound, performance, installation, digital, etc.", "vals": ["Y", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Where the work will be shown", "desc": "Online, in-person, or hybrid - with venue or platform.", "vals": ["Y", "Y", "Y", "Y", "P"], "y": 4, "p": 1, "n": 0, "na": 0, "pct": 100}, {"name": "Quality requirements", "desc": "Resolution", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Format requirements", "desc": "JPEG, MP4, etc.; file naming conventions.", "vals": ["Y", "Y", "N", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "File size limits", "desc": "Max MB per file; alternative upload routes for larger files.", "vals": ["N", "N", "N", "Y", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}]}, {"name": "Support for Applicants", "factors": [{"name": "Information sessions", "desc": "Online or in-person Q&A sessions before the deadline.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Financial assistance for applying", "desc": "Funds to help applicants prepare submissions.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Draft application assistance", "desc": "Email, video call, or phone meeting to discuss a draft.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Revision requests allowed", "desc": "Whether applicants can revise after submitting.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Feedback for unsuccessful applicants", "desc": "Whether feedback is offered to those not selected.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Someone else can complete the application", "desc": "Whether a friend, supporter, or worker can submit on the applicant's behalf.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Frequently asked Questions", "desc": "", "vals": ["N", "Y", "N", "N", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}, {"name": "Documentation support", "desc": "Help photographing or recording work that is not yet documented.", "vals": ["N", "Y", "N", "N", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}]}, {"name": "Selection and Outcome", "factors": [{"name": "Estimated number of selected artists", "desc": "", "vals": ["N", "Y", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "Selection panel", "desc": "", "vals": ["N", "N", "N", "N", "Y"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Winner's prize / artist grant", "desc": "Whether a single winner's prize or a participation grant for all selected.", "vals": ["Y", "N", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "What selected artists receive", "desc": "Fee, exhibition, printing, promotion, mentoring, etc.", "vals": ["N", "Y", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "Inclusion in catalogue / publication", "desc": "Whether work appears in any printed or digital publication.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Thought Partner", "desc": "", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}]}, {"name": "Always Include", "factors": [{"name": "Accessibility contact line", "desc": "If you experience any access barriers or have any questions, please email ...", "vals": ["Y", "Y", "Y", "N", "Y"], "y": 4, "p": 0, "n": 1, "na": 0, "pct": 80}, {"name": "Contact options (email + phone + text)", "desc": "Multiple ways for people to reach the team.", "vals": ["Y", "N", "N", "N", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "Named contact person(s)", "desc": "First-and-last-name contacts so applicants know who they are emailing.", "vals": ["N", "N", "Y", "N", "N"], "y": 1, "p": 0, "n": 4, "na": 0, "pct": 20}, {"name": "View-your-submissions link", "desc": "Where applicants check the status of their submission.", "vals": ["N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 5, "na": 0, "pct": 0}, {"name": "Inclusion / equity statement", "desc": "A short statement on equity, inclusion, and access values.", "vals": ["Y", "N", "Y", "N", "Y"], "y": 3, "p": 0, "n": 2, "na": 0, "pct": 60}, {"name": "Disclaimer Factors", "desc": "", "vals": ["N", "N", "N", "Y", "Y"], "y": 2, "p": 0, "n": 3, "na": 0, "pct": 40}]}], "label": "Performance", "short": ["TDC", "Music Gallery+", "Propeller", "AANM", "AccessCBC"]}, {"category": "Artist Call-Visual Arts", "calls": ["Shape Art", "Unlimited", "DaDaFest", "Remedy Photo Festival", "EAC", "Tangled Art + Disability", "Bodies in Translation", "Latitude53", "Ontario Arts Council", "Our Culture push Disability Arts + Dreaming Fellowship", "Level Centre", "John Hansard Gallery", "Art Gallery of Windsor", "The Critical Design Lab/Tangled Art + Disability/Doris McCarthy Gallery", "University of Atypical", "Tangled Art + Disability, Public Access", "Opulent Mobility", "The John F. Kennedy Center for the Performing Arts", "Tangled Art+ Disability / Frictions of Futurity"], "sections": [{"name": "Accessibility and Formats", "factors": [{"name": "Standard online (website) version", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 19, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Downloadable plain-text Word document", "desc": "", "vals": ["N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 1, "p": 0, "n": 18, "na": 0, "pct": 5}, {"name": "Downloadable PDF document", "desc": "", "vals": ["Y", "Y", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N"], "y": 4, "p": 0, "n": 15, "na": 0, "pct": 21}, {"name": "Sign Language video", "desc": "", "vals": ["Y", "Y", "Y", "N", "N", "Y", "Y", "N", "Y", "N", "Y", "N", "N", "N", "N", "Y", "N", "N", "N"], "y": 8, "p": 0, "n": 11, "na": 0, "pct": 42}, {"name": "Easy Read version", "desc": "", "vals": ["N", "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N"], "y": 3, "p": 0, "n": 16, "na": 0, "pct": 16}, {"name": "Large print version", "desc": "", "vals": ["N", "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 2, "p": 0, "n": 17, "na": 0, "pct": 11}, {"name": "Audio version", "desc": "", "vals": ["Y", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N"], "y": 3, "p": 0, "n": 16, "na": 0, "pct": 16}, {"name": "Dyslexia-friendly version", "desc": "", "vals": ["N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 0, "p": 0, "n": 19, "na": 0, "pct": 0}, {"name": "Other format on request", "desc": "", "vals": ["N", "Y", "Y", "Y", "N", "N", "Y", "N", "N", "N", "N", "Y", "N", "Y", "N", "NA", "N", "N", "N"], "y": 6, "p": 0, "n": 12, "na": 1, "pct": 33}]}, {"name": "Description of the Call", "factors": [{"name": "What the call is", "desc": "A 1-3 paragraph description of the opportunity.", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 19, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Description of organizations involved", "desc": "Who is hosting it, who is funding it, who is partnering.", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "N", "Y", "Y"], "y": 17, "p": 0, "n": 2, "na": 0, "pct": 89}, {"name": "Defining target groups", "desc": "Who the call is for: disabled artists, d/Deaf, Mad, neurodivergent, curators, etc.", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 19, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Theme - full descriptive version", "desc": "The longer, contextual description of this year's theme.", "vals": ["Y", "N", "NA", "Y", "N", "N", "N", "Y", "N", "N", "Y", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 11, "p": 0, "n": 7, "na": 1, "pct": 61}, {"name": "Theme - Easy Read or plain version", "desc": "A short, accessible version of the theme.", "vals": ["N", "N", "NA", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "Y", "N", "N", "N"], "y": 2, "p": 0, "n": 16, "na": 1, "pct": 11}, {"name": "Theme directly or indirectly", "desc": "Whether work must address the theme directly or can engage indirectly.", "vals": ["Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 8, "p": 0, "n": 11, "na": 0, "pct": 42}, {"name": "Plain-language definitions of the call's key terms", "desc": "", "vals": ["N", "Y", "N", "N", "N", "Y", "N", "N", "N", "Y", "Y", "N", "N", "Y", "N", "NA", "Y", "Y", "N"], "y": 7, "p": 0, "n": 11, "na": 1, "pct": 39}]}, {"name": "Eligibility - Who Can Apply", "factors": [{"name": "Age", "desc": "Minimum age (e.g., 18+) and any maximum.", "vals": ["Y", "Y", "N", "N", "Y", "N", "N", "N", "N", "N", "Y", "N", "N", "N", "Y", "N", "N", "Y", "N"], "y": 6, "p": 0, "n": 13, "na": 0, "pct": 32}, {"name": "Individual or collective", "desc": "", "vals": ["N", "Y", "N", "N", "Y", "Y", "N", "N", "Y", "Y", "Y", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 6, "p": 0, "n": 13, "na": 0, "pct": 32}, {"name": "Commitment to professional practice", "desc": "Existing committed practice, or history of professional activity in the arts.", "vals": ["N", "Y", "N", "N", "Y", "Y", "Y", "N", "N", "Y", "N", "Y", "N", "N", "N", "N", "N", "N", "N"], "y": 6, "p": 0, "n": 13, "na": 0, "pct": 32}, {"name": "Geographic eligibility (residency)", "desc": "City / region / country an applicant must live in.", "vals": ["Y", "Y", "Y", "N", "Y", "N", "Y", "Y", "Y", "Y", "Y", "N", "Y", "N", "Y", "N", "Y", "Y", "N"], "y": 13, "p": 0, "n": 6, "na": 0, "pct": 68}, {"name": "Tax identification (SIN / Citizenship)", "desc": "SIN, equivalent national tax ID, or citizenship requirements.", "vals": ["N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 1, "p": 0, "n": 18, "na": 0, "pct": 5}, {"name": "Active grants policy", "desc": "Whether applicants can hold another active grant at the same time.", "vals": ["N", "Y", "N", "N", "Y", "N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 3, "p": 0, "n": 16, "na": 0, "pct": 16}, {"name": "Submission limit", "desc": "How many submissions per applicant per deadline.", "vals": ["N", "Y", "N", "Y", "Y", "N", "N", "N", "Y", "Y", "NA", "N", "N", "N", "N", "N", "Y", "N", "N"], "y": 6, "p": 0, "n": 12, "na": 1, "pct": 33}, {"name": "Concurrent applications", "desc": "Whether applying to other open programs is allowed.", "vals": ["N", "Y", "N", "N", "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 3, "p": 0, "n": 16, "na": 0, "pct": 16}, {"name": "Who is a good fit (a list)", "desc": "A short bulleted list of qualities/practices that fit this call. Or Examples.", "vals": ["N", "Y", "N", "N", "Y", "N", "Y", "Y", "Y", "N", "N", "Y", "Y", "N", "N", "N", "N", "N", "Y"], "y": 8, "p": 0, "n": 11, "na": 0, "pct": 42}, {"name": "Spoken language", "desc": "Required language(s) for application and participation.", "vals": ["N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 1, "p": 0, "n": 18, "na": 0, "pct": 5}, {"name": "Disability identification", "desc": "Whether applicants must self-identify as disabled.", "vals": ["N", "Y", "Y", "N", "Y", "Y", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "NA", "Y", "Y"], "y": 15, "p": 0, "n": 3, "na": 1, "pct": 83}]}, {"name": "Application Process", "factors": [{"name": "Deadline date and time", "desc": "Date plus exact time and time zone.", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 18, "p": 0, "n": 1, "na": 0, "pct": 95}, {"name": "Online portal", "desc": "Where applicants apply (Submittable, SmartSimple, Google Form, etc.).", "vals": ["Y", "Y", "N", "Y", "Y", "Y", "N", "N", "Y", "Y", "Y", "Y", "N", "Y", "N", "NA", "Y", "Y", "N"], "y": 12, "p": 0, "n": 6, "na": 1, "pct": 67}, {"name": "Application form", "desc": "", "vals": ["Y", "Y", "N", "Y", "Y", "Y", "N", "N", "Y", "Y", "Y", "Y", "N", "Y", "N", "NA", "Y", "Y", "N"], "y": 12, "p": 0, "n": 6, "na": 1, "pct": 67}, {"name": "Selection timeline", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "Y", "N", "N", "N", "NA", "Y", "N", "N"], "y": 12, "p": 0, "n": 6, "na": 1, "pct": 67}, {"name": "Notification", "desc": "How and when applicants are told the result.", "vals": ["Y", "Y", "N", "Y", "N", "Y", "Y", "N", "Y", "Y", "Y", "N", "N", "N", "N", "NA", "Y", "N", "N"], "y": 9, "p": 0, "n": 9, "na": 1, "pct": 50}, {"name": "Exhibition arrangement", "desc": "Steps after selection: contact for installation, dates, install support.", "vals": ["Y", "Y", "Y", "Y", "N", "Y", "N", "Y", "N", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 15, "p": 0, "n": 4, "na": 0, "pct": 79}, {"name": "Assessment process / criteria", "desc": "What the panel looks for: quality, fit to theme, feasibility, etc.", "vals": ["Y", "Y", "Y", "Y", "Y", "N", "Y", "N", "Y", "N", "Y", "P", "N", "N", "Y", "NA", "N", "Y", "N"], "y": 10, "p": 1, "n": 7, "na": 1, "pct": 61}, {"name": "Project streams (target groups)", "desc": "Whether the call has multiple streams for different applicants.", "vals": ["N", "Y", "Y", "N", "Y", "Y", "N", "N", "Y", "Y", "Y", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 7, "p": 0, "n": 12, "na": 0, "pct": 37}, {"name": "Application fee", "desc": "Free, or amount; whether fee waivers exist.", "vals": ["N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N"], "y": 1, "p": 0, "n": 18, "na": 0, "pct": 5}, {"name": "Final Report", "desc": "", "vals": ["N", "N", "N", "N", "Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "NA", "N", "N", "N"], "y": 2, "p": 0, "n": 16, "na": 1, "pct": 11}]}, {"name": "Application Form", "factors": [{"name": "Project title", "desc": "", "vals": ["NA", "Y", "N", "N", "Y", "N", "N", "N", "N", "NA", "Y", "N", "Y", "NA", "N", "NA", "Y", "NA", "N"], "y": 5, "p": 0, "n": 9, "na": 5, "pct": 36}, {"name": "Short project description", "desc": "Word-limited description (e.g., 30 words).", "vals": ["NA", "Y", "Y", "Y", "Y", "Y", "N", "N", "Y", "NA", "NA", "Y", "N", "NA", "Y", "NA", "Y", "NA", "Y"], "y": 10, "p": 0, "n": 3, "na": 6, "pct": 77}, {"name": "Project start and end date", "desc": "", "vals": ["NA", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "NA", "N", "Y", "N", "NA", "Y", "NA", "Y", "Y", "Y"], "y": 13, "p": 0, "n": 2, "na": 4, "pct": 87}, {"name": "Grant amount requested", "desc": "Fixed or applicant-specified amount.", "vals": ["N", "N", "N", "N", "Y", "N", "Y", "N", "Y", "NA", "N", "N", "N", "NA", "N", "NA", "N", "N", "N"], "y": 3, "p": 0, "n": 13, "na": 3, "pct": 19}, {"name": "Artist background", "desc": "Name, primary discipline, statement, biography, CV, online presence.", "vals": ["NA", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "NA", "N", "Y", "N", "NA", "N", "NA", "N", "NA", "Y"], "y": 9, "p": 0, "n": 5, "na": 5, "pct": 64}, {"name": "Supporting material", "desc": "Images, video, audio, links.", "vals": ["NA", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "N", "NA", "Y", "NA", "Y", "Y", "Y"], "y": 14, "p": 0, "n": 2, "na": 3, "pct": 88}, {"name": "Image labels", "desc": "Title, size, materials, year for each image.", "vals": ["NA", "N", "N", "N", "Y", "Y", "N", "N", "N", "NA", "Y", "N", "Y", "NA", "N", "NA", "N", "NA", "N"], "y": 4, "p": 0, "n": 10, "na": 5, "pct": 29}, {"name": "Image descriptions / alt text", "desc": "Descriptions for accessibility and for the panel.", "vals": ["NA", "N", "N", "N", "N", "Y", "N", "N", "N", "NA", "N", "N", "N", "NA", "N", "NA", "N", "NA", "N"], "y": 1, "p": 0, "n": 13, "na": 5, "pct": 7}, {"name": "Alternative submission formats", "desc": "Video or audio alternatives to written/image material.", "vals": ["Y", "Y", "Y", "N", "N", "Y", "Y", "Y", "N", "N", "N", "Y", "N", "NA", "N", "NA", "Y", "N", "N"], "y": 8, "p": 0, "n": 9, "na": 2, "pct": 47}]}, {"name": "What Work Can Be Submitted", "factors": [{"name": "Already-made work", "desc": "", "vals": ["Y", "N", "N", "Y", "N", "Y", "N", "NA", "N", "N", "Y", "Y", "Y", "NA", "NA", "N", "Y", "Y", "Y"], "y": 9, "p": 0, "n": 7, "na": 3, "pct": 56}, {"name": "Works in progress", "desc": "", "vals": ["Y", "Y", "N", "N", "Y", "N", "N", "NA", "Y", "N", "N", "N", "N", "NA", "NA", "N", "N", "N", "N"], "y": 4, "p": 0, "n": 12, "na": 3, "pct": 25}, {"name": "R&Ds (Research and Development)", "desc": "Whether early-stage exploratory work is accepted.", "vals": ["Y", "Y", "N", "N", "Y", "N", "N", "NA", "Y", "Y", "N", "Y", "N", "N", "NA", "N", "N", "N", "Y"], "y": 7, "p": 0, "n": 10, "na": 2, "pct": 41}, {"name": "New work", "desc": "", "vals": ["Y", "Y", "Y", "N", "Y", "N", "N", "NA", "Y", "Y", "N", "Y", "N", "NA", "NA", "Y", "NA", "Y", "Y"], "y": 10, "p": 0, "n": 5, "na": 4, "pct": 67}, {"name": "Art forms accepted", "desc": "Painting, sculpture, video, sound, performance, installation, digital, etc.", "vals": ["Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "Y", "Y", "N", "Y", "NA", "Y", "N", "Y", "Y", "Y"], "y": 15, "p": 0, "n": 3, "na": 1, "pct": 83}, {"name": "Where the work will be shown", "desc": "Online, in-person, or hybrid - with venue or platform.", "vals": ["Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 17, "p": 0, "n": 2, "na": 0, "pct": 89}, {"name": "Quality requirements", "desc": "Resolution", "vals": ["Y", "N", "N", "Y", "N", "N", "N", "N", "NA", "NA", "Y", "N", "Y", "N", "N", "NA", "N", "Y", "N"], "y": 5, "p": 0, "n": 11, "na": 3, "pct": 31}, {"name": "Format requirements", "desc": "JPEG, MP4, etc.; file naming conventions.", "vals": ["Y", "N", "N", "Y", "Y", "Y", "N", "N", "NA", "NA", "Y", "Y", "Y", "N", "N", "NA", "Y", "Y", "Y"], "y": 10, "p": 0, "n": 6, "na": 3, "pct": 62}, {"name": "File size limits", "desc": "Max MB per file; alternative upload routes for larger files.", "vals": ["N", "N", "Y", "Y", "Y", "Y", "N", "N", "NA", "NA", "Y", "Y", "N", "N", "N", "NA", "Y", "Y", "Y"], "y": 9, "p": 0, "n": 7, "na": 3, "pct": 56}]}, {"name": "Support for Applicants", "factors": [{"name": "Information sessions", "desc": "Online or in-person Q&A sessions before the deadline.", "vals": ["N", "Y", "N", "N", "Y", "Y", "N", "N", "N", "Y", "N", "Y", "N", "N", "N", "NA", "N", "N", "N"], "y": 5, "p": 0, "n": 13, "na": 1, "pct": 28}, {"name": "Financial assistance for applying", "desc": "Funds to help applicants prepare submissions.", "vals": ["N", "Y", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "NA", "Y", "N", "N"], "y": 3, "p": 0, "n": 15, "na": 1, "pct": 17}, {"name": "Draft application assistance", "desc": "Email, video call, or phone meeting to discuss a draft.", "vals": ["Y", "Y", "N", "Y", "Y", "N", "Y", "N", "Y", "N", "N", "Y", "N", "N", "N", "NA", "Y", "N", "N"], "y": 8, "p": 0, "n": 10, "na": 1, "pct": 44}, {"name": "Revision requests allowed", "desc": "Whether applicants can revise after submitting.", "vals": ["N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "NA", "N", "N", "N"], "y": 1, "p": 0, "n": 17, "na": 1, "pct": 6}, {"name": "Childcare Support", "desc": "", "vals": ["N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "NA", "N", "N", "N"], "y": 1, "p": 0, "n": 17, "na": 1, "pct": 6}, {"name": "Feedback for unsuccessful applicants", "desc": "Whether feedback is offered to those not selected.", "vals": ["N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "NA", "N", "N", "N"], "y": 1, "p": 0, "n": 17, "na": 1, "pct": 6}, {"name": "Someone else can complete the application", "desc": "Whether a friend, supporter, or worker can submit on the applicant's behalf.", "vals": ["Y", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "Y", "N", "N", "N", "N", "NA", "N", "N", "N"], "y": 3, "p": 0, "n": 15, "na": 1, "pct": 17}, {"name": "Frequently Asked Questions", "desc": "", "vals": ["Y", "Y", "N", "N", "Y", "N", "N", "N", "N", "Y", "N", "Y", "N", "N", "N", "NA", "N", "Y", "N"], "y": 6, "p": 0, "n": 12, "na": 1, "pct": 33}, {"name": "Documentation support", "desc": "Help photographing or recording work that is not yet documented.", "vals": ["Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "NA", "Y", "N", "N"], "y": 2, "p": 0, "n": 16, "na": 1, "pct": 11}]}, {"name": "Selection and Outcome", "factors": [{"name": "Estimated number of selected artists", "desc": "", "vals": ["Y", "Y", "Y", "N", "N", "N", "Y", "N", "N", "Y", "N", "Y", "N", "N", "Y", "N", "N", "Y", "Y"], "y": 9, "p": 0, "n": 10, "na": 0, "pct": 47}, {"name": "Selection panel", "desc": "", "vals": ["Y", "Y", "N", "N", "Y", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "NA", "N", "Y", "N"], "y": 5, "p": 0, "n": 13, "na": 1, "pct": 28}, {"name": "Winner's prize / artist grant", "desc": "Whether a single winner's prize or a participation grant for all selected.", "vals": ["Y", "Y", "Y", "N", "Y", "N", "Y", "N", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "N", "Y", "Y"], "y": 14, "p": 0, "n": 5, "na": 0, "pct": 74}, {"name": "What selected artists receive", "desc": "Fee, exhibition, printing, promotion, mentoring, etc.", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 18, "p": 0, "n": 1, "na": 0, "pct": 95}, {"name": "Inclusion in catalogue / publication", "desc": "Whether work appears in any printed or digital publication.", "vals": ["Y", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 2, "p": 0, "n": 17, "na": 0, "pct": 11}, {"name": "Thought Partner", "desc": "", "vals": ["N", "N", "N", "N", "N", "N", "N", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N"], "y": 1, "p": 0, "n": 18, "na": 0, "pct": 5}]}, {"name": "Always Include", "factors": [{"name": "Accessibility contact line", "desc": "If you experience any access barriers or have any questions, please email ...", "vals": ["N", "Y", "Y", "N", "Y", "N", "N", "N", "Y", "Y", "N", "Y", "Y", "Y", "N", "NA", "N", "NA", "N"], "y": 8, "p": 0, "n": 9, "na": 2, "pct": 47}, {"name": "Contact options (email, phone, text)", "desc": "Multiple ways for people to reach the team.", "vals": ["N", "Y", "Y", "N", "Y", "Y", "Y", "N", "Y", "N", "N", "Y", "N", "N", "N", "NA", "N", "NA", "N"], "y": 7, "p": 0, "n": 10, "na": 2, "pct": 41}, {"name": "Named contact person(s)", "desc": "First-and-last-name contacts so applicants know who they are emailing.", "vals": ["N", "N", "N", "N", "N", "Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "N", "N", "NA", "Y", "NA", "N"], "y": 8, "p": 0, "n": 9, "na": 2, "pct": 47}, {"name": "View-your-submissions link", "desc": "Where applicants check the status of their submission.", "vals": ["N", "Y", "N", "N", "Y", "N", "N", "N", "N", "N", "N", "N", "N", "N", "N", "NA", "N", "NA", "N"], "y": 2, "p": 0, "n": 15, "na": 2, "pct": 12}, {"name": "Inclusion / equity / Accessibility statement", "desc": "A short statement on equity, inclusion, and access values.", "vals": ["Y", "N", "N", "N", "Y", "Y", "P", "Y", "N", "Y", "N", "N", "N", "Y", "N", "NA", "N", "Y", "Y"], "y": 8, "p": 1, "n": 9, "na": 1, "pct": 50}, {"name": "Disclaimer Factors", "desc": "", "vals": ["N", "Y", "N", "N", "Y", "N", "N", "N", "N", "N", "Y", "N", "Y", "N", "N", "NA", "Y", "Y", "N"], "y": 6, "p": 0, "n": 12, "na": 1, "pct": 33}]}], "label": "Visual Arts", "short": ["Shape", "Unltd", "DaDaFest", "Remedy", "EAC", "Tangled", "BiT", "Lat53", "OAC", "CulturePush", "Level", "Hansard", "AG Windsor", "CritDesign", "U.Atypical", "Public Access", "Opulent", "Kennedy", "Frictions"]}, {"category": "Residency Call", "calls": ["Art Space", "Science and Art Lab", "The Art House", "Futurity in Transplant Medicine and Tangled Art+Disability", "Arcade Campfa", "The Music Gallery, Phoenix the Fire, VibraFusionLab", "Open Style Lab", "Multicultural Artists’ Coalition", "Open Style Lab (2)"], "sections": [{"name": "Description of the Residency", "factors": [{"name": "Residency name and edition", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 9, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Description of the call / opportunity", "desc": "What the residency is and why it exists.", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 9, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Description of host organization", "desc": "Who runs it; mission and history.", "vals": ["Y", "Y", "Y", "Y", "N", "N", "Y", "Y", "Y"], "y": 7, "p": 0, "n": 2, "na": 0, "pct": 78}, {"name": "Description of partners", "desc": "Other institutions, labs, universities, networks involved.", "vals": ["Y", "Y", "Y", "Y", "Y", "N", "N", "N", "N"], "y": 5, "p": 0, "n": 4, "na": 0, "pct": 56}, {"name": "Target group", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 9, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Theme or research focus", "desc": "Any themed call topic, keywords, or subject area (e.g., neurodegenerative diseases).", "vals": ["N", "Y", "N", "Y", "N", "N", "Y", "N", "Y"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Location description", "desc": "City and country; description of the studios, labs, or building.", "vals": ["Y", "Y", "Y", "N", "Y", "Y", "Y", "N", "Y"], "y": 7, "p": 0, "n": 2, "na": 0, "pct": 78}, {"name": "Studios / facilities description", "desc": "Print studio, ceramics, darkroom, lab access, etc.", "vals": ["Y", "Y", "Y", "N", "N", "N", "N", "Y", "N"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Residency Fee", "desc": "", "vals": ["N", "N", "N", "N", "N", "Y", "N", "N", "N"], "y": 1, "p": 0, "n": 8, "na": 0, "pct": 11}]}, {"name": "What the Residency Offers", "factors": [{"name": "Artist fee / stipend", "desc": "Amount and currency; gross or net; payment schedule.", "vals": ["Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y"], "y": 8, "p": 0, "n": 1, "na": 0, "pct": 89}, {"name": "Travel costs covered", "desc": "", "vals": ["N", "Y", "Y", "N", "N", "N", "N", "N", "N"], "y": 2, "p": 0, "n": 7, "na": 0, "pct": 22}, {"name": "Accommodation provided", "desc": "On-site or arranged housing; whether covered or paid.", "vals": ["Y", "Y", "Y", "N", "N", "N", "N", "N", "N"], "y": 3, "p": 0, "n": 6, "na": 0, "pct": 33}, {"name": "Production budget / materials", "desc": "", "vals": ["N", "Y", "Y", "Y", "N", "Y", "N", "N", "N"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Meal Provided", "desc": "", "vals": ["N", "N", "N", "N", "N", "Y", "N", "N", "N"], "y": 1, "p": 0, "n": 8, "na": 0, "pct": 11}, {"name": "Studio space access", "desc": "24-hour access? size of space? shared or private?", "vals": ["Y", "N", "Y", "N", "N", "Y", "N", "Y", "N"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Specialist equipment access", "desc": "Print, ceramics, darkroom, lab equipment, advanced technology.", "vals": ["N", "Y", "Y", "N", "N", "Y", "N", "N", "N"], "y": 3, "p": 0, "n": 6, "na": 0, "pct": 33}, {"name": "Technical support / technicians", "desc": "On-site staff or technicians who help with equipment.", "vals": ["N", "Y", "Y", "N", "Y", "Y", "N", "N", "N"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Coaching, mentoring, 1-1 support", "desc": "Sessions to develop practice, marketing, audiences.", "vals": ["Y", "N", "Y", "N", "N", "Y", "N", "N", "N"], "y": 3, "p": 0, "n": 6, "na": 0, "pct": 33}, {"name": "Public visibility / promotion", "desc": "Press, social media, partner-channel promotion.", "vals": ["Y", "Y", "N", "Y", "Y", "N", "N", "Y", "Y"], "y": 6, "p": 0, "n": 3, "na": 0, "pct": 67}, {"name": "Solo or group exhibition at the end", "desc": "", "vals": ["Y", "N", "N", "Y", "Y", "N", "N", "N", "N"], "y": 3, "p": 0, "n": 6, "na": 0, "pct": 33}, {"name": "Catalogue, essay, or brochure", "desc": "Any printed/digital publication produced about the work.", "vals": ["Y", "N", "N", "N", "N", "N", "Y", "N", "Y"], "y": 3, "p": 0, "n": 6, "na": 0, "pct": 33}, {"name": "Network / research-team contact", "desc": "", "vals": ["Y", "Y", "N", "Y", "N", "N", "Y", "N", "Y"], "y": 5, "p": 0, "n": 4, "na": 0, "pct": 56}, {"name": "Optional public sharing / open studio", "desc": "", "vals": ["Y", "Y", "N", "Y", "N", "N", "N", "Y", "N"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}]}, {"name": "Duration and Schedule", "factors": [{"name": "Length of residency", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y", "N", "Y", "Y", "Y"], "y": 8, "p": 0, "n": 1, "na": 0, "pct": 89}, {"name": "Date range/Project Timeline", "desc": "", "vals": ["Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 9, "p": 0, "n": 0, "na": 0, "pct": 100}, {"name": "Flexible scheduling", "desc": "Whether the residency can be split or rescheduled by arrangement.", "vals": ["Y", "Y", "Y", "N", "N", "N", "Y", "N", "NA"], "y": 4, "p": 0, "n": 4, "na": 1, "pct": 50}]}, {"name": "Eligibility", "factors": [{"name": "Disability identification", "desc": "Whether applicants must self-identify as disabled.", "vals": ["Y", "N", "Y", "Y", "Y", "Y", "Y", "N", "Y"], "y": 7, "p": 0, "n": 2, "na": 0, "pct": 78}, {"name": "Geographic eligibility", "desc": "", "vals": ["Y", "N", "Y", "N", "N", "N", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 4, "na": 0, "pct": 56}, {"name": "Career stage", "desc": "Emerging, mid-career, established - or any career stage.", "vals": ["N", "N", "Y", "N", "N", "N", "Y", "Y", "Y"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Working language", "desc": "Required language(s) for the residency.", "vals": ["N", "Y", "N", "N", "Y", "N", "N", "N", "N"], "y": 2, "p": 0, "n": 7, "na": 0, "pct": 22}, {"name": "Comfort with interdisciplinary work", "desc": "If the residency requires working with scientists, technologists, etc.", "vals": ["N", "Y", "N", "Y", "N", "N", "Y", "N", "Y"], "y": 4, "p": 0, "n": 5, "na": 0, "pct": 44}, {"name": "Commitment to a professional practice", "desc": "", "vals": ["N", "N", "Y", "N", "N", "Y", "Y", "Y", "Y"], "y": 5, "p": 0, "n": 4, "na": 0, "pct": 56}, {"name": "Commitment to public events", "desc": "Willingness to give a talk, presentation, or workshop.", "vals": ["Y", "Y", "N", "Y", "N", "N", "N", "N", "NA"], "y": 3, "p": 0, "n": 5, "na": 1, "pct": 38}, {"name": "Equal opportunity statement", "desc": "Statement that applications are welcome regardless of gender, sexuality, age, disability, cultural background, socio-economic status.", "vals": ["Y", "Y", "Y", "Y", "N", "N", "Y", "Y", "N"], "y": 6, "p": 0, "n": 3, "na": 0, "pct": 67}]}, {"name": "Submission Process", "factors": [{"name": "Expression of interest (EOI) only?", "desc": "", "vals": ["N", "N", "Y", "N", "N", "N", "N", "N", "N"], "y": 1, "p": 0, "n": 8, "na": 0, "pct": 11}, {"name": "Two-stage applications", "desc": "", "vals": ["N", "N", "Y", "N", "N", "N", "Y", "N", "Y"], "y": 3, "p": 0, "n": 6, "na": 0, "pct": 33}, {"name": "Full application Process", "desc": "", "vals": ["Y", "Y", "N", "Y", "Y", "Y", "Y", "Y", "Y"], "y": 8, "p": 0, "n": 1, "na": 0, "pct": 89}]}], "label": "Residency", "short": ["Artspace", "SciArt", "Art House", "Futurity", "Arcade", "Music Gallery+", "Open Style", "MAC", "Open Style (2)"]}];</script>
 <script>
@@ -507,7 +1068,7 @@ function colorFor(pct){const c=rgbArr(pct);return `rgb(${c[0]},${c[1]},${c[2]})`
 function textOn(pct){const[r,g,b]=rgbArr(pct);return (0.299*r+0.587*g+0.114*b)<150?'#fff':'#3A2C1C';}
 function textOn2(pct){const[r,g,b]=rgbArr(pct);return (0.299*r+0.587*g+0.114*b)<150?'rgba(255,255,255,.88)':'rgba(58,44,28,.72)';}
 
-let CUR=0,BP_CUR=0,ACTIVE_PAGE='calls';
+let CUR=0,BP_CUR=0,ACTIVE_PAGE='guidelines';
 function getCurrentData(){return ACTIVE_PAGE==='calls'?DATA[CUR]:ACTIVE_PAGE==='guidelines'?BP_DATA[BP_CUR]:SW_DATA[0];}
 function getColLabel(){return ACTIVE_PAGE==='calls'?'factor':'practice';}
 const tabsEl=document.getElementById('tabs');
@@ -733,7 +1294,7 @@ function exportCSV(){
   document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
 }
 
-var SW_NAV=[['Questions','sw-questions'],['Context','sw-context'],['Eligibility','sw-eligibility'],['Formats','sw-formats'],['What to expect','sw-expect'],['Get help','sw-help']];
+var SW_NAV=[['Open Call','sw-questions'],['Context','sw-context'],['Eligibility','sw-eligibility'],['Art Forms','sw-artforms'],['Formats','sw-formats'],['What to expect','sw-expect'],['Get help','sw-help']];
 function buildSWNav(){
   var t=document.getElementById('tabs');if(!t)return;
   t.innerHTML=SW_NAV.map(function(x){return '<a class="tab sw-anchor" role="tab" aria-selected="false" data-target="'+x[1]+'" href="#'+x[1]+'">'+x[0]+'</a>';}).join('');
@@ -748,11 +1309,17 @@ window.addEventListener('scroll',function(){window.requestAnimationFrame(updateS
 function render(){
   document.body.dataset.page=ACTIVE_PAGE;
   const isSW=ACTIVE_PAGE==='smartwear';
+  const isPres=ACTIVE_PAGE==='presentation';
+  const isFB=ACTIVE_PAGE==='feedback';
   const swSec=document.getElementById('smartwear-sec');if(swSec)swSec.style.display=isSW?'':'none';
+  const presSec=document.getElementById('presentation-sec');if(presSec)presSec.style.display=isPres?'block':'none';
+  const fbSec=document.getElementById('feedback-sec');if(fbSec)fbSec.style.display=isFB?'block':'none';
+  const heroSec=document.getElementById('hero-sec');if(heroSec)heroSec.style.display=(isPres||isFB)?'none':'';
   ['stats','findings-sec','treemap-sec','matrix-sec'].forEach(function(id){
-    var el=document.getElementById(id);if(el)el.style.display=isSW?'none':'';
+    var el=document.getElementById(id);if(el)el.style.display=(isSW||isPres||isFB)?'none':'';
   });
-  var tabsEl=document.getElementById('tabs');if(tabsEl)tabsEl.style.display='';
+  var tabsEl=document.getElementById('tabs');if(tabsEl)tabsEl.style.display=(isPres||isFB)?'none':'';
+  if(isPres||isFB)return;
   updateHero();
   if(isSW){buildSWNav();updateSWActive();return;}
   updateTabs();renderStats();renderFindings();renderTreemap();renderMatrix();
@@ -766,15 +1333,15 @@ function updateHero(){
     const sm=document.getElementById('srcMore');
     if(sl)sl.textContent='ADWG Open Calls Checklist';
     if(sm)sm.innerHTML=sm.dataset.calls||sm.innerHTML;
-    if(sub)sub.textContent='A review of public art opportunities, analyzed according to accessibility, eligibility, application design and applicant support. Each factor is marked Yes, Partial or No across every call, with coverage rates aggregated by category.';
+    if(sub)sub.innerHTML='A review of public art opportunities, analyzed according to accessibility, eligibility, application design and applicant support. Each factor is marked Yes, Partial or No across every call, with coverage rates aggregated by category.';
   } else if(ACTIVE_PAGE==='smartwear'){
     if(ey)ey.innerHTML='Co-Designing a Smartwear Revolution · University of Alberta';
-    if(h1)h1.textContent='Open Call for Visual Art, Performance, Textile Art and Fashion';
+    if(h1)h1.innerHTML='<span class="h1-accent">OPEN CALL FOR EXPRESSIONS OF INTEREST</span> FOR VISUAL ART, PERFORMANCE, TEXTILE ART, AND FASHION PROJECTS';
     const sl=document.getElementById('src-label');
     const sm=document.getElementById('srcMore');
     if(sl)sl.textContent='Smartwear Open Calls Draft';
     if(sm)sm.innerHTML=sm.dataset.smartwear||sm.innerHTML;
-    if(sub)sub.textContent='Based at the University of Alberta, the Co-Designing a Smartwear Revolution project seeks artworks in various modalities for a 2028 festival around the theme of SUPPORT.';
+    if(sub)sub.innerHTML='<span class="hero-dates"><span class="hd-item"><span class="hd-label">EOI deadline</span><span class="hd-date">15 Dec 2026</span></span><span class="hd-item"><span class="hd-label">Results announced</span><span class="hd-date">15 Jan 2027</span></span><span class="hd-item"><span class="hd-label">Full applications due</span><span class="hd-date">15 Feb 2027</span></span></span>';
   } else {
     if(ey)ey.innerHTML='Art &amp; Design Working Group · Access Guidelines';
     if(h1)h1.textContent='Accessibility Best Practices Comparison';
@@ -782,7 +1349,7 @@ function updateHero(){
     const sm=document.getElementById('srcMore');
     if(sl)sl.textContent='Accessibility Best Practices';
     if(sm)sm.innerHTML=sm.dataset.guidelines||sm.innerHTML;
-    if(sub)sub.textContent='Comparing what 12 international access guides recommend across 4 aspects of Arts Management. Each factor is marked Yes or No, with coverage rates showing how widely each is recommended.';
+    if(sub)sub.innerHTML='Comparing what 12 international access guides recommend across 4 aspects of Arts Management. Each factor is marked Yes or No, with coverage rates showing how widely each is recommended.';
   }
 }
 document.getElementById('filter').addEventListener('input',()=>renderMatrix());
@@ -799,9 +1366,133 @@ document.querySelectorAll('.pnav-btn').forEach(btn=>{
 window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(()=>{renderTreemap();renderMatrix();},180);});
 render();
 
+// Presentation slide navigation
+(function(){
+  var slides=Array.from(document.querySelectorAll('.pres-slide'));
+  var total=slides.length;
+  var cur=0;
+  var dotsWrap=document.getElementById('pres-dots');
+  var counter=document.getElementById('pres-count');
+  var prevBtn=document.getElementById('pres-prev');
+  var nextBtn=document.getElementById('pres-next');
+  if(!total)return;
+  // build dots
+  for(var i=0;i<total;i++){
+    var d=document.createElement('button');
+    d.className='pres-dot'+(i===0?' active':'');
+    d.setAttribute('aria-label','Go to slide '+(i+1));
+    d.dataset.i=i;
+    d.addEventListener('click',(function(n){return function(){goTo(n);};})(i));
+    if(dotsWrap)dotsWrap.appendChild(d);
+  }
+  function goTo(n){
+    slides[cur].classList.remove('active');
+    var dots=dotsWrap?dotsWrap.querySelectorAll('.pres-dot'):[];
+    if(dots[cur])dots[cur].classList.remove('active');
+    cur=Math.max(0,Math.min(n,total-1));
+    slides[cur].classList.add('active');
+    if(dots[cur])dots[cur].classList.add('active');
+    if(counter)counter.textContent=(cur+1)+' / '+total;
+    if(prevBtn)prevBtn.disabled=(cur===0);
+    if(nextBtn)nextBtn.disabled=(cur===total-1);
+  }
+  if(prevBtn)prevBtn.addEventListener('click',function(){goTo(cur-1);});
+  if(nextBtn)nextBtn.addEventListener('click',function(){goTo(cur+1);});
+  document.addEventListener('keydown',function(e){
+    if(ACTIVE_PAGE!=='presentation')return;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();goTo(cur+1);}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();goTo(cur-1);}
+  });
+})();
+
 (function(){var w=document.getElementById('srcwrap'),t=document.getElementById('srcToggle'),m=document.getElementById('srcMore');
 if(t&&w&&m){t.addEventListener('click',function(){var op=w.classList.toggle('open');t.setAttribute('aria-expanded',op?'true':'false');});
 m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&&w.classList.contains('open'))m.scrollIntoView({behavior:'smooth',block:'nearest'});});}
+})();
+
+// Accessibility widget
+(function(){
+  var btn=document.getElementById('a11y-btn');
+  var panel=document.getElementById('a11y-panel');
+  var closeBtn=document.getElementById('a11y-close');
+  if(!btn||!panel)return;
+  function openPanel(){panel.hidden=false;btn.setAttribute('aria-expanded','true');closeBtn.focus();}
+  function closePanel(){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
+  function togglePanel(){panel.hidden?openPanel():closePanel();}
+  btn.addEventListener('click',function(e){e.stopPropagation();togglePanel();});
+  closeBtn.addEventListener('click',function(e){e.stopPropagation();closePanel();});
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key==='u'){e.preventDefault();togglePanel();}
+    if(e.key==='Escape'&&!panel.hidden){closePanel();btn.focus();}
+  });
+  document.addEventListener('click',function(e){if(!e.target.closest('#a11y-widget')&&!panel.hidden)closePanel();});
+  document.querySelectorAll('.a11y-opt').forEach(function(opt){
+    opt.addEventListener('click',function(e){e.stopPropagation();var on=opt.classList.toggle('on');opt.setAttribute('aria-pressed',on?'true':'false');});
+  });
+})();
+
+// Bubble chart — rarely mentioned accessibility factors
+(function(){
+  var ITEMS=[
+    'Lift attendant','Accessible backstage','Responding to Feedback',
+    'Content Alert','Areas of rescue assistance','Backstage tours',
+    'Legible handwriting','Google Maps location','Ticket exchange policy',
+    'Assistance dog areas','Avoidance of acronyms','Caption correction',
+    'Route info on tickets','Disruptions policy','Rounded edge cases',
+    'Breastfeeding stations','Washroom attendant','Scale model of building',
+    'ASL/BSL trained staff','Multilingual captioning'
+  ];
+  var COLORS=[
+    '#7A9E8C','#9B7BAA','#C47060','#5B8FA8','#C4944A',
+    '#B87887','#60789A','#7A9E7A','#C47A45','#6B9E9E',
+    '#8B78B0','#B8983A','#B87890','#5B9880','#A07898',
+    '#7A8EA8','#9E7A6E','#6B9E8C','#A07BAA','#B09850'
+  ];
+  function build(){
+    var svgEl=document.getElementById('bubble-chart');
+    if(!svgEl||typeof d3==='undefined')return;
+    if(svgEl.childElementCount>0)return;
+    var R=72,RL=92;
+    var nodes=ITEMS.map(function(name,i){
+      return{name:name,r:[0,3,6,9].indexOf(i)>=0?RL:R};
+    });
+    if(typeof d3.packSiblings==='function'){d3.packSiblings(nodes);}
+    else{nodes.forEach(function(n,i){n.x=(i%5-2)*170;n.y=(Math.floor(i/5)-1)*170;});}
+    var x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;
+    nodes.forEach(function(n){
+      x0=Math.min(x0,n.x-n.r);x1=Math.max(x1,n.x+n.r);
+      y0=Math.min(y0,n.y-n.r);y1=Math.max(y1,n.y+n.r);
+    });
+    var pad=14;
+    // use actual cluster bounds as viewBox so circles always fill the SVG
+    var svg=d3.select(svgEl)
+      .attr('viewBox',(x0-pad)+' '+(y0-pad)+' '+(x1-x0+2*pad)+' '+(y1-y0+2*pad))
+      .attr('preserveAspectRatio','xMidYMid meet');
+    nodes.forEach(function(n,i){
+      var g=svg.append('g');
+      g.append('circle').attr('cx',n.x).attr('cy',n.y).attr('r',n.r)
+        .attr('fill',COLORS[i]).attr('opacity',0.86);
+      var maxFs=Math.min(n.r*0.28,22);
+      var cpl=Math.max(4,Math.floor(n.r*1.55/(maxFs*0.55)));
+      var words=n.name.split(' '),lines=[],cur='';
+      words.forEach(function(w){
+        var t=cur?cur+' '+w:w;
+        if(t.length<=cpl){cur=t;}else{if(cur)lines.push(cur);cur=w;}
+      });
+      if(cur)lines.push(cur);
+      // auto-shrink font so the longest line always fits inside the circle
+      var maxLen=lines.reduce(function(m,l){return Math.max(m,l.length);},0);
+      var fs=Math.min(maxFs,n.r*1.45/(maxLen*0.58));
+      var lh=fs*1.28,th=(lines.length-1)*lh;
+      lines.forEach(function(l,li){
+        g.append('text').attr('x',n.x).attr('y',n.y-th/2+li*lh+fs*0.35)
+          .attr('text-anchor','middle').attr('font-size',fs)
+          .attr('font-family','Poppins,sans-serif').attr('font-weight','600')
+          .attr('fill','#2D221A').text(l);
+      });
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',build);}else{build();}
 })();
 </script>
 </body>
