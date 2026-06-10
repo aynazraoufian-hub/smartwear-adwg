@@ -211,6 +211,12 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
   .matrix-scroll{max-height:none!important;overflow:visible!important}
   .tm-node rect{transition:none}
   .fade{opacity:1!important;transform:none!important}
+  /* presentation: print every slide, one per page */
+  .pres-stage{aspect-ratio:auto;overflow:visible;box-shadow:none;border:none;background:#fff}
+  .pres-stage::after{display:none}
+  .pres-slide{display:flex!important;position:relative;inset:auto;aspect-ratio:16/9;break-after:page;border:1px solid var(--line);border-radius:12px;margin-bottom:8mm}
+  .pres-slide>:not(.pres-wm),.pres-slide.active>:not(.pres-wm){animation:none!important}
+  .pres-nav-bar{display:none!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
@@ -285,11 +291,23 @@ body[data-page="guidelines"] .tm-bar{
 .sw-prose p:last-child{margin-bottom:0}
 .sw-prose em{font-style:italic}
 .sw-prose strong{font-weight:600;color:var(--ink)}
-.sw-quote{font-size:14.5px;line-height:1.8;font-weight:300;color:var(--ink);font-style:italic;margin:0 0 18px}
+.sw-quote{position:relative;font-size:16.5px;line-height:1.75;font-weight:300;color:var(--ink);font-style:italic;margin:0 0 22px;padding:4px 0 4px 26px;border-left:3px solid var(--wine);max-width:66ch}
+.sw-quote::before{content:'\201C';position:absolute;left:-46px;top:-14px;font-size:64px;line-height:1;color:var(--pale);font-style:normal;font-weight:700}
+@media(max-width:1100px){.sw-quote::before{display:none}}
 .sw-card{border:1px solid var(--line);border-radius:var(--r);padding:22px 26px;background:var(--soft-2);margin:18px 0;max-width:70ch}
 .sw-qlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
 .sw-qlist li{font-size:14.5px;line-height:1.55;color:var(--ink);font-weight:400;padding-left:24px;position:relative}
 .sw-qlist li::before{content:"\2192";position:absolute;left:0;color:var(--wine);font-weight:600}
+/* art form tags */
+.sw-tags{display:flex;gap:10px 12px;flex-wrap:wrap;margin-top:6px}
+.sw-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--soft-2);border-radius:999px;padding:10px 20px;font-size:14px;font-weight:500;color:var(--ink)}
+.sw-tag::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--wine)}
+/* smartwear rhythm + heading presence */
+#smartwear-sec .sec{padding:46px 0 0}
+#smartwear-sec .sec.sw-first{padding-top:26px}
+#smartwear-sec .sec-head h2{font-size:25px}
+/* draft placeholder chips */
+.sw-todo{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--wine);border:1px dashed var(--wine);border-radius:999px;padding:2px 10px;vertical-align:middle;margin-left:7px;background:rgba(122,46,58,.05);white-space:nowrap}
 .sw-cta{border:1px solid var(--line);border-radius:var(--r);background:var(--soft);padding:30px 34px;text-align:center;margin-top:26px}
 .sw-cta p{font-size:15px;color:var(--ink);font-weight:300;margin:0 0 20px}
 .sw-cta strong{font-weight:600;color:var(--ink)}
@@ -300,7 +318,8 @@ body[data-page="guidelines"] .tm-bar{
 .sw-btn-secondary{display:inline-block;border:1px solid var(--line);background:var(--bg);color:var(--ink);
   font:500 13.5px Poppins,sans-serif;padding:11px 26px;border-radius:9px;text-decoration:none;transition:border-color .15s}
 .sw-btn-secondary:hover{border-color:var(--wine)}
-body[data-page="smartwear"] #hero-h1{font-size:clamp(20px,2.6vw,28px);max-width:100%;letter-spacing:.04em}
+body[data-page="smartwear"] #hero-h1{font-size:clamp(26px,3.4vw,42px);max-width:24ch;letter-spacing:-.015em;color:var(--wine)}
+.hero-call-sub{display:block;font-size:16px;font-weight:300;color:var(--ink);margin:0 0 12px;max-width:58ch;line-height:1.55}
 .hero-dates{display:inline-flex;gap:0;margin:12px 0 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--soft-2)}
 .hd-item{padding:7px 12px;border-right:1px solid var(--line);white-space:nowrap}
 .hd-item:last-child{border-right:none}
@@ -310,8 +329,6 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(20px,2.6vw,28px);max-width:
 #smartwear-sec .sec{scroll-margin-top:92px}
 
 
-/* h1 accent span */
-.h1-accent{color:var(--wine);font-size:1.18em;letter-spacing:.05em}
 /* af footer contact line */
 .af-foot{padding:9px 16px;border-top:1px solid var(--line);background:var(--soft)}
 .af-foot a{font-size:11px;color:var(--wine);text-decoration:none;font-weight:500;display:block;line-height:1.4}
@@ -327,11 +344,11 @@ body[data-page="smartwear"] #hero-h1{font-size:clamp(20px,2.6vw,28px);max-width:
 
 /* Smartwear call page uses the root warm palette (matches Art-Based Open Calls) */
 
-/* ===== Accessible Formats sidebar ===== */
-body[data-page="smartwear"] .hero-text{padding-right:262px}
-.af-hero{display:none;position:fixed;width:238px;right:max(28px,calc((100vw - 1240px)/2 + 28px));top:168px;z-index:500}
-body[data-page="smartwear"] .af-hero{display:block}
-.af-card{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);overflow:hidden;box-shadow:0 2px 16px rgba(60,45,28,.07)}
+/* ===== Accessible Formats rail (two-column grid, sticky card) ===== */
+body[data-page="smartwear"] #smartwear-sec{display:grid;grid-template-columns:minmax(0,1fr) 250px;column-gap:52px;align-items:start}
+#smartwear-sec>.sec{grid-column:1;min-width:0}
+.af-hero{grid-column:2;grid-row:1/span 99;padding-top:30px}
+.af-card{position:sticky;top:96px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);overflow:hidden;box-shadow:0 2px 16px rgba(60,45,28,.07)}
 .af-header{padding:16px 18px 13px;border-bottom:1px solid var(--line);background:var(--soft)}
 .af-title{margin:0;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)}
 .af-sub{margin:5px 0 0;font-size:11px;color:var(--muted);font-weight:300;line-height:1.45}
@@ -347,86 +364,197 @@ body[data-page="smartwear"] .af-hero{display:block}
 .af-arr{color:var(--pale);font-size:13px;line-height:1;flex:none;transition:color .14s;font-weight:300}
 .af-item a:hover .af-arr{color:var(--navy-300)}
 .af-divider{height:1px;background:var(--line-2);margin:5px 16px}
-@media(max-width:900px){body[data-page="smartwear"] .hero-text{padding-right:0}.af-hero{display:none!important}}
-/* ===== Feedback page ===== */
-#feedback-sec{display:none;padding:72px 0 80px}
-.feedback-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.feedback-card{background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:52px 60px;max-width:800px;margin:0 auto;box-shadow:0 4px 36px rgba(53,42,29,.09)}
-.feedback-label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 18px}
-.feedback-heading{font-size:clamp(18px,2.2vw,26px);font-weight:600;color:var(--wine);margin:0 0 36px;line-height:1.3;letter-spacing:-.01em}
-.feedback-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:20px}
-.feedback-list li{display:flex;gap:14px;font-size:15.5px;color:var(--ink);line-height:1.65;font-weight:300}
-.feedback-list li::before{content:'—';color:var(--wine);font-weight:600;flex-shrink:0;margin-top:.05em}
-/* ===== Accessibility Widget ===== */
-#a11y-widget{position:fixed;bottom:24px;left:24px;z-index:9000;font-family:'Poppins',sans-serif}
-#a11y-btn{width:56px;height:56px;border-radius:50%;background:#352A1D;border:none;box-shadow:0 0 0 3.5px #7A2E3A,0 8px 24px rgba(53,42,29,.38);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:transform .15s;position:relative}
-#a11y-btn:hover{transform:scale(1.07)}
-#a11y-btn svg.a11y-person{width:30px;height:30px}
-.a11y-badge{position:absolute;top:-4px;right:-4px;width:20px;height:20px;background:#7A2E3A;border-radius:50%;border:2.5px solid #FCFAF4;display:flex;align-items:center;justify-content:center}
-.a11y-badge svg{width:11px;height:11px}
-#a11y-panel{position:absolute;bottom:68px;left:0;width:348px;background:#FCFAF4;border-radius:16px;box-shadow:0 24px 64px rgba(53,42,29,.26);overflow:hidden;transform-origin:bottom left}
-#a11y-panel[hidden]{display:none}
-.a11y-head{background:#352A1D;color:#FCFAF4;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.a11y-head-title{font-size:13px;font-weight:500;letter-spacing:.01em;line-height:1}
+@media(max-width:900px){
+  body[data-page="smartwear"] #smartwear-sec{display:block}
+  .af-hero{padding-top:34px;max-width:420px}
+  .af-card{position:static}
+}
+/* ===== Feedback page (sized to fit the viewport without scrolling) ===== */
+#feedback-sec{display:none;padding:clamp(24px,5.5vh,64px) 0 clamp(18px,3.5vh,44px)}
+.feedback-wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+.feedback-label{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--wine);margin:0 0 clamp(10px,1.8vh,18px)}
+.feedback-heading{font-size:clamp(24px,3.1vw,40px);font-weight:600;color:var(--ink);margin:0;line-height:1.12;letter-spacing:-.02em;max-width:32ch}
+.feedback-heading em{font-style:italic;color:var(--wine)}
+.feedback-qs{list-style:none;margin:clamp(20px,4.5vh,46px) 0 0;padding:0}
+.feedback-q{display:flex;gap:clamp(20px,2.6vw,34px);align-items:baseline;padding:clamp(13px,2.6vh,26px) 6px;border-top:1px solid var(--line)}
+.feedback-q:last-child{border-bottom:1px solid var(--line)}
+.feedback-q .qn{font-size:clamp(20px,2.5vw,29px);font-weight:700;color:var(--navy-300);font-variant-numeric:tabular-nums;flex:none;line-height:1;min-width:1.6em}
+.feedback-q p{margin:0;font-size:clamp(14.5px,1.45vw,18px);font-weight:300;color:var(--ink);line-height:1.55;max-width:78ch}
+@media(max-width:640px){.feedback-q{gap:18px;padding:16px 0}}
+/* ===== Accessibility Widget — edge flag + drawer (Open Calls page only) ===== */
+#a11y-widget{display:none;font-family:'Poppins',sans-serif}
+body[data-page="smartwear"] #a11y-widget{display:block}
+#a11y-btn{position:fixed;z-index:9000;display:flex;align-items:center;gap:10px;
+  background:var(--wine);color:#FCFAF4;border:none;cursor:pointer;
+  box-shadow:3px 4px 18px rgba(53,42,29,.22);transition:background .15s}
+#a11y-btn:hover{background:var(--wine-700)}
+#a11y-btn svg{width:18px;height:18px;flex:none}
+#a11y-btn .vtxt{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;line-height:1}
+#a11y-panel{position:fixed;z-index:9500;background:var(--bg);
+  transition:transform .32s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+/* position: left edge (default) */
+.pos-left #a11y-btn{left:0;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:0 11px 11px 0;padding:16px 10px 18px}
+.pos-left #a11y-btn .vtxt{writing-mode:vertical-rl;transform:rotate(180deg)}
+.pos-left #a11y-panel{left:0;top:0;bottom:0;width:min(340px,92vw);border-right:1px solid var(--line);box-shadow:18px 0 60px rgba(53,42,29,.20);transform:translateX(-103%)}
+.pos-left #a11y-panel.open{transform:none}
+/* position: right edge */
+.pos-right #a11y-btn{right:0;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:11px 0 0 11px;padding:16px 10px 18px;box-shadow:-3px 4px 18px rgba(53,42,29,.22)}
+.pos-right #a11y-btn .vtxt{writing-mode:vertical-rl}
+.pos-right #a11y-panel{right:0;top:0;bottom:0;width:min(340px,92vw);border-left:1px solid var(--line);box-shadow:-18px 0 60px rgba(53,42,29,.20);transform:translateX(103%)}
+.pos-right #a11y-panel.open{transform:none}
+/* position: bottom edge */
+.pos-bottom #a11y-btn{left:50%;bottom:0;transform:translateX(-50%);flex-direction:row;border-radius:11px 11px 0 0;padding:11px 20px 12px;box-shadow:0 -3px 18px rgba(53,42,29,.22)}
+.pos-bottom #a11y-panel{left:50%;bottom:0;width:min(520px,94vw);max-height:min(72vh,640px);border:1px solid var(--line);border-bottom:none;border-radius:16px 16px 0 0;box-shadow:0 -18px 60px rgba(53,42,29,.20);transform:translate(-50%,103%)}
+.pos-bottom #a11y-panel.open{transform:translate(-50%,0)}
+.a11y-head{background:var(--ink);color:#FCFAF4;padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex:none}
+.a11y-head-title{font-size:13px;font-weight:500;letter-spacing:.01em;line-height:1.3}
 .a11y-head kbd{font-size:10px;background:rgba(252,250,244,.15);border-radius:4px;padding:2px 7px;font-family:inherit;margin-left:6px;letter-spacing:.05em}
 .a11y-close-btn{background:none;border:1.5px solid rgba(252,250,244,.35);color:#FCFAF4;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;flex:none;transition:background .12s;line-height:1}
 .a11y-close-btn:hover{background:rgba(252,250,244,.18)}
-.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E9E0D1}
-.a11y-opt{background:#FCFAF4;padding:20px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;border:none;font-family:'Poppins',sans-serif;transition:background .12s;position:relative;outline:none}
-.a11y-opt:hover{background:#F4EEE2}
-.a11y-opt.on{background:#F4EEE2;outline:2.5px solid #7A2E3A;outline-offset:-2.5px}
-.a11y-opt.on::after{content:'✓';position:absolute;top:7px;right:8px;width:17px;height:17px;background:#7A2E3A;border-radius:50%;color:#FCFAF4;font-size:10px;font-weight:700;line-height:17px;text-align:center}
-.a11y-opt-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;color:#352A1D}
-.a11y-opt-icon svg{width:40px;height:40px}
-.a11y-opt-label{font-size:11.5px;font-weight:500;color:#352A1D;text-align:center;line-height:1.25}
-/* ===== Presentation Tab ===== */
+.a11y-list{flex:1;overflow:auto;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.a11y-row{display:flex;align-items:center;gap:13px;width:100%;background:none;border:none;border-radius:10px;padding:11px 10px;cursor:pointer;font-family:inherit;text-align:left;transition:background .12s}
+.a11y-row:hover{background:var(--soft-2)}
+.a11y-row .ic{width:34px;height:34px;border-radius:9px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);flex:none}
+.a11y-row .ic svg{width:19px;height:19px}
+.a11y-row .lbl{flex:1;min-width:0}
+.a11y-row .lbl b{display:block;font-size:13px;font-weight:500;color:var(--ink);line-height:1.3}
+.a11y-row .lbl small{font-size:11px;color:var(--muted);font-weight:300;line-height:1.35}
+.a11y-sw{width:38px;height:22px;border-radius:999px;background:var(--pale);position:relative;flex:none;transition:background .18s}
+.a11y-sw::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.a11y-row[aria-pressed="true"] .a11y-sw{background:var(--wine)}
+.a11y-row[aria-pressed="true"] .a11y-sw::after{transform:translateX(16px)}
+.a11y-pos{padding:12px 20px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;flex:none}
+.a11y-pos>small{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.a11y-pos-btns{display:flex;gap:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-left:auto}
+.a11y-pos-btn{font-family:inherit;font-size:11.5px;font-weight:500;color:var(--muted);background:var(--bg);border:none;padding:7px 14px;cursor:pointer;transition:background .12s,color .12s}
+.a11y-pos-btn+.a11y-pos-btn{border-left:1px solid var(--line)}
+.a11y-pos-btn:hover{color:var(--wine)}
+.a11y-pos-btn.active{background:var(--wine);color:#FCFAF4}
+.a11y-foot{padding:13px 20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex:none}
+.a11y-foot small{font-size:11px;color:var(--muted);font-weight:300}
+.a11y-reset{font-family:inherit;font-size:11.5px;font-weight:500;color:var(--wine);background:none;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+.a11y-reset:hover{border-color:var(--wine)}
+/* ----- applied accessibility effects ----- */
+body.a11y-contrast{--ink:#191007;--muted:#4A3D2C;--navy:#4F3E2A;--navy-500:#5E4A33;--navy-300:#8A7355;--bg:#FFFFFF;--soft:#F4EFE4;--soft-2:#FAF7F0;--line:#B9AA8F;--line-2:#D8CCB4}
+body.a11y-links a{text-decoration:underline!important;text-underline-offset:2px;background:rgba(122,46,58,.12);border-radius:3px}
+body.a11y-bigtext{zoom:1.15}
+body.a11y-spacing p,body.a11y-spacing li,body.a11y-spacing td,body.a11y-spacing h1,body.a11y-spacing h2,body.a11y-spacing h3,body.a11y-spacing blockquote,body.a11y-spacing a,body.a11y-spacing span{letter-spacing:.06em!important;word-spacing:.14em!important}
+body.a11y-lineheight p,body.a11y-lineheight li,body.a11y-lineheight blockquote,body.a11y-lineheight td{line-height:2.05!important}
+body.a11y-images img,body.a11y-images .pres-logo,body.a11y-images .af-icon svg{visibility:hidden!important}
+body.a11y-dyslexia body,body.a11y-dyslexia p,body.a11y-dyslexia li,body.a11y-dyslexia h1,body.a11y-dyslexia h2,body.a11y-dyslexia h3,body.a11y-dyslexia a,body.a11y-dyslexia span,body.a11y-dyslexia td,body.a11y-dyslexia th,body.a11y-dyslexia blockquote,body.a11y-dyslexia button{font-family:'Comic Sans MS','Trebuchet MS',Verdana,sans-serif!important}
+/* ===== Presentation Tab — editorial print programme ===== */
 #presentation-sec{padding:56px 0 60px;display:none}
 .pres-wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 .pres-stage{position:relative;width:100%;aspect-ratio:16/9;background:var(--soft-2);border-radius:16px;border:1px solid var(--line);overflow:hidden;box-shadow:0 4px 40px rgba(53,42,29,.10)}
-.pres-slide{display:none;position:absolute;inset:0;padding:4.5% 6%;box-sizing:border-box;flex-direction:column}
+.pres-stage::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:6;opacity:.42;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .29 0 0 0 0 .2 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.pres-stage:fullscreen{border-radius:0;border:none;box-shadow:none;aspect-ratio:auto}
+.pres-slide{display:none;position:absolute;inset:0;padding:8.4% 6% 9%;box-sizing:border-box;flex-direction:column}
 .pres-slide.active{display:flex}
+/* slide chrome */
+.pres-kicker{position:absolute;top:4.4%;left:6%;z-index:2;font-size:clamp(8px,.95vw,14px);font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--wine);display:flex;align-items:center;gap:1em;white-space:nowrap}
+.pres-kicker::after{content:'';width:3.4em;height:1px;background:var(--pale)}
+.pres-foot{position:absolute;left:6%;right:6%;bottom:4.4%;z-index:2;display:flex;justify-content:space-between;align-items:baseline;gap:2em;border-top:1px solid var(--line);padding-top:1.1%;font-size:clamp(7px,.8vw,11.5px);color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+.pres-foot .pf-n{font-variant-numeric:tabular-nums;color:var(--navy);flex:none}
+.pres-wm{position:absolute;right:-1%;bottom:-12%;z-index:0;font-weight:700;font-size:clamp(160px,30vw,560px);line-height:1;color:var(--navy);opacity:.05;pointer-events:none;user-select:none}
+.pres-slide>:not(.pres-wm):not(.pres-kicker):not(.pres-foot){position:relative;z-index:1}
+/* entrance choreography */
+@keyframes presIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.pres-slide.active>:not(.pres-wm){animation:presIn .55s cubic-bezier(.2,.7,.2,1) both}
+.pres-slide.active>:nth-child(2){animation-delay:.07s}
+.pres-slide.active>:nth-child(3){animation-delay:.14s}
+.pres-slide.active>:nth-child(4){animation-delay:.21s}
+.pres-slide.active>:nth-child(5){animation-delay:.28s}
+.pres-slide.active>:nth-child(6){animation-delay:.35s}
+@media(prefers-reduced-motion:reduce){.pres-slide.active>:not(.pres-wm){animation:none}}
+/* title & divider slides */
 .pres-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.pres-h1{font-size:clamp(36px,5.5vw,82px);font-weight:700;color:var(--wine);letter-spacing:-.02em;line-height:1}
-.pres-h1-sub{font-size:clamp(18px,2.4vw,34px);font-weight:600;color:var(--wine);margin-top:.35em}
-.pres-h2{font-size:clamp(18px,2.6vw,44px);font-weight:700;color:var(--wine);text-align:center;margin:0 0 .45em;line-height:1.05;flex-shrink:0}
-.pres-cat-wrap{flex:1;display:flex;align-items:center;justify-content:center}
-.pres-cat-table{border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.pres-cat-table tr:not(:last-child) td{border-bottom:1px solid var(--line)}
-.pres-cat-num{font-size:clamp(14px,1.8vw,28px);font-weight:700;color:var(--wine);padding:.65em 1.4em .65em 1.8em;border-right:1px solid var(--line);background:var(--bg);text-align:center}
-.pres-cat-name{font-size:clamp(13px,1.7vw,26px);font-weight:500;color:var(--ink);padding:.65em 2.5em;background:var(--bg)}
-.pres-grid-title{font-size:clamp(14px,1.8vw,26px);font-weight:700;color:var(--wine);text-align:center;margin:0 0 1.2% 0;flex-shrink:0}
-.pres-org-grid{flex:1;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;align-content:stretch}
-.pres-org-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
-.pres-org-cell{background:var(--bg);padding:.45em .65em;font-size:clamp(7px,.95vw,13px);font-weight:400;color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
-.pres-body{flex:1;display:flex;align-items:center;justify-content:center}
-.pres-stat-row{display:flex;flex-direction:row;gap:4%;align-items:flex-start;justify-content:center;width:100%}
-.pres-stat-col{display:flex;flex-direction:column;align-items:center;gap:5%;flex:1}
-.pres-stat-lbl{font-size:clamp(13px,1.6vw,24px);font-weight:700;color:var(--ink);text-align:center}
-.pres-stat-lbl em{color:var(--wine);font-style:normal}
-.pres-circles-row{display:flex;gap:4%;flex-wrap:wrap;justify-content:center}
-.pres-circle{width:clamp(100px,12vw,155px);height:clamp(100px,12vw,155px);border-radius:50%;border:2.5px solid var(--wine);display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(8px,1vw,13px);font-weight:500;color:var(--ink);padding:10%;box-sizing:border-box;line-height:1.3;flex-shrink:0;overflow:hidden}
+.pres-part{font-size:clamp(9px,1.05vw,15px);font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--navy-500);margin-bottom:2.6%}
+.pres-h1{font-size:clamp(40px,7vw,116px);font-weight:700;color:var(--wine);letter-spacing:-.025em;line-height:.98}
+.pres-h1-sub{font-style:italic;font-weight:300;font-size:clamp(19px,3vw,48px);color:var(--navy);margin-top:.28em}
+.pres-rule{width:4.6em;height:2px;background:var(--wine);margin-top:3.4%}
+/* content slide heading */
+.pres-h2{font-size:clamp(20px,3vw,52px);font-weight:600;color:var(--navy-700);margin:0 0 3.2%;line-height:1.02;flex-shrink:0;letter-spacing:-.02em}
+.pres-h2 em{font-style:italic;color:var(--wine)}
+/* logo wall (organizations) — logos masked to ink brown, text fallback for orgs without marks */
+.pres-logowall{flex:1;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;column-gap:4.5%;row-gap:8%;min-height:0;padding:1% 2%}
+.pres-logo{display:inline-block;flex:none;width:clamp(78px,12.5vw,190px);height:clamp(30px,4.6vw,68px);background:var(--ink);
+  -webkit-mask:var(--lg) center/contain no-repeat;mask:var(--lg) center/contain no-repeat}
+.pres-logowall .pres-credit{display:inline-flex;align-items:center;justify-content:center;flex:none;text-align:center;
+  font-size:clamp(10.5px,1.25vw,19px);font-weight:500;color:var(--ink);line-height:1.25;max-width:12em}
+.pres-credit .cc{font-size:.55em;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);white-space:nowrap;margin-left:.6em}
+.pres-logowall.lw-roomy .pres-logo{width:clamp(95px,15vw,230px);height:clamp(38px,5.8vw,84px)}
+.pres-logowall.lw-roomy .pres-credit{font-size:clamp(11.5px,1.4vw,22px)}
+.pres-logowall.lw-dense{column-gap:3.8%;row-gap:7%}
+.pres-logowall.lw-dense .pres-logo{width:clamp(68px,10.5vw,160px);height:clamp(26px,3.9vw,56px)}
+/* category rows */
+.pres-cats{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.4%;min-height:0}
+.pres-cat{display:flex;align-items:center;gap:3%;padding:2% 3.6%;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.pres-cat .num{font-weight:700;font-size:clamp(17px,2.5vw,42px);color:var(--wine);min-width:1.5em;line-height:1;font-variant-numeric:tabular-nums}
+.pres-cat .nm{font-size:clamp(13px,1.9vw,31px);font-weight:500;color:var(--ink)}
+.pres-cat svg{margin-left:auto;color:var(--navy-300);width:clamp(18px,2.3vw,38px);height:clamp(18px,2.3vw,38px);flex:none}
+/* definition slide */
+.pres-def{flex:1;display:flex;flex-direction:column;justify-content:center;gap:4.5%;min-height:0}
+.pres-def-lede{font-size:clamp(13px,1.65vw,26px);line-height:1.5;font-weight:300;color:var(--ink);max-width:64ch;margin:0}
+.pres-def-lede em{font-style:normal;font-weight:600;color:var(--wine)}
+.pres-def-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.4%}
+.pres-def-card{border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:2.4% 3.2%;display:flex;flex-direction:column;gap:.45em}
+.pres-def-card b{font-size:clamp(10.5px,1.3vw,20px);font-weight:600;color:var(--navy-700);line-height:1.25}
+.pres-def-card span{font-size:clamp(8.5px,1vw,14.5px);font-weight:300;color:var(--muted);line-height:1.45}
+/* dot-matrix leaderboard */
+.pres-rows{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.6%;min-height:0}
+.pres-row{display:flex;align-items:center;gap:3%;padding:1.5% 3%;border-radius:12px;border:1.5px solid transparent}
+.pres-row.r1{background:rgba(122,46,58,.06);border-color:rgba(122,46,58,.16)}
+.pres-row .fname{flex:1;font-size:clamp(10.5px,1.5vw,24px);font-weight:500;color:var(--ink);line-height:1.25;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pres-row.r1 .fname{font-weight:600}
+.pres-dots12{display:flex;gap:.5em;flex:none;font-size:clamp(5px,.8vw,13px)}
+.pres-dots12 i{width:1.1em;height:1.1em;border-radius:50%;background:var(--no);border:1px solid var(--pale)}
+.pres-dots12 i.on{background:var(--wine);border-color:var(--wine)}
+.pres-row .score{font-weight:600;font-size:clamp(15px,2.2vw,37px);color:var(--wine);min-width:2.7em;text-align:right;font-variant-numeric:tabular-nums;line-height:1}
+.pres-row .score small{font-size:.5em;color:var(--muted);font-weight:500}
+.pres-rows-note{flex:none;font-size:clamp(8px,.95vw,13px);color:var(--muted);font-weight:300;margin-top:1.6%}
+/* sample audit matrix */
+.pres-hm{flex:1;display:flex;flex-direction:column;min-height:0;justify-content:center}
+.pres-sample{flex:1;display:grid;grid-template-columns:minmax(15em,2.3fr) repeat(12,1fr) auto;grid-template-rows:auto;grid-auto-rows:minmax(0,1fr);gap:3px 4px;min-height:0}
+.ps-guide{writing-mode:vertical-rl;transform:rotate(180deg);justify-self:center;align-self:end;font-size:clamp(6.5px,.78vw,11.5px);font-weight:500;color:var(--muted);line-height:1;padding-bottom:.35em}
+.ps-cat{grid-column:1/-1;font-size:clamp(7.5px,.85vw,12px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy-500);margin-top:.55em;align-self:end}
+.ps-name{font-size:clamp(9px,1.05vw,16px);font-weight:500;color:var(--ink);align-self:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:1.2em;line-height:1.2}
+.ps-cell{border-radius:4px;align-self:stretch;min-height:1.25em}
+.ps-cell.on{background:var(--navy)}
+.ps-cell.off{background:var(--no)}
+.ps-count{font-weight:600;color:var(--wine);align-self:center;font-variant-numeric:tabular-nums;font-size:clamp(9px,1.05vw,16px);padding-left:.7em;text-align:right}
+.ps-count small{color:var(--muted);font-weight:500;font-size:.72em}
+.pres-hm-note{flex:none;font-size:clamp(8px,.95vw,13px);color:var(--muted);font-weight:300;margin-top:2%}
+.pres-hm-note b{color:var(--navy);font-weight:600}
+/* pull-quote */
+.pres-quote{max-width:82%;font-style:italic;font-weight:300;font-size:clamp(20px,3.2vw,55px);line-height:1.34;color:var(--ink);position:relative;text-align:left}
+.pres-quote em{color:var(--wine);font-weight:600;font-style:italic}
+.pres-quote::before{content:'\201C';position:absolute;left:-.52em;top:-.3em;font-size:2.7em;color:var(--pale);font-style:normal;line-height:1;font-weight:700}
+/* bubble chart */
 .pres-bubble-svg{flex:1;width:100%;display:block;min-height:0}
-/* Logo watermark backgrounds */
-.pres-logos-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.pres-logos-layer img{position:absolute;object-fit:contain;filter:grayscale(1);opacity:.12;user-select:none}
-.pres-slide>.pres-grid-title,.pres-slide>.pres-org-grid{position:relative;z-index:1}
-.pres-insight-text{font-size:clamp(17px,2.3vw,34px);font-weight:300;font-style:italic;color:var(--ink);max-width:78%;line-height:1.55}
-.pres-insight-text em{font-weight:600;font-style:normal;color:var(--wine)}
-.pres-calls-list{flex:1;display:flex;flex-direction:column;justify-content:center;gap:5%}
-.pres-calls-item{font-size:clamp(14px,2vw,30px);font-weight:400;color:var(--ink);display:flex;align-items:flex-start;gap:.6em;line-height:1.4}
-.pres-calls-num{font-weight:700;color:var(--wine);flex-shrink:0}
-.pres-patterns-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2.5%;flex:1;width:100%}
-.pres-pattern-card{background:rgba(122,46,58,.055);border:1.5px solid rgba(122,46,58,.18);border-radius:10px;padding:4.5% 5%;display:flex;flex-direction:column;gap:10%}
-.pres-pattern-num{font-size:clamp(20px,3vw,46px);font-weight:700;color:var(--wine);line-height:1}
-.pres-pattern-text{font-size:clamp(11px,1.5vw,22px);font-weight:600;color:var(--ink);line-height:1.35}
+/* patterns grid */
+.pres-patterns-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:2.5%;flex:1;width:100%;min-height:0}
+.pres-pattern-card{background:rgba(122,46,58,.055);border:1.5px solid rgba(122,46,58,.18);border-radius:10px;padding:4.5% 5%;display:flex;flex-direction:column;gap:9%}
+.pres-pattern-num{font-size:clamp(18px,2.9vw,46px);font-weight:700;color:var(--wine);line-height:1}
+.pres-pattern-text{font-size:clamp(10.5px,1.45vw,22px);font-weight:600;color:var(--ink);line-height:1.35}
+.pres-body{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+/* closing steps */
+.pres-steps{flex:1;display:flex;flex-direction:column;justify-content:center;gap:4.4%;min-height:0}
+.pres-step{display:flex;gap:3.4%;align-items:baseline}
+.pres-step .sn{font-weight:700;font-size:clamp(26px,4vw,66px);color:var(--pale);line-height:1;min-width:1.25em;text-align:right}
+.pres-step .st b{display:block;font-size:clamp(15px,2.05vw,32px);font-weight:600;color:var(--ink);line-height:1.2}
+.pres-step .st span{display:block;font-size:clamp(10.5px,1.3vw,19px);font-weight:300;color:var(--muted);margin-top:.4em;max-width:52ch;line-height:1.5}
+/* deck nav bar */
 .pres-nav-bar{display:flex;align-items:center;gap:14px;padding:13px 0 4px;flex-wrap:wrap}
 .pres-btn{appearance:none;border:1px solid var(--line);background:var(--bg);color:var(--navy);height:34px;padding:0 15px;border-radius:8px;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;transition:border-color .15s,color .15s;display:inline-flex;align-items:center;gap:5px}
 .pres-btn:hover:not(:disabled){border-color:var(--wine);color:var(--wine)}
 .pres-btn:disabled{opacity:.3;cursor:default}
 .pres-count{font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap}
-.pres-dots{display:flex;gap:5px;align-items:center;flex-wrap:wrap;flex:1;justify-content:center}
-.pres-dot{width:7px;height:7px;border-radius:50%;background:var(--pale);cursor:pointer;transition:background .15s,transform .15s;border:none;padding:0;flex-shrink:0}
-.pres-dot.active{background:var(--wine);transform:scale(1.35)}
+.pres-dots{display:flex;gap:2px;align-items:center;flex-wrap:wrap;flex:1;justify-content:center}
+.pres-dot{width:22px;height:22px;border-radius:50%;background:transparent;cursor:pointer;border:none;padding:0;flex-shrink:0;position:relative}
+.pres-dot::after{content:'';position:absolute;inset:7.5px;border-radius:50%;background:var(--pale);transition:background .15s,transform .15s}
+.pres-dot:hover::after{background:var(--navy-300)}
+.pres-dot.active::after{background:var(--wine);transform:scale(1.35)}
 </style>
 </head>
 <body>
@@ -454,66 +582,7 @@ body[data-page="smartwear"] .af-hero{display:block}
     <p class="fade d3" id="hero-sub">A review of public art opportunities, analyzed according to accessibility, eligibility, application design and applicant support. Each factor is marked Yes, Partial or No across every call, with coverage rates aggregated by category.</p>
     <div class="tabs fade d4" role="tablist" id="tabs"></div>
   </div>
-  <aside class="af-hero" aria-label="Accessible formats">
-    <div class="af-card">
-      <div class="af-header">
-        <p class="af-title">Accessible formats</p>
-      </div>
-      <ul class="af-list" role="list">
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 3-2 5.5-2.5 7.5-.3 1-.5 2-.5 3.5"/><path d="M10.5 20h3"/><path d="M10 9a2 2 0 0 1 4 0"/></svg></span>
-            <span class="af-label"><b>Audio version</b><small>Listen to this call</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 9C0 6 1 2 5 1L12 0C17 0 19 3 18 7L16 13C15 17 11 19 7 17L3 14C0 12 1 10 1 9ZM5 9C5 7 6 5 9 5L13 7C15 8 15 11 13 12L10 14C8 15 6 14 5 12Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M23 15C24 18 23 22 19 23L12 24C7 24 5 21 6 17L8 11C9 7 13 5 17 7L21 10C24 12 23 14 23 15ZM19 15C19 17 18 19 15 19L11 17C9 16 9 13 11 12L14 10C16 9 18 10 19 12Z"/></svg></span>
-            <span class="af-label"><b>Sign Language</b><small>BSL / ASL version</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l2-6 2 6"/><line x1="4.2" y1="15" x2="6.8" y2="15"/><path d="M10 17l4-12 4 12"/><line x1="11.5" y1="13" x2="16.5" y2="13"/></svg></span>
-            <span class="af-label"><b>Large Print</b><small>Enlarged text version</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-            <span class="af-label"><b>Easy Read</b><small>Simplified language</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></span>
-            <span class="af-label"><b>Dyslexia-friendly</b><small>Adapted typography</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-        <li class="af-divider" role="separator"></li>
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
-            <span class="af-label"><b>Download PDF</b><small>Print-ready version</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-        <li class="af-item">
-          <a href="#" aria-disabled="true">
-            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>
-            <span class="af-label"><b>Word document</b><small>Editable .docx file</small></span>
-            <span class="af-arr">›</span>
-          </a>
-        </li>
-      </ul>
-      <div class="af-foot"><a href="#">Need this call in another format? Contact us &rsaquo;</a></div>
-    </div>
-  </aside>
+
   </section>
 
   <!-- ===== PRESENTATION TAB ===== -->
@@ -521,239 +590,205 @@ body[data-page="smartwear"] .af-hero{display:block}
   <div class="pres-wrap">
     <div class="pres-stage">
 
-      <!-- Slide 1 — Title -->
-      <div class="pres-slide active" id="pslide-1">
+      <!-- Slide 01 — Title -->
+      <div class="pres-slide active" id="pslide-01">
+        <div class="pres-wm" aria-hidden="true">I</div>
         <div class="pres-center">
+          <div class="pres-part">Art &amp; Design Working Group &middot; Part I</div>
           <div class="pres-h1">Accessibility</div>
           <div class="pres-h1-sub">best practices</div>
+          <div class="pres-rule"></div>
         </div>
       </div>
 
-      <!-- Slide 2 — Accessibility Organizations Grid -->
-      <div class="pres-slide" id="pslide-2">
-        <!-- LOGO-BACKGROUNDS: remove this block to revert -->
-        <div class="pres-logos-layer" aria-hidden="true">
-          <img src="https://www.si.edu/sites/default/themes/siedu/logo.svg"                                                                                         style="left:2%;top:4%;width:15%" alt="" onerror="this.style.display='none'">
-          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:40%;top:3%;width:14%" alt="" onerror="this.style.display='none'">
-          <img src="https://kineticlight.org/images/KL_WoNEW.png"                                                                                                   style="left:80%;top:4%;width:12%" alt="" onerror="this.style.display='none'">
-          <img src="https://sinsinvalid.org/wp-content/uploads/2024/05/Sins-Invalid-Logo-021.png"                                                                    style="left:3%;top:67%;width:13%" alt="" onerror="this.style.display='none'">
-          <img src="https://bodiesintranslation.ca/wp-content/uploads/2020/07/black_web-e1594212424543.png"                                                          style="left:78%;top:65%;width:15%" alt="" onerror="this.style.display='none'">
-        </div>
-        <!-- END LOGO-BACKGROUNDS -->
-        <div class="pres-grid-title">Local and International Organizations</div>
-        <div class="pres-org-grid cols-3">
-          <div class="pres-org-cell">Shape Arts (UK)</div>
-          <div class="pres-org-cell">Tangled Art + Disability &amp; Humber College (Canada)</div>
-          <div class="pres-org-cell">Smithsonian (US)</div>
-          <div class="pres-org-cell">Arts for All (New Zealand)</div>
-          <div class="pres-org-cell">Accessibility Without Limits (Netherlands)</div>
-          <div class="pres-org-cell">Bodies in Translation — Vital Practices in Art (Canada)</div>
-          <div class="pres-org-cell">Shift in Perspective (Ireland)</div>
-          <div class="pres-org-cell">Kinetic Light Access Glossary (US)</div>
-          <div class="pres-org-cell">The Access Toolkit for Art Workers (UK / Ireland)</div>
-          <div class="pres-org-cell">Accessibility in the Arts: A Promise and a Practice (US)</div>
-          <div class="pres-org-cell">Creativity is Mistakes Toolkit (Wales, UK)</div>
-          <div class="pres-org-cell">Access Suggestions for Public Events — Sins Invalid (US)</div>
-        </div>
-      </div>
-
-      <!-- Slide 3 — Categories -->
-      <div class="pres-slide" id="pslide-3">
-        <div class="pres-cat-wrap">
-          <table class="pres-cat-table">
-            <tr><td class="pres-cat-num">1</td><td class="pres-cat-name">Venue</td></tr>
-            <tr><td class="pres-cat-num">2</td><td class="pres-cat-name">Presenting Artwork</td></tr>
-            <tr><td class="pres-cat-num">3</td><td class="pres-cat-name">Programming</td></tr>
-            <tr><td class="pres-cat-num">4</td><td class="pres-cat-name">Communication and Marketing</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <!-- Slide 3b — Accessibility Best Practices spreadsheet -->
-      <div class="pres-slide" id="pslide-3b" style="padding:3% 4%">
-        <img src="spreadsheet.png" alt="Accessibility Best Practices matrix" style="width:100%;height:100%;object-fit:contain;border-radius:8px">
-      </div>
-
-      <!-- Slide 4 — Venue -->
-      <div class="pres-slide" id="pslide-4">
-        <div class="pres-h2">Venue</div>
-        <div class="pres-body">
-          <div class="pres-stat-row">
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>10/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Accessible Seating (integrated wheelchair spaces)</div>
-                <div class="pres-circle">Accessible Circulation Space</div>
-              </div>
-            </div>
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>9/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Accessible Washrooms</div>
-              </div>
-            </div>
+      <!-- Slide 02 — What are access guidelines? -->
+      <div class="pres-slide" id="pslide-02">
+        <div class="pres-kicker">Part I &middot; Access Guidelines</div>
+        <h3 class="pres-h2">What are access <em>guidelines</em>?</h3>
+        <div class="pres-def">
+          <p class="pres-def-lede">Access guidelines are practical handbooks for removing barriers. Written by museums, arts councils and disability-led organizations, they turn accessibility law and universal design into <em>concrete, checkable practices</em> that cover the building, the artwork, the events around it, and every word an audience reads.</p>
+          <div class="pres-def-grid">
+            <div class="pres-def-card"><b>Design access in from the start</b><span>Accessibility is part of the concept, not a retrofit after the design is finished.</span></div>
+            <div class="pres-def-card"><b>Specify, don&rsquo;t suggest</b><span>Measurable details: reach heights, route widths, type sizes, colour contrast, seating.</span></div>
+            <div class="pres-def-card"><b>Offer more than one way in</b><span>The same content by sight, sound and touch: audio description, captions, tactile engagement, plain language.</span></div>
+            <div class="pres-def-card"><b>Tell people what to expect</b><span>Honest, findable access information so visitors can plan for themselves.</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Slide 5 — Presenting Artwork -->
-      <div class="pres-slide" id="pslide-5">
-        <div class="pres-h2">Presenting Artwork</div>
-        <div class="pres-body">
-          <div class="pres-stat-row">
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>12/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Audio Description for Artworks</div>
-              </div>
-            </div>
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>11/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Large prints</div>
-              </div>
-            </div>
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>10/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Sign Language Description for Artworks</div>
-                <div class="pres-circle">Tactile Engagement</div>
-              </div>
-            </div>
-          </div>
+      <!-- Slide 03 — Access guide sources (credits wall) -->
+      <div class="pres-slide" id="pslide-03">
+        <div class="pres-wm" aria-hidden="true">12</div>
+        <div class="pres-kicker">Part I &middot; Sources</div>
+        <h3 class="pres-h2">Local and International <em>Organizations</em></h3>
+        <div class="pres-logowall lw-roomy">
+          <span class="pres-logo" role="img" aria-label="Shape Arts (UK)" title="Shape Arts (UK)" style="--lg:url('assets/logos/shape-arts.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Tangled Art + Disability &amp; Humber College (Canada)" title="Tangled Art + Disability &amp; Humber College (Canada)" style="--lg:url('assets/logos/tangled-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Smithsonian (US)" title="Smithsonian (US)" style="--lg:url('assets/logos/smithsonian.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Arts Access Aotearoa — Arts For All (New Zealand)" title="Arts Access Aotearoa — Arts For All (New Zealand)" style="--lg:url('assets/logos/arts-access-aotearoa.svg')"></span>
+          <span class="pres-credit">Accessibility Without Limits<span class="cc">Netherlands</span></span>
+          <span class="pres-logo" role="img" aria-label="Bodies in Translation — Vital Practices in Art (Canada)" title="Bodies in Translation — Vital Practices in Art (Canada)" style="--lg:url('assets/logos/bodies-in-translation.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Arts &amp; Disability Ireland — Shift in Perspective" title="Arts &amp; Disability Ireland — Shift in Perspective" style="--lg:url('assets/logos/adi.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Kinetic Light Access Glossary (US)" title="Kinetic Light Access Glossary (US)" style="--lg:url('assets/logos/kinetic-light.png')"></span>
+          <span class="pres-credit">The Access Toolkit for Art Workers<span class="cc">UK / Ireland</span></span>
+          <span class="pres-credit">Accessibility in the Arts: A Promise and a Practice<span class="cc">US</span></span>
+          <span class="pres-logo" role="img" aria-label="Disability Arts Cymru — Creativity is Mistakes Toolkit (Wales)" title="Disability Arts Cymru — Creativity is Mistakes Toolkit (Wales)" style="--lg:url('assets/logos/dac-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Sins Invalid (US)" title="Sins Invalid (US)" style="--lg:url('assets/logos/sins-invalid.png')"></span>
         </div>
       </div>
 
-      <!-- Slide 6 — Programming -->
-      <div class="pres-slide" id="pslide-6">
-        <div class="pres-h2">Programming</div>
-        <div class="pres-body">
-          <div class="pres-stat-row">
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>9/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">On-site / Off-site ASL / BSL Interpreters</div>
-                <div class="pres-circle">Live Captioning for Panel Events and Talks</div>
-              </div>
-            </div>
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>8/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Accessible Website</div>
-              </div>
-            </div>
-          </div>
+      <!-- Slide 04 — Categories -->
+      <div class="pres-slide" id="pslide-04">
+        <div class="pres-wm" aria-hidden="true">4</div>
+        <div class="pres-kicker">Part I &middot; Access Guidelines</div>
+        <h3 class="pres-h2">Four categories</h3>
+        <div class="pres-cats">
+          <div class="pres-cat"><span class="num">01</span><span class="nm">Venue</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div class="pres-cat"><span class="num">02</span><span class="nm">Presenting Artwork</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <div class="pres-cat"><span class="num">03</span><span class="nm">Programming</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div class="pres-cat"><span class="num">04</span><span class="nm">Communication and Marketing</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-7-7 18-2.5-7.5z"/><path d="M11.5 14.5L21 4"/></svg></div>
         </div>
       </div>
 
-      <!-- Slide 7 — Communication and Marketing -->
-      <div class="pres-slide" id="pslide-7">
-        <div class="pres-h2">Communication and Marketing</div>
-        <div class="pres-body">
-          <div class="pres-stat-row">
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>9/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Transparency and Honesty in Information</div>
-                <div class="pres-circle">Inclusive Language Use</div>
-              </div>
-            </div>
-            <div class="pres-stat-col">
-              <div class="pres-stat-lbl">Highest <em>7/12</em></div>
-              <div class="pres-circles-row">
-                <div class="pres-circle">Accessibility Information Sharing for Space &amp; Exhibition</div>
-                <div class="pres-circle">Sensory Alert in Marketing Materials</div>
-              </div>
-            </div>
-          </div>
+      <!-- Slide 05 — Full audit matrix (every practice × every guide, rendered live from BP_DATA) -->
+      <div class="pres-slide" id="pslide-05">
+        <div class="pres-kicker">Part I &middot; The audit</div>
+        <h3 class="pres-h2">The audit <em>at a glance</em></h3>
+        <div class="pres-hm">
+          <div id="pres-matrix" class="pres-sample" role="img" aria-label="Sample of accessibility practices checked against 12 access guides"></div>
+          <p class="pres-hm-note" id="pres-hm-note"></p>
         </div>
       </div>
 
-      <!-- Slide 8 — Insight bridge -->
-      <div class="pres-slide" id="pslide-8">
+      <!-- Slides 06-09 — Category leaderboards (rows rendered from BP_DATA) -->
+      <div class="pres-slide" id="pslide-06">
+        <div class="pres-wm" aria-hidden="true">01</div>
+        <div class="pres-kicker">Part I &middot; Category 1 of 4</div>
+        <h3 class="pres-h2">Venue</h3>
+        <div class="pres-rows" data-cat="0"></div>
+        <p class="pres-rows-note">Most widely recommended practices &middot; each dot is one of the 12 access guides reviewed.</p>
+      </div>
+
+      <div class="pres-slide" id="pslide-07">
+        <div class="pres-wm" aria-hidden="true">02</div>
+        <div class="pres-kicker">Part I &middot; Category 2 of 4</div>
+        <h3 class="pres-h2">Presenting Artwork</h3>
+        <div class="pres-rows" data-cat="1"></div>
+        <p class="pres-rows-note">Most widely recommended practices &middot; each dot is one of the 12 access guides reviewed.</p>
+      </div>
+
+      <div class="pres-slide" id="pslide-08">
+        <div class="pres-wm" aria-hidden="true">03</div>
+        <div class="pres-kicker">Part I &middot; Category 3 of 4</div>
+        <h3 class="pres-h2">Programming</h3>
+        <div class="pres-rows" data-cat="2"></div>
+        <p class="pres-rows-note">Most widely recommended practices &middot; each dot is one of the 12 access guides reviewed.</p>
+      </div>
+
+      <div class="pres-slide" id="pslide-09">
+        <div class="pres-wm" aria-hidden="true">04</div>
+        <div class="pres-kicker">Part I &middot; Category 4 of 4</div>
+        <h3 class="pres-h2">Communication and Marketing</h3>
+        <div class="pres-rows" data-cat="3"></div>
+        <p class="pres-rows-note">Most widely recommended practices &middot; each dot is one of the 12 access guides reviewed.</p>
+      </div>
+
+      <!-- Slide 10 — Insight bridge -->
+      <div class="pres-slide" id="pslide-10">
         <div class="pres-center">
-          <div class="pres-insight-text">The less frequently mentioned factors are often<br>what make accessibility <em>truly distinctive</em>.</div>
+          <div class="pres-quote">The less frequently mentioned factors are often what make accessibility <em>truly distinctive</em>.</div>
         </div>
       </div>
 
-      <!-- Slide 9 — Bubble chart: rarely mentioned factors -->
-      <div class="pres-slide" id="pslide-bubble">
-        <div class="pres-h2">Rarely Mentioned</div>
+      <!-- Slide 11 — Bubble chart: rarely mentioned factors -->
+      <div class="pres-slide" id="pslide-11">
+        <div class="pres-kicker">Part I &middot; The long tail</div>
+        <h3 class="pres-h2">Rarely <em>Mentioned</em></h3>
         <svg class="pres-bubble-svg" id="bubble-chart"></svg>
       </div>
 
-      <!-- Slide 10 — Open Calls title -->
-      <div class="pres-slide" id="pslide-9">
+      <!-- Slide 12 — Part II divider -->
+      <div class="pres-slide" id="pslide-12">
+        <div class="pres-wm" aria-hidden="true">II</div>
         <div class="pres-center">
+          <div class="pres-part">Art &amp; Design Working Group &middot; Part II</div>
           <div class="pres-h1">Open Calls</div>
+          <div class="pres-rule"></div>
         </div>
       </div>
 
-      <!-- Slide 10 — Open Calls Organizations (part 1) -->
-      <div class="pres-slide" id="pslide-10">
-        <!-- LOGO-BACKGROUNDS: remove this block to revert -->
-        <div class="pres-logos-layer" aria-hidden="true">
-          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:2%;top:4%;width:14%" alt="" onerror="this.style.display='none'">
-          <img src="https://weareunlimited.org.uk/wp-content/themes/Unlimited/assets/images/unlimited-logo-pink.png"                                                 style="left:43%;top:3%;width:13%" alt="" onerror="this.style.display='none'">
-          <img src="https://www.dadafest.co.uk/images/logo.png"                                                                                                      style="left:81%;top:4%;width:12%" alt="" onerror="this.style.display='none'">
-          <img src="https://www.arts.on.ca/getmedia/ffebb4dd-b4c2-4a24-8d11-079e6b92c9ba/2015-OAC-logo-RGB-JPG.aspx?width=720&amp;height=200"                       style="left:3%;top:68%;width:14%" alt="" onerror="this.style.display='none'">
-          <img src="https://bodiesintranslation.ca/wp-content/uploads/2020/07/black_web-e1594212424543.png"                                                          style="left:40%;top:70%;width:14%" alt="" onerror="this.style.display='none'">
-          <img src="https://images.squarespace-cdn.com/content/v1/5c450883f7939273c6d876e4/1548028104162-HCXSKGO50FY2LJZFM0JT/new+logo+latitude+53+grey.jpg"        style="left:79%;top:68%;width:13%" alt="" onerror="this.style.display='none'">
-        </div>
-        <!-- END LOGO-BACKGROUNDS -->
-        <div class="pres-grid-title">Local and International Organizations</div>
-        <div class="pres-org-grid cols-3">
-          <div class="pres-org-cell">The Disability Collective</div>
-          <div class="pres-org-cell">The Music Gallery, Phoenix the Fire, VibraFusionLab</div>
-          <div class="pres-org-cell">Propeller Dance</div>
-          <div class="pres-org-cell">Art Accessibility Network Manitoba</div>
-          <div class="pres-org-cell">AccessCBC and Reelabilities</div>
-          <div class="pres-org-cell">Shape Art</div>
-          <div class="pres-org-cell">Unlimited</div>
-          <div class="pres-org-cell">DaDaFest</div>
-          <div class="pres-org-cell">Remedy Photo Festival</div>
-          <div class="pres-org-cell">Edmonton Art Council</div>
-          <div class="pres-org-cell">Tangled Art + Disability</div>
-          <div class="pres-org-cell">Bodies in Translation</div>
-          <div class="pres-org-cell">Latitude53</div>
-          <div class="pres-org-cell">Ontario Arts Council</div>
-          <div class="pres-org-cell">Our Culture push Disability Arts + Dreaming Fellowship</div>
-          <div class="pres-org-cell">Level Centre</div>
-          <div class="pres-org-cell">John Hansard Gallery</div>
-          <div class="pres-org-cell">Art Gallery of Windsor</div>
+      <!-- Slide 13 — What are open calls? -->
+      <div class="pres-slide" id="pslide-13">
+        <div class="pres-kicker">Part II &middot; Open Calls</div>
+        <h3 class="pres-h2">What are open <em>calls</em>?</h3>
+        <div class="pres-def">
+          <p class="pres-def-lede">An open call is a public invitation to artists. An organization announces an opportunity, such as an exhibition, commission, residency or festival, and anyone who fits the criteria can apply. For many artists it is <em>the front door to an organization</em>, and how the call is written decides who can get through it.</p>
+          <div class="pres-def-grid">
+            <div class="pres-def-card"><b>The invitation</b><span>What the opportunity is and its theme: an exhibition, commission, residency, performance or festival.</span></div>
+            <div class="pres-def-card"><b>Who can apply</b><span>Eligibility rules: discipline, region, career stage, and whether the call is for specific communities.</span></div>
+            <div class="pres-def-card"><b>How to apply</b><span>The form, formats and deadline: what to submit, where to send it, and what help is offered along the way.</span></div>
+            <div class="pres-def-card"><b>What artists receive</b><span>How work is selected, and what selection brings: fees, production support, space and promotion.</span></div>
+          </div>
         </div>
       </div>
 
-      <!-- Slide 11 — Open Calls Organizations (part 2) -->
-      <div class="pres-slide" id="pslide-11">
-        <!-- LOGO-BACKGROUNDS: remove this block to revert -->
-        <div class="pres-logos-layer" aria-hidden="true">
-          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:2%;top:4%;width:14%" alt="" onerror="this.style.display='none'">
-          <img src="https://opulentmobility.com/uploads/1/1/6/3/1163067/published/1447185057.png?1565316038"                                                         style="left:80%;top:3%;width:13%" alt="" onerror="this.style.display='none'">
-          <img src="https://tangledarts.org/wp-content/uploads/2021/09/cropped-cropped-Tangled_logo.png"                                                             style="left:38%;top:67%;width:14%" alt="" onerror="this.style.display='none'">
-          <img src="https://opulentmobility.com/uploads/1/1/6/3/1163067/published/1447185057.png?1565316038"                                                         style="left:78%;top:68%;width:13%" alt="" onerror="this.style.display='none'">
-        </div>
-        <!-- END LOGO-BACKGROUNDS -->
-        <div class="pres-org-grid cols-3" style="flex:1">
-          <div class="pres-org-cell">The Critical Design Lab / Tangled Art + Disability / Doris McCarthy Gallery</div>
-          <div class="pres-org-cell">University of Atypical</div>
-          <div class="pres-org-cell">Tangled Art + Disability — Public Access</div>
-          <div class="pres-org-cell">Opulent Mobility</div>
-          <div class="pres-org-cell">The John F. Kennedy Center for the Performing Arts</div>
-          <div class="pres-org-cell">Tangled Art + Disability / Frictions of Futurity</div>
-          <div class="pres-org-cell">Art Space</div>
-          <div class="pres-org-cell">Science and Art Lab</div>
-          <div class="pres-org-cell">The Art House</div>
-          <div class="pres-org-cell">Futurity in Transplant Medicine and Tangled Art + Disability</div>
-          <div class="pres-org-cell">Arcade Campfa</div>
-          <div class="pres-org-cell">Open Style Lab</div>
-          <div class="pres-org-cell">Multicultural Artists' Coalition</div>
+      <!-- Slide 14 — Open Calls organizations (credits wall, part 1) -->
+      <div class="pres-slide" id="pslide-14">
+        <div class="pres-wm" aria-hidden="true">31</div>
+        <div class="pres-kicker">Part II &middot; Sources</div>
+        <h3 class="pres-h2">Local and International <em>Organizations</em></h3>
+        <div class="pres-logowall lw-dense">
+          <span class="pres-logo" role="img" aria-label="The Disability Collective" title="The Disability Collective" style="--lg:url('assets/logos/disability-collective-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="The Music Gallery" title="The Music Gallery" style="--lg:url('assets/logos/music-gallery-x.png')"></span>
+          <span class="pres-credit">Phoenix the Fire</span>
+          <span class="pres-logo" role="img" aria-label="VibraFusionLab" title="VibraFusionLab" style="--lg:url('assets/logos/vibrafusionlab-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Propeller Dance" title="Propeller Dance" style="--lg:url('assets/logos/propeller-dance.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Arts AccessAbility Network Manitoba" title="Arts AccessAbility Network Manitoba" style="--lg:url('assets/logos/aanm.svg')"></span>
+          <span class="pres-credit">AccessCBC</span>
+          <span class="pres-logo" role="img" aria-label="ReelAbilities" title="ReelAbilities" style="--lg:url('assets/logos/reelabilities.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Shape Arts" title="Shape Arts" style="--lg:url('assets/logos/shape-arts.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Unlimited" title="Unlimited" style="--lg:url('assets/logos/unlimited.png')"></span>
+          <span class="pres-logo" role="img" aria-label="DaDaFest" title="DaDaFest" style="--lg:url('assets/logos/dadafest-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Remedy Photo Festival" title="Remedy Photo Festival" style="--lg:url('assets/logos/remedy-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Edmonton Arts Council" title="Edmonton Arts Council" style="--lg:url('assets/logos/edmonton-arts.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Tangled Art + Disability" title="Tangled Art + Disability" style="--lg:url('assets/logos/tangled-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Bodies in Translation" title="Bodies in Translation" style="--lg:url('assets/logos/bodies-in-translation.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Latitude 53" title="Latitude 53" style="--lg:url('assets/logos/latitude53.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Ontario Arts Council" title="Ontario Arts Council" style="--lg:url('assets/logos/oac.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Culture Push — Disability Arts + Dreaming Fellowship" title="Culture Push — Disability Arts + Dreaming Fellowship" style="--lg:url('assets/logos/culture-push-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Level Centre" title="Level Centre" style="--lg:url('assets/logos/level-centre.png')"></span>
+          <span class="pres-logo" role="img" aria-label="John Hansard Gallery" title="John Hansard Gallery" style="--lg:url('assets/logos/john-hansard.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Art Windsor-Essex (Art Gallery of Windsor)" title="Art Windsor-Essex (Art Gallery of Windsor)" style="--lg:url('assets/logos/art-windsor-essex.png')"></span>
         </div>
       </div>
 
-      <!-- Slide 13b — Patterns across open calls -->
-      <div class="pres-slide" id="pslide-patterns">
-        <div class="pres-h2">What the Open Calls Covered</div>
+      <!-- Slide 15 — Open Calls organizations (credits wall, part 2) -->
+      <div class="pres-slide" id="pslide-15">
+        <div class="pres-wm" aria-hidden="true">31</div>
+        <div class="pres-kicker">Part II &middot; Sources, continued</div>
+        <div class="pres-logowall lw-roomy" style="margin-top:2%">
+          <span class="pres-credit">The Critical Design Lab</span>
+          <span class="pres-credit">Doris McCarthy Gallery</span>
+          <span class="pres-logo" role="img" aria-label="University of Atypical" title="University of Atypical" style="--lg:url('assets/logos/university-of-atypical.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Opulent Mobility" title="Opulent Mobility" style="--lg:url('assets/logos/opulent-mobility-x.png')"></span>
+          <span class="pres-logo" role="img" aria-label="The John F. Kennedy Center for the Performing Arts" title="The John F. Kennedy Center for the Performing Arts" style="--lg:url('assets/logos/kennedy-center.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Artspace" title="Artspace" style="--lg:url('assets/logos/artspace.png')"></span>
+          <span class="pres-credit">Science and Art Lab</span>
+          <span class="pres-logo" role="img" aria-label="The Art House" title="The Art House" style="--lg:url('assets/logos/art-house.png')"></span>
+          <span class="pres-logo" role="img" aria-label="Arcade Campfa" title="Arcade Campfa" style="--lg:url('assets/logos/arcade-campfa.svg')"></span>
+          <span class="pres-logo" role="img" aria-label="Open Style Lab" title="Open Style Lab" style="--lg:url('assets/logos/open-style-lab.svg')"></span>
+          <span class="pres-credit">Multicultural Artists' Coalition</span>
+        </div>
+      </div>
+
+      <!-- Slide 16 — Patterns across open calls -->
+      <div class="pres-slide" id="pslide-16">
+        <div class="pres-kicker">Part II &middot; Patterns</div>
+        <h3 class="pres-h2">What the Open Calls <em>Covered</em></h3>
         <div class="pres-body" style="align-items:stretch">
           <div class="pres-patterns-grid">
             <div class="pres-pattern-card">
@@ -784,13 +819,14 @@ body[data-page="smartwear"] .af-hero{display:block}
         </div>
       </div>
 
-      <!-- Slide 14 — Calls order -->
-      <div class="pres-slide" id="pslide-12">
-        <div class="pres-h2">Calls order</div>
-        <div class="pres-calls-list">
-          <div class="pres-calls-item"><span class="pres-calls-num">1.</span>Applicant-journey order</div>
-          <div class="pres-calls-item"><span class="pres-calls-num">2.</span>Decision-funnel order</div>
-          <div class="pres-calls-item"><span class="pres-calls-num">3.</span>Access-led / values-first order</div>
+      <!-- Slide 17 — Calls order (closing) -->
+      <div class="pres-slide" id="pslide-17">
+        <div class="pres-kicker">Part II &middot; Closing</div>
+        <h3 class="pres-h2">Calls <em>order</em></h3>
+        <div class="pres-steps">
+          <div class="pres-step"><span class="sn">1</span><span class="st"><b>Applicant-journey order</b><span>Sections follow the path an applicant actually takes, from discovering the call through to submitting.</span></span></div>
+          <div class="pres-step"><span class="sn">2</span><span class="st"><b>Decision-funnel order</b><span>Eligibility first, so readers can self-select before investing time in the rest of the call.</span></span></div>
+          <div class="pres-step"><span class="sn">3</span><span class="st"><b>Access-led / values-first order</b><span>Access commitments and support up front, signalling from the first line who the call is for.</span></span></div>
         </div>
       </div>
 
@@ -800,7 +836,8 @@ body[data-page="smartwear"] .af-hero{display:block}
       <button class="pres-btn" id="pres-prev" disabled aria-label="Previous slide">&#8592; Prev</button>
       <button class="pres-btn" id="pres-next" aria-label="Next slide">Next &#8594;</button>
       <div class="pres-dots" id="pres-dots"></div>
-      <span class="pres-count" id="pres-count">1 / 12</span>
+      <span class="pres-count" id="pres-count"></span>
+      <button class="pres-btn" id="pres-fs" aria-label="Toggle fullscreen">&#x26F6; Fullscreen</button>
     </div>
   </div>
   </section>
@@ -863,7 +900,70 @@ body[data-page="smartwear"] .af-hero{display:block}
 
   <div id="smartwear-sec" style="display:none">
 
-    <section class="sec sw-first">
+  <aside class="af-hero" aria-label="Accessible formats">
+    <div class="af-card">
+      <div class="af-header">
+        <p class="af-title">Accessible formats</p>
+        <p class="af-sub">The formats an accessible call should offer.</p>
+      </div>
+      <ul class="af-list" role="list">
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 0 1 12 0c0 3-2 5.5-2.5 7.5-.3 1-.5 2-.5 3.5"/><path d="M10.5 20h3"/><path d="M10 9a2 2 0 0 1 4 0"/></svg></span>
+            <span class="af-label"><b>Audio version</b><small>Listen to this call</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 9C0 6 1 2 5 1L12 0C17 0 19 3 18 7L16 13C15 17 11 19 7 17L3 14C0 12 1 10 1 9ZM5 9C5 7 6 5 9 5L13 7C15 8 15 11 13 12L10 14C8 15 6 14 5 12Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M23 15C24 18 23 22 19 23L12 24C7 24 5 21 6 17L8 11C9 7 13 5 17 7L21 10C24 12 23 14 23 15ZM19 15C19 17 18 19 15 19L11 17C9 16 9 13 11 12L14 10C16 9 18 10 19 12Z"/></svg></span>
+            <span class="af-label"><b>Sign Language</b><small>BSL / ASL version</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l2-6 2 6"/><line x1="4.2" y1="15" x2="6.8" y2="15"/><path d="M10 17l4-12 4 12"/><line x1="11.5" y1="13" x2="16.5" y2="13"/></svg></span>
+            <span class="af-label"><b>Large Print</b><small>Enlarged text version</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+            <span class="af-label"><b>Easy Read</b><small>Simplified language</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></span>
+            <span class="af-label"><b>Dyslexia-friendly</b><small>Adapted typography</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-divider" role="separator"></li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
+            <span class="af-label"><b>Download PDF</b><small>Print-ready version</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+        <li class="af-item">
+          <a href="#" aria-disabled="true">
+            <span class="af-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></span>
+            <span class="af-label"><b>Word document</b><small>Editable .docx file</small></span>
+            <span class="af-arr">›</span>
+          </a>
+        </li>
+      </ul>
+      <div class="af-foot"><a href="#">Need this call in another format? Contact us &rsaquo;</a></div>
+    </div>
+  </aside>
+
+
+    <section class="sec sw-first" id="sw-open">
       <div class="sw-prose">
         <p><em class="sw-project">Co-Designing a Smartwear Revolution</em> is an international research project led by the University of Alberta and funded by Canada&rsquo;s New Frontiers in Research Fund. Through collaborations between researchers, artists, designers, technologists, and People with Lived Experience (PLEX), the project explores the creative and social possibilities of smartwear technologies and intelligent fibres designed to support movement, care, and everyday life. With sensing, actuating, and battery-power capabilities built directly into the fibres, the Smartwear Revolution project aims to adapt clothing stiffness and shape to provide physical support and movement augmentation as needed. These smartwear fibres incorporate intelligent technologies that identify user intent and dynamically adjust the fabric&rsquo;s properties to support trunk, arm, and leg movements during daily activities such as self-care, reaching, and carrying loads. The theme of SUPPORT thus mirrors the technical goals of the Smartwear Revolution project which include providing trunk support by 2028 and augmentation of arm and leg movement by 2031.</p>
         <p>Support shapes everyday life in many different ways: through people, environments, objects, technologies, routines, and forms of care. It can be physical, emotional, social, cultural, or technological, intentionally designed or developed through lived experience and adaptation.</p>
@@ -894,7 +994,7 @@ body[data-page="smartwear"] .af-hero{display:block}
       <div class="sec-head"><div><h2>The context</h2></div></div>
       <div class="sw-prose">
         <p>In order to spark conversation, critique and co-design with the communities that our smart garments aim to serve, the Smartwear Revolution&rsquo;s Art &amp; Design Working Group is organizing two international art and technology festivals. The first of these, around the overarching theme of SUPPORT, is slated for 2028, and will likely feature exhibitions, dance or theatre performances, live dress or fashion events, creative research presentations, open lab activities, and public discussions in both in-person and online formats. A second festival, with a theme to be decided, is planned for 2031.</p>
-        <p>Festival activities will be free of charge, and featured artists will receive recommended CARFAC/CADA fees for their work. In some cases, like commissions and artist residencies, additional production and material fees may be offered. Other resources, like rehearsal space, studio space, or facilities may be available. More information can be found here.</p>
+        <p>Festival activities will be free of charge, and featured artists will receive recommended CARFAC/CADA fees for their work. In some cases, like commissions and artist residencies, additional production and material fees may be offered. Other resources, like rehearsal space, studio space, or facilities may be available. More information can be found here. <span class="sw-todo">link</span></p>
       </div>
     </section>
 
@@ -910,11 +1010,12 @@ body[data-page="smartwear"] .af-hero{display:block}
     <section class="sec" id="sw-artforms">
       <div class="sec-head"><div><h2>What we are looking for</h2></div></div>
       <div class="sw-prose">
-        <ul>
-          <li>Visual artworks</li>
-          <li>Live performances</li>
-          <li>Capsule collections</li>
-        </ul>
+        <div class="sw-tags">
+          <span class="sw-tag">Visual artworks</span>
+          <span class="sw-tag">Live performances</span>
+          <span class="sw-tag">Textile art</span>
+          <span class="sw-tag">Capsule collections</span>
+        </div>
       </div>
     </section>
 
@@ -922,8 +1023,8 @@ body[data-page="smartwear"] .af-hero{display:block}
       <div class="sec-head"><div><h2>Possible formats for your proposals</h2></div></div>
       <div class="sw-prose">
         <p>We are interested in proposals to include works that have already been made, works-in-progress, and new work. We strongly encourage artists to engage with the research team and can facilitate meetings and lab tours (either virtual or in person). For more information on the labs and technologies that you could work with, please feel free to contact us.</p>
-        <p>The festival will be hosted across multiple sites across the University of Alberta including UCommons, FAB Gallery, Gallery A, Sound Studies Institute Sound Arts Gallery, McMullen Art Gallery and the Timms Centre for the Arts. More information about the venues can be found here. There are opportunities for solo and group exhibitions. Our hope is to fit the festivals to the works submitted, not to fit the works to the festivals.</p>
-        <p>We are also facilitating two artistic residencies in Spring 2027, where artists will engage with one or more of the laboratories, technologies and research methods in our Smartwear Revolution project, and make work in response to these engagements. (add link to artist in residence call).</p>
+        <p>The festival will be hosted across multiple sites across the University of Alberta including UCommons, FAB Gallery, Gallery A, Sound Studies Institute Sound Arts Gallery, McMullen Art Gallery and the Timms Centre for the Arts. More information about the venues can be found here. <span class="sw-todo">link</span> There are opportunities for solo and group exhibitions. Our hope is to fit the festivals to the works submitted, not to fit the works to the festivals.</p>
+        <p>We are also facilitating two artistic residencies in Spring 2027, where artists will engage with one or more of the laboratories, technologies and research methods in our Smartwear Revolution project, and make work in response to these engagements. <span class="sw-todo">artist-in-residence call link</span></p>
         <p>We are committed to hybrid access to all art works, performance and fashion events, and look forward to collaborating with makers to devise exciting ways for artworks to exist online.</p>
       </div>
     </section>
@@ -933,7 +1034,7 @@ body[data-page="smartwear"] .af-hero{display:block}
       <div class="sw-prose">
         <p>The application process is in two stages. The first stage is this Expression of Interest (EOI), where you tell us about yourself and your practice, and pitch ideas about a possible project you&rsquo;d like to propose. This is meant to be fairly simple and not overly detailed or labor-intensive.</p>
         <p>If your EOI is selected to move to stage two, we will meet with you to discuss your ideas, and ask you to complete a longer and more detailed application, where you will specify what you intend to make or contribute. We will provide a small honorarium or gift card if preferable, to those who complete the full application.</p>
-        <p>As this project is being administered by the University of Alberta, all artists will have to be registered as suppliers to the university and submit invoices for payments after the initial honorarium. We have a team that will help you navigate this process and ensure that payments do not conflict with support programs such as AISH, PIP,</p>
+        <p>As this project is being administered by the University of Alberta, all artists will have to be registered as suppliers to the university and submit invoices for payments after the initial honorarium. We have a team that will help you navigate this process and ensure that payments do not conflict with support programs such as AISH or PIP.</p>
         <p>EOIs are due on <strong>15th December 2026</strong> and will be reviewed by an interdisciplinary committee from the Smartwear Revolution team. Successful EOIs will be announced on <strong>15th January</strong> with full applications due <strong>15th February</strong>.</p>
         <p>We will accept EOIs after these dates, but due to the complexity of contracts we cannot guarantee inclusion in the 2028 festival.</p>
       </div>
@@ -942,30 +1043,27 @@ body[data-page="smartwear"] .af-hero{display:block}
     <section class="sec" id="sw-help">
       <div class="sec-head"><div><h2>How to get help with your application</h2></div></div>
       <div class="sw-prose">
-        <p class="sw-help-note">We welcome Expressions of Interest in any format that works best for you — including written text, audio or video recordings, or a live interview with a member of our team. If you would like to submit in an alternative format, please <a href="#">contact us</a> and we will be happy to make arrangements.</p>
+        <p class="sw-help-note">We welcome Expressions of Interest in any format that works best for you, including written text, audio or video recordings, or a live interview with a member of our team. If you would like to submit in an alternative format, please <a href="#">contact us</a> and we will be happy to make arrangements.</p>
         <ul class="sw-help-list">
-          <li>If you want assistance completing the Expression of Interest, please contact ... or attend one of our info sessions.</li>
-          <li>If you have questions or would like to consult with a staff member, please contact &hellip;</li>
+          <li>If you want assistance completing the Expression of Interest, please contact us <span class="sw-todo">contact details</span> or attend one of our info sessions.</li>
+          <li>If you have questions or would like to consult with a staff member, please contact us. <span class="sw-todo">contact details</span></li>
         </ul>
       </div>
     </section>
-
 
   </div>
 
   <!-- ===== FEEDBACK TAB ===== -->
   <section id="feedback-sec" aria-label="Give us Feedback">
     <div class="feedback-wrap">
-      <div class="feedback-card">
-        <p class="feedback-label">Your input shapes our commitment to accessibility</p>
-        <h2 class="feedback-heading">Look at our Open Calls Draft and share your thoughts with us</h2>
-        <ul class="feedback-list">
-          <li>What additional information would you need at this first stage of the call to feel confident enough to apply?</li>
-          <li>How do you feel about the Expression of Interest (EOI) format as a first step — does it make the application process more accessible?</li>
-          <li>Is there any information you felt was unnecessary or overwhelming to include at this stage?</li>
-          <li>What other accessibility features or tools would you like to see added to this platform?</li>
-        </ul>
-      </div>
+      <p class="feedback-label fade d1">Your input shapes our commitment to accessibility</p>
+      <h2 class="feedback-heading fade d2">Look at our Open Calls Draft and <em>share your thoughts</em> with us</h2>
+      <ol class="feedback-qs fade d3">
+        <li class="feedback-q"><span class="qn" aria-hidden="true">01</span><p>What additional information would you need at this first stage of the call to feel confident enough to apply?</p></li>
+        <li class="feedback-q"><span class="qn" aria-hidden="true">02</span><p>How do you feel about the Expression of Interest (EOI) format as a first step? Does it make the application process more accessible?</p></li>
+        <li class="feedback-q"><span class="qn" aria-hidden="true">03</span><p>Is there any information you felt was unnecessary or overwhelming to include at this stage?</p></li>
+        <li class="feedback-q"><span class="qn" aria-hidden="true">04</span><p>What other accessibility features or tools would you like to see added to this platform?</p></li>
+      </ol>
     </div>
   </section>
 
@@ -976,70 +1074,75 @@ body[data-page="smartwear"] .af-hero{display:block}
     <button class="src-trigger" id="srcToggle" type="button" aria-expanded="false" aria-controls="srcMore"><span class="caret" aria-hidden="true">&rsaquo;</span>Source:&nbsp;<b id="src-label">ADWG Open Calls Checklist</b></button>
     <p class="footer-credit">Designed by <a href="mailto:joel@howl.marketing" class="footer-credit-link">howl.marketing</a> &nbsp;&middot;&nbsp; &copy;&nbsp;2026</p>
   </div>
-  <p class="src-more" id="srcMore" data-calls="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (calls where the factor applies). Not-applicable and unrecorded entries are excluded from the denominator." data-smartwear="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Draft open-call text, in development. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (factors assessed)." data-guidelines="&mdash; Accessibility Best Practices compiled from 12 international access guides. Coverage&nbsp;% = Yes &divide; (guides where the practice was assessed). Binary yes/no entries only." data-smartwear="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Draft open-call text, in development.">&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (calls where the factor applies). Not-applicable and unrecorded entries are excluded from the denominator.</p>
+  <p class="src-more" id="srcMore" data-calls="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (calls where the factor applies). Not-applicable and unrecorded entries are excluded from the denominator." data-smartwear="&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Example open-call text, shown for reference and feedback. Not a live opportunity." data-guidelines="&mdash; Accessibility Best Practices compiled from 12 international access guides. Coverage&nbsp;% = Yes &divide; (guides where the practice was assessed). Binary yes/no entries only.">&mdash; Smartwear Revolution, Art &amp; Design Working Group, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; (calls where the factor applies). Not-applicable and unrecorded entries are excluded from the denominator.</p>
 </div></footer>
 
 <div id="tip"></div>
 
-<!-- ===== Accessibility Widget ===== -->
+<!-- ===== Accessibility Widget (Open Calls page only) ===== -->
 <div id="a11y-widget">
-  <button id="a11y-btn" aria-label="Open Accessibility Menu" aria-expanded="false" aria-controls="a11y-panel">
-    <svg class="a11y-person" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="12" cy="5.5" r="2.5" fill="#fff"/>
-      <path d="M7.5 11.5h9" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-      <path d="M12 11.5v4.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-      <path d="M9 20l3-4 3 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <button id="a11y-btn" aria-label="Open accessibility options" aria-expanded="false" aria-controls="a11y-panel">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="12" cy="5.5" r="2.5" fill="currentColor"/>
+      <path d="M7.5 11.5h9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 11.5v4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M9 20l3-4 3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-    <span class="a11y-badge" aria-hidden="true">
-      <svg viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </span>
+    <span class="vtxt">Accessibility</span>
   </button>
-  <div id="a11y-panel" hidden role="dialog" aria-modal="false" aria-label="Accessibility options">
+  <div id="a11y-panel" role="dialog" aria-modal="false" aria-label="Accessibility options">
     <div class="a11y-head">
-      <span class="a11y-head-title">Accessibility Menu<kbd>CTRL+U</kbd></span>
-      <button class="a11y-close-btn" id="a11y-close" aria-label="Close accessibility menu">&#x2715;</button>
+      <span class="a11y-head-title">Accessibility options<kbd>CTRL+U</kbd></span>
+      <button class="a11y-close-btn" id="a11y-close" aria-label="Close accessibility options">&#x2715;</button>
     </div>
-    <div class="a11y-grid">
-      <button class="a11y-opt" aria-pressed="false" data-a11y="contrast">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/><line x1="12" y1="3" x2="12" y2="21" stroke="currentColor" stroke-width="1.6"/></svg></span>
-        <span class="a11y-opt-label">Contrast +</span>
+    <div class="a11y-list">
+      <button class="a11y-row" aria-pressed="false" data-a11y="contrast">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></span>
+        <span class="lbl"><b>Higher contrast</b><small>Darker text on a white background</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="links">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
-        <span class="a11y-opt-label">Highlight Links</span>
+      <button class="a11y-row" aria-pressed="false" data-a11y="bigtext">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none"><text x="3" y="18" font-size="16" font-weight="700" fill="currentColor" font-family="serif">A</text><text x="15" y="14" font-size="10" fill="currentColor" font-family="serif">a</text></svg></span>
+        <span class="lbl"><b>Bigger text</b><small>Enlarge everything by 15%</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="bigtext">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><text x="2" y="18" font-size="16" font-weight="700" stroke="none" fill="currentColor" font-family="serif">A</text><text x="14" y="14" font-size="10" stroke="none" fill="currentColor" font-family="serif">a</text></svg></span>
-        <span class="a11y-opt-label">Bigger Text</span>
+      <button class="a11y-row" aria-pressed="false" data-a11y="spacing">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="12" x2="15" y2="12"/><line x1="5" y1="16" x2="19" y2="16"/></svg></span>
+        <span class="lbl"><b>Letter spacing</b><small>More room between letters and words</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="spacing">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="12" x2="15" y2="12"/><line x1="5" y1="16" x2="19" y2="16"/><path d="M21 5l-2-2-2 2"/><path d="M21 19l-2 2-2-2"/><line x1="19" y1="3" x2="19" y2="21"/></svg></span>
-        <span class="a11y-opt-label">Heavy Spacing</span>
+      <button class="a11y-row" aria-pressed="false" data-a11y="lineheight">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="14" y2="7"/><line x1="4" y1="12" x2="12" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/><line x1="20" y1="4" x2="20" y2="20"/><polyline points="17,6 20,4 23,6"/><polyline points="17,18 20,20 23,18"/></svg></span>
+        <span class="lbl"><b>Line height</b><small>More space between lines of text</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="pause">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9" stroke-dasharray="5 2.8"/><rect x="9.5" y="9" width="2" height="6" rx="0.5" fill="currentColor" stroke="none"/><rect x="12.5" y="9" width="2" height="6" rx="0.5" fill="currentColor" stroke="none"/></svg></span>
-        <span class="a11y-opt-label">Pause Animations</span>
+      <button class="a11y-row" aria-pressed="false" data-a11y="dyslexia">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h7a5 5 0 0 1 0 10H4V6z"/><path d="M4 11h6"/></svg></span>
+        <span class="lbl"><b>Dyslexia-friendly type</b><small>Switch to a rounder, simpler typeface</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="images">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-4 4 3.5 3-3 6 5.5"/><circle cx="8.5" cy="9.5" r="1.5"/><line x1="16" y1="3" x2="21" y2="8"/><line x1="21" y1="3" x2="16" y2="8"/></svg></span>
-        <span class="a11y-opt-label">Hide Images</span>
+      <button class="a11y-row" aria-pressed="false" data-a11y="links">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
+        <span class="lbl"><b>Highlight links</b><small>Underline and tint every link</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="dyslexia">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h7a5 5 0 0 1 0 10H4V6z"/><path d="M4 11h6"/><line x1="17" y1="8" x2="17" y2="16"/><line x1="14" y1="8" x2="20" y2="8"/><line x1="14" y1="16" x2="20" y2="16"/></svg></span>
-        <span class="a11y-opt-label">Dyslexia Friendly</span>
+      <button class="a11y-row" aria-pressed="false" data-a11y="images">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l5-4 4 3.5 3-3 6 5.5"/><line x1="16" y1="3" x2="21" y2="8"/><line x1="21" y1="3" x2="16" y2="8"/></svg></span>
+        <span class="lbl"><b>Hide images</b><small>Hide pictures and logos, keep the text</small></span>
+        <span class="a11y-sw" aria-hidden="true"></span>
       </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="cursor">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-7 1.5-4.5 7z"/></svg></span>
-        <span class="a11y-opt-label">Cursor</span>
-      </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="tooltips">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="15"/><circle cx="12" cy="8.5" r=".8" fill="currentColor" stroke="none"/></svg></span>
-        <span class="a11y-opt-label">Tooltips</span>
-      </button>
-      <button class="a11y-opt" aria-pressed="false" data-a11y="lineheight">
-        <span class="a11y-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="14" y2="7"/><line x1="4" y1="12" x2="12" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/><line x1="20" y1="4" x2="20" y2="20"/><polyline points="17,6 20,4 23,6"/><polyline points="17,18 20,20 23,18"/></svg></span>
-        <span class="a11y-opt-label">Line Height</span>
-      </button>
+    </div>
+    <div class="a11y-pos">
+      <small>Position</small>
+      <div class="a11y-pos-btns" role="group" aria-label="Where the accessibility button sits on screen">
+        <button class="a11y-pos-btn" data-pos="left" type="button" aria-pressed="false">Left</button>
+        <button class="a11y-pos-btn" data-pos="right" type="button" aria-pressed="false">Right</button>
+        <button class="a11y-pos-btn" data-pos="bottom" type="button" aria-pressed="false">Bottom</button>
+      </div>
+    </div>
+    <div class="a11y-foot">
+      <small>Settings are saved on this device.</small>
+      <button class="a11y-reset" id="a11y-reset" type="button">Reset all</button>
     </div>
   </div>
 </div>
@@ -1294,7 +1397,7 @@ function exportCSV(){
   document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
 }
 
-var SW_NAV=[['Open Call','sw-questions'],['Context','sw-context'],['Eligibility','sw-eligibility'],['Art Forms','sw-artforms'],['Formats','sw-formats'],['What to expect','sw-expect'],['Get help','sw-help']];
+var SW_NAV=[['Open Call','sw-open'],['Context','sw-context'],['Eligibility','sw-eligibility'],['Art Forms','sw-artforms'],['Formats','sw-formats'],['What to expect','sw-expect'],['Get help','sw-help']];
 function buildSWNav(){
   var t=document.getElementById('tabs');if(!t)return;
   t.innerHTML=SW_NAV.map(function(x){return '<a class="tab sw-anchor" role="tab" aria-selected="false" data-target="'+x[1]+'" href="#'+x[1]+'">'+x[0]+'</a>';}).join('');
@@ -1302,7 +1405,7 @@ function buildSWNav(){
 function updateSWActive(){
   if(ACTIVE_PAGE!=='smartwear')return;
   var cur=SW_NAV[0][1];
-  SW_NAV.forEach(function(x){var el=document.getElementById(x[1]);if(el&&el.getBoundingClientRect().top<=140)cur=x[1];});
+  SW_NAV.forEach(function(x){var el=document.getElementById(x[1]);if(el&&el.getBoundingClientRect().top<=110)cur=x[1];});
   document.querySelectorAll('.sw-anchor').forEach(function(a){a.setAttribute('aria-selected',a.dataset.target===cur?'true':'false');});
 }
 window.addEventListener('scroll',function(){window.requestAnimationFrame(updateSWActive);},{passive:true});
@@ -1335,13 +1438,13 @@ function updateHero(){
     if(sm)sm.innerHTML=sm.dataset.calls||sm.innerHTML;
     if(sub)sub.innerHTML='A review of public art opportunities, analyzed according to accessibility, eligibility, application design and applicant support. Each factor is marked Yes, Partial or No across every call, with coverage rates aggregated by category.';
   } else if(ACTIVE_PAGE==='smartwear'){
-    if(ey)ey.innerHTML='Co-Designing a Smartwear Revolution · University of Alberta';
-    if(h1)h1.innerHTML='<span class="h1-accent">OPEN CALL FOR EXPRESSIONS OF INTEREST</span> FOR VISUAL ART, PERFORMANCE, TEXTILE ART, AND FASHION PROJECTS';
+    if(ey)ey.innerHTML='Co-Designing a Smartwear Revolution · University of Alberta · <span class="sw-todo" style="margin-left:0">Example call</span>';
+    if(h1)h1.textContent='Open Call for Expressions of Interest';
     const sl=document.getElementById('src-label');
     const sm=document.getElementById('srcMore');
     if(sl)sl.textContent='Smartwear Open Calls Draft';
     if(sm)sm.innerHTML=sm.dataset.smartwear||sm.innerHTML;
-    if(sub)sub.innerHTML='<span class="hero-dates"><span class="hd-item"><span class="hd-label">EOI deadline</span><span class="hd-date">15 Dec 2026</span></span><span class="hd-item"><span class="hd-label">Results announced</span><span class="hd-date">15 Jan 2027</span></span><span class="hd-item"><span class="hd-label">Full applications due</span><span class="hd-date">15 Feb 2027</span></span></span>';
+    if(sub)sub.innerHTML='<span class="hero-call-sub">Visual art, performance, textile art and fashion projects</span><span class="hero-dates"><span class="hd-item"><span class="hd-label">EOI deadline</span><span class="hd-date">15 Dec 2026</span></span><span class="hd-item"><span class="hd-label">Results announced</span><span class="hd-date">15 Jan 2027</span></span><span class="hd-item"><span class="hd-label">Full applications due</span><span class="hd-date">15 Feb 2027</span></span></span>';
   } else {
     if(ey)ey.innerHTML='Art &amp; Design Working Group · Access Guidelines';
     if(h1)h1.textContent='Accessibility Best Practices Comparison';
@@ -1366,7 +1469,7 @@ document.querySelectorAll('.pnav-btn').forEach(btn=>{
 window.addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(()=>{renderTreemap();renderMatrix();},180);});
 render();
 
-// Presentation slide navigation
+// Presentation slide navigation + deck rendering
 (function(){
   var slides=Array.from(document.querySelectorAll('.pres-slide'));
   var total=slides.length;
@@ -1375,7 +1478,16 @@ render();
   var counter=document.getElementById('pres-count');
   var prevBtn=document.getElementById('pres-prev');
   var nextBtn=document.getElementById('pres-next');
+  var fsBtn=document.getElementById('pres-fs');
+  var stage=document.querySelector('.pres-stage');
   if(!total)return;
+  // running footer on every slide
+  slides.forEach(function(s,i){
+    var f=document.createElement('div');
+    f.className='pres-foot';
+    f.innerHTML='<span>Art &amp; Design Working Group &middot; Open Calls Review</span><span class="pf-n">'+(i+1)+' / '+total+'</span>';
+    s.appendChild(f);
+  });
   // build dots
   for(var i=0;i<total;i++){
     var d=document.createElement('button');
@@ -1396,6 +1508,7 @@ render();
     if(prevBtn)prevBtn.disabled=(cur===0);
     if(nextBtn)nextBtn.disabled=(cur===total-1);
   }
+  if(counter)counter.textContent='1 / '+total;
   if(prevBtn)prevBtn.addEventListener('click',function(){goTo(cur-1);});
   if(nextBtn)nextBtn.addEventListener('click',function(){goTo(cur+1);});
   document.addEventListener('keydown',function(e){
@@ -1403,6 +1516,67 @@ render();
     if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();goTo(cur+1);}
     else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();goTo(cur-1);}
   });
+  // fullscreen
+  if(fsBtn&&stage){
+    fsBtn.addEventListener('click',function(){
+      if(document.fullscreenElement){document.exitFullscreen();}
+      else if(stage.requestFullscreen){stage.requestFullscreen();}
+    });
+    document.addEventListener('fullscreenchange',function(){
+      fsBtn.innerHTML=document.fullscreenElement?'&#x2715; Exit fullscreen':'&#x26F6; Fullscreen';
+    });
+  }
+  // touch swipe
+  if(stage){
+    var tx=null,ty=null;
+    stage.addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX;ty=e.changedTouches[0].clientY;},{passive:true});
+    stage.addEventListener('touchend',function(e){
+      if(tx==null)return;
+      var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+      if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.5)goTo(dx<0?cur+1:cur-1);
+      tx=ty=null;
+    },{passive:true});
+  }
+
+  // category leaderboards: top practices per BP category, dot per guide
+  document.querySelectorAll('.pres-rows').forEach(function(box){
+    var cat=BP_DATA[+box.dataset.cat];if(!cat)return;
+    var ff=[];cat.sections.forEach(function(s){s.factors.forEach(function(f){ff.push(f);});});
+    ff.sort(function(a,b){return b.y-a.y;});
+    ff.slice(0,5).forEach(function(f,rank){
+      var row=document.createElement('div');
+      row.className='pres-row'+(rank===0?' r1':'');
+      var dots=f.vals.map(function(v){return '<i class="'+(v==='Y'?'on':'')+'"></i>';}).join('');
+      // strip trailing parentheticals so names stay one line at slide scale
+      var nm=f.name.replace(/\s*\(.*$/,'');
+      row.innerHTML='<span class="fname" title="'+f.name.replace(/"/g,'&quot;')+'">'+nm+'</span><span class="pres-dots12" aria-hidden="true">'+dots+'</span><span class="score">'+f.y+'<small> /12</small></span>';
+      box.appendChild(row);
+    });
+  });
+
+  // sample audit matrix: the first 14 Venue practices (sheet rows 3-16) × all 12 guides, in sheet order
+  (function(){
+    var box=document.getElementById('pres-matrix');if(!box)return;
+    var shorts=BP_DATA[0].short,G=shorts.length;
+    var ROWS=14;
+    var totalN=0;
+    BP_DATA.forEach(function(cat){cat.sections.forEach(function(s){totalN+=s.factors.length;});});
+    var ff=[];BP_DATA[0].sections.forEach(function(s){s.factors.forEach(function(f){ff.push(f);});});
+    var html='<span></span>'+shorts.map(function(s){return '<span class="ps-guide">'+s+'</span>';}).join('')+'<span></span>';
+    html+='<span class="ps-cat">'+BP_DATA[0].label+'</span>';
+    ff.slice(0,ROWS).forEach(function(f){
+      var nm=f.name.replace(/\s*\(.*$/,'');
+      html+='<span class="ps-name" title="'+f.name.replace(/"/g,'&quot;')+'">'+nm+'</span>';
+      for(var g=0;g<G;g++){
+        var on=(f.vals[g]==='Y'||f.vals[g]==='P');
+        html+='<span class="ps-cell '+(on?'on':'off')+'" title="'+shorts[g]+': '+(on?'Yes':'No')+'"></span>';
+      }
+      html+='<span class="ps-count">'+f.y+'<small>/'+G+'</small></span>';
+    });
+    box.innerHTML=html;
+    var note=document.getElementById('pres-hm-note');
+    if(note)note.innerHTML='An excerpt of the audit: the first '+ROWS+' Venue practices × '+G+' guides · brown&nbsp;=&nbsp;recommended · <b>'+totalN+' practices</b> in the full matrix, explorable on the Access Guidelines page.';
+  })();
 })();
 
 (function(){var w=document.getElementById('srcwrap'),t=document.getElementById('srcToggle'),m=document.getElementById('srcMore');
@@ -1410,25 +1584,60 @@ if(t&&w&&m){t.addEventListener('click',function(){var op=w.classList.toggle('ope
 m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&&w.classList.contains('open'))m.scrollIntoView({behavior:'smooth',block:'nearest'});});}
 })();
 
-// Accessibility widget
+// Accessibility widget: edge flag + drawer; options apply real body classes and persist locally
 (function(){
   var btn=document.getElementById('a11y-btn');
   var panel=document.getElementById('a11y-panel');
   var closeBtn=document.getElementById('a11y-close');
+  var resetBtn=document.getElementById('a11y-reset');
   if(!btn||!panel)return;
-  function openPanel(){panel.hidden=false;btn.setAttribute('aria-expanded','true');closeBtn.focus();}
-  function closePanel(){panel.hidden=true;btn.setAttribute('aria-expanded','false');}
-  function togglePanel(){panel.hidden?openPanel():closePanel();}
+  var widget=document.getElementById('a11y-widget');
+  var KEY='a11yPrefs';
+  var prefs={};
+  try{prefs=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(prefs));}catch(e){}}
+  function apply(){
+    document.querySelectorAll('.a11y-row').forEach(function(r){
+      var k=r.dataset.a11y,on=!!prefs[k];
+      r.setAttribute('aria-pressed',on?'true':'false');
+      document.body.classList.toggle('a11y-'+k,on);
+    });
+    var p=['left','right','bottom'].indexOf(prefs.pos)>=0?prefs.pos:'left';
+    widget.classList.remove('pos-left','pos-right','pos-bottom');
+    widget.classList.add('pos-'+p);
+    document.querySelectorAll('.a11y-pos-btn').forEach(function(b){
+      var on=b.dataset.pos===p;
+      b.classList.toggle('active',on);
+      b.setAttribute('aria-pressed',on?'true':'false');
+    });
+  }
+  function openPanel(){panel.classList.add('open');btn.setAttribute('aria-expanded','true');closeBtn.focus();}
+  function closePanel(){panel.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  function togglePanel(){panel.classList.contains('open')?closePanel():openPanel();}
   btn.addEventListener('click',function(e){e.stopPropagation();togglePanel();});
-  closeBtn.addEventListener('click',function(e){e.stopPropagation();closePanel();});
+  closeBtn.addEventListener('click',function(e){e.stopPropagation();closePanel();btn.focus();});
   document.addEventListener('keydown',function(e){
     if((e.ctrlKey||e.metaKey)&&e.key==='u'){e.preventDefault();togglePanel();}
-    if(e.key==='Escape'&&!panel.hidden){closePanel();btn.focus();}
+    if(e.key==='Escape'&&panel.classList.contains('open')){closePanel();btn.focus();}
   });
-  document.addEventListener('click',function(e){if(!e.target.closest('#a11y-widget')&&!panel.hidden)closePanel();});
-  document.querySelectorAll('.a11y-opt').forEach(function(opt){
-    opt.addEventListener('click',function(e){e.stopPropagation();var on=opt.classList.toggle('on');opt.setAttribute('aria-pressed',on?'true':'false');});
+  document.addEventListener('click',function(e){if(!e.target.closest('#a11y-widget')&&panel.classList.contains('open'))closePanel();});
+  document.querySelectorAll('.a11y-row').forEach(function(r){
+    r.addEventListener('click',function(e){
+      e.stopPropagation();
+      var k=r.dataset.a11y;
+      prefs[k]=!prefs[k];
+      save();apply();
+    });
   });
+  document.querySelectorAll('.a11y-pos-btn').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      prefs.pos=b.dataset.pos;
+      save();apply();
+    });
+  });
+  if(resetBtn)resetBtn.addEventListener('click',function(e){e.stopPropagation();prefs={};save();apply();});
+  apply();
 })();
 
 // Bubble chart — rarely mentioned accessibility factors
@@ -1443,10 +1652,10 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
     'ASL/BSL trained staff','Multilingual captioning'
   ];
   var COLORS=[
-    '#7A9E8C','#9B7BAA','#C47060','#5B8FA8','#C4944A',
-    '#B87887','#60789A','#7A9E7A','#C47A45','#6B9E9E',
-    '#8B78B0','#B8983A','#B87890','#5B9880','#A07898',
-    '#7A8EA8','#9E7A6E','#6B9E8C','#A07BAA','#B09850'
+    '#7A2E3A','#C3B299','#6E5A42','#A67644','#8C7458',
+    '#9D4A4F','#B89B6B','#4F3E2A','#C28A5A','#7E5E6B',
+    '#5E4A33','#B4836E','#8A4A42','#A98F66','#6B4F52',
+    '#946B3F','#7A5E48','#B0626A','#5E2029','#C9A877'
   ];
   function build(){
     var svgEl=document.getElementById('bubble-chart');
@@ -1471,7 +1680,8 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
     nodes.forEach(function(n,i){
       var g=svg.append('g');
       g.append('circle').attr('cx',n.x).attr('cy',n.y).attr('r',n.r)
-        .attr('fill',COLORS[i]).attr('opacity',0.86);
+        .attr('fill',COLORS[i]).attr('opacity',0.92);
+      var txtFill='#FFFFFF';
       var maxFs=Math.min(n.r*0.28,22);
       var cpl=Math.max(4,Math.floor(n.r*1.55/(maxFs*0.55)));
       var words=n.name.split(' '),lines=[],cur='';
@@ -1488,7 +1698,7 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
         g.append('text').attr('x',n.x).attr('y',n.y-th/2+li*lh+fs*0.35)
           .attr('text-anchor','middle').attr('font-size',fs)
           .attr('font-family','Poppins,sans-serif').attr('font-weight','600')
-          .attr('fill','#2D221A').text(l);
+          .attr('fill',txtFill).text(l);
       });
     });
   }
