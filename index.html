@@ -303,15 +303,214 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
 /* ===== header PDF button + print ===== */
 .top-pdf{font-family:inherit;font-size:12.5px;font-weight:500;color:var(--navy);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer;transition:border-color .18s,color .18s}
 .top-pdf:hover{border-color:var(--wine);color:var(--wine)}
+/* ===================================================================
+   Academic PDF export — a generated report document, not a screenshot
+   of the page. #pdfdoc is built on demand and is the only thing that
+   prints; the live app is hidden entirely.
+   =================================================================== */
+#pdfdoc{display:none}
+
+/* export scope dialog */
+#pdfmodal{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:20px}
+#pdfmodal.open{display:flex}
+#pdfmodal .pm-veil{position:absolute;inset:0;background:rgba(20,34,42,.5)}
+#pdfmodal .pm-card{position:relative;width:min(520px,100%);max-height:90vh;overflow:auto;
+  background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:16px;
+  box-shadow:0 28px 70px rgba(31,54,66,.34);padding:24px 24px 20px}
+#pdfmodal h2{margin:0 0 4px;font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--navy-700)}
+#pdfmodal .pm-sub{margin:0 0 18px;font-size:13px;color:var(--muted);line-height:1.5}
+#pdfmodal .pm-opt{display:flex;gap:11px;align-items:flex-start;padding:12px 13px;border:1px solid var(--line);
+  border-radius:11px;margin-bottom:9px;cursor:pointer;transition:border-color .15s,background .15s}
+#pdfmodal .pm-opt:hover{border-color:var(--wine)}
+#pdfmodal .pm-opt:has(input:checked){border-color:var(--wine);background:var(--soft)}
+#pdfmodal .pm-opt input{margin:2px 0 0;width:18px;height:18px;flex:none;accent-color:var(--wine)}
+#pdfmodal .pm-opt:focus-within{outline:2px solid var(--wine);outline-offset:2px}
+#pdfmodal .pm-opt b{display:block;font-size:13.5px;font-weight:600;margin-bottom:2px}
+#pdfmodal .pm-opt b .hl{color:var(--wine)}
+#pdfmodal .pm-opt span{display:block;font-size:12px;color:var(--muted);line-height:1.45}
+#pdfmodal .pm-note{font-size:11.5px;color:var(--muted);line-height:1.5;margin:14px 0 0;
+  padding-top:13px;border-top:1px solid var(--line-2)}
+#pdfmodal .pm-act{display:flex;gap:9px;justify-content:flex-end;margin-top:16px}
+#pdfmodal .pm-act button{font-family:inherit;font-size:13px;font-weight:500;padding:9px 17px;
+  border-radius:10px;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--ink);
+  min-height:24px;transition:border-color .15s,background .15s,color .15s}
+#pdfmodal .pm-act button:hover{border-color:var(--wine);color:var(--wine)}
+#pdfmodal .pm-act .pm-go{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+#pdfmodal .pm-act .pm-go:hover{background:var(--wine);border-color:var(--wine);color:var(--on-accent)}
+#pdfmodal button:focus-visible,#pdfmodal input:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
+
 @media print{
-  @page{size:landscape;margin:12mm}
-  body{background:var(--bg)}
-  header.top{position:static;background:#fff;backdrop-filter:none}
-  .top-pdf,.toolbar{display:none!important}
-  .matrix-scroll{max-height:none!important;overflow:visible!important}
-  .tm-node rect{transition:none}
-  .fade{opacity:1!important;transform:none!important}
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  /* Named pages: body prose portrait, wide evidence landscape.
+     Chrome takes orientation from here; paper size still comes from
+     the user's print dialog, so every width below is relative.        */
+  @page pdfP{size:A4 portrait;margin:16mm 15mm 14mm}
+  @page pdfL{size:A4 landscape;margin:11mm 11mm 10mm}
+
+  /* the app sets overflow-x:clip to tame the hero decorations; in print that
+     would shear every landscape page back to the portrait measure */
+  html,body{background:#fff!important;margin:0!important;padding:0!important;
+    overflow:visible!important;width:auto!important;max-width:none!important}
+  html{scroll-behavior:auto!important}
+  body>*{display:none!important}
+  body>#pdfdoc{display:block!important}
+
+  /* the report sets its own light, print-safe palette so a dark-mode
+     screen never produces a dark-mode PDF */
+  #pdfdoc{
+    --pi:#1F3642; --pm:#5C7482; --pr:#C9D6DD; --pr2:#E4ECEF;
+    --pa:#7A6B3D; --pso:#F3F6F4;
+    color:var(--pi);background:#fff;
+    font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+    font-size:9.4pt;line-height:1.52;font-weight:300;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  #pdfdoc *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+  .pp{page:pdfP;width:180mm}
+  .pl{page:pdfL;width:257mm}
+  .pbrk{break-before:page}
+  .pdf-page{break-inside:auto}
+
+  /* ---------- cover ---------- */
+  .pdf-cover{display:flex;flex-direction:column;min-height:258mm}
+  .pdf-cover .cv-logo{width:50mm}
+  .pdf-cover .cv-main{margin-top:auto}
+  .pdf-cover .cv-eyebrow{font-size:8pt;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--pa);margin-bottom:9mm}
+  .pdf-cover h1{font-size:27pt;line-height:1.1;font-weight:600;letter-spacing:-.02em;margin:0 0 6mm;
+    max-width:20ch;color:var(--pi)}
+  .pdf-cover .cv-sub{font-size:11.5pt;line-height:1.5;color:var(--pm);max-width:62ch;margin:0 0 11mm;font-weight:300}
+  .pdf-cover .cv-rule{height:2px;background:var(--pa);width:26mm;margin-bottom:8mm}
+  .pdf-cover dl{display:grid;grid-template-columns:32mm 1fr;gap:3.6mm 6mm;margin:0;font-size:9pt;
+    padding-top:7mm;border-top:1px solid var(--pr)}
+  .pdf-cover dt{font-weight:600;color:var(--pa);font-size:7.6pt;letter-spacing:.09em;
+    text-transform:uppercase;padding-top:.4mm}
+  .pdf-cover dd{margin:0;color:var(--pi)}
+
+  /* ---------- running head ---------- */
+  .pdf-rh{display:flex;justify-content:space-between;align-items:baseline;gap:10mm;
+    border-bottom:1px solid var(--pr);padding-bottom:2.6mm;margin-bottom:7mm;
+    font-size:7.4pt;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--pm)}
+  .pdf-rh .rh-r{color:var(--pa);letter-spacing:.1em}
+
+  /* ---------- headings ---------- */
+  #pdfdoc h2{font-size:17pt;line-height:1.15;font-weight:600;letter-spacing:-.015em;margin:0 0 2mm;color:var(--pi)}
+  #pdfdoc h3{font-size:11.5pt;font-weight:600;letter-spacing:-.005em;margin:0 0 2.4mm;color:var(--pi)}
+  #pdfdoc h4{font-size:8pt;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--pa);margin:0 0 2.6mm}
+  #pdfdoc p{margin:0 0 3.4mm;max-width:78ch}
+  #pdfdoc .lede{font-size:10.4pt;color:var(--pm);line-height:1.5;max-width:74ch;margin-bottom:6mm}
+
+  /* ---------- contents ---------- */
+  .pdf-toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
+  .pdf-toc>ol>li{counter-increment:toc;margin-bottom:4.6mm;padding-bottom:4.6mm;border-bottom:1px solid var(--pr2)}
+  .pdf-toc>ol>li:last-child{border-bottom:0}
+  .pdf-toc>ol>li>.t{font-size:11pt;font-weight:600;color:var(--pi)}
+  .pdf-toc>ol>li>.t::before{content:counter(toc) ".";color:var(--pa);font-weight:600;
+    display:inline-block;min-width:7mm}
+  .pdf-toc>ol>li>.d{font-size:8.6pt;color:var(--pm);margin-left:7mm}
+  .pdf-toc ul{list-style:none;margin:2mm 0 0 7mm;padding:0;
+    display:grid;grid-template-columns:1fr 1fr;gap:1.4mm 6mm}
+  .pdf-toc ul li{font-size:8.6pt;color:var(--pm)}
+  .pdf-toc ul li::before{content:"—";color:var(--pr);margin-right:2mm}
+
+  /* ---------- how to read ---------- */
+  .pdf-howto{display:grid;grid-template-columns:1fr 1fr;gap:9mm 10mm;margin-top:7mm}
+  .pdf-howto section{break-inside:avoid}
+  .pdf-key{list-style:none;margin:0;padding:0}
+  .pdf-key li{display:flex;gap:3mm;align-items:baseline;margin-bottom:2.2mm;font-size:8.8pt}
+  .pdf-key .kg{flex:none;width:6mm;text-align:center;font-size:11pt;line-height:1}
+  .pdf-key .kn{font-weight:600;flex:none;width:22mm}
+  .pdf-key .kd{color:var(--pm)}
+  .pdf-formula{background:var(--pso);border-left:2px solid var(--pa);padding:4mm 5mm;font-size:8.8pt;
+    line-height:1.6;break-inside:avoid}
+  .pdf-formula b{display:block;font-size:9.4pt;margin-bottom:1.6mm}
+  .pdf-ramp{display:flex;align-items:center;gap:3mm;margin-top:2mm}
+  .pdf-ramp .rb{flex:1;height:5mm;border:1px solid var(--pr);
+    background:linear-gradient(90deg,#FBF9F2,#E8DFC0,#C9B57C,#9E8A4E)}
+  .pdf-ramp span{font-size:7.6pt;color:var(--pm);white-space:nowrap}
+
+  /* ---------- category opener ---------- */
+  .pdf-catmeta{display:flex;gap:9mm;margin:0 0 7mm;padding:4mm 0;
+    border-top:1px solid var(--pr2);border-bottom:1px solid var(--pr2)}
+  .pdf-catmeta div{flex:none}
+  .pdf-catmeta .v{font-size:19pt;font-weight:600;line-height:1;letter-spacing:-.02em}
+  .pdf-catmeta .k{font-size:7.6pt;font-weight:600;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--pm);margin-top:1.4mm}
+  .pdf-finds{display:grid;grid-template-columns:1fr 1fr;gap:9mm;margin-top:2mm}
+  .pdf-finds section{break-inside:avoid}
+  .pdf-finds ol{list-style:none;margin:0;padding:0}
+  .pdf-finds li{display:flex;gap:3.4mm;align-items:baseline;padding:1.7mm 0;
+    border-bottom:1px solid var(--pr2);font-size:8.8pt}
+  .pdf-finds li:last-child{border-bottom:0}
+  .pdf-finds .pc{flex:none;width:11mm;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+  .pdf-finds .nm{flex:1}
+  /* let this flow onto the opener page and continue if needed, rather than
+     being bumped whole onto a page of its own */
+  .pdf-secbd{margin-top:9mm;break-inside:auto}
+  .pdf-secbd h3{break-after:avoid}
+  table.pdf-sb tr{break-inside:avoid}
+  table.pdf-sb thead{display:table-header-group}
+  table.pdf-sb{width:100%;border-collapse:collapse;font-size:8.6pt;margin-top:2mm}
+  table.pdf-sb th{text-align:left;font-size:7.4pt;font-weight:600;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--pm);padding:0 3mm 1.8mm 0;border-bottom:1px solid var(--pi)}
+  table.pdf-sb th.n,table.pdf-sb td.n{text-align:right;padding-right:0;width:20mm;
+    font-variant-numeric:tabular-nums}
+  table.pdf-sb td{padding:2mm 3mm 2mm 0;border-bottom:1px solid var(--pr2)}
+  table.pdf-sb td.n{font-weight:600}
+  table.pdf-sb .sbar{display:block;height:1.6mm;background:var(--pa);margin-top:1mm;opacity:.55}
+
+  /* ---------- coverage map ---------- */
+  .pdf-map,.pdf-map .mapwrap{break-inside:avoid}
+  /* A bare block-level <svg> is pushed to its own page by Chrome's print
+     fragmenter, orphaning the heading. Inside a plainly-sized div it stays put. */
+  .pdf-map .mapbox{width:257mm;height:137.4mm;overflow:hidden}
+  .pdf-map .mapbox svg{display:block;width:100%;height:100%}
+  .pdf-map .mapnote{font-size:8pt;color:var(--pm);margin-top:3.4mm;max-width:none}
+
+  /* ---------- matrix ---------- */
+  .pdf-legend{display:flex;flex-wrap:wrap;gap:2mm 7mm;margin:0 0 3.4mm;font-size:8pt;color:var(--pm)}
+  .pdf-legend i{font-style:normal;font-size:10pt;margin-right:1.4mm}
+  .pdf-legend .g-N,.pdf-legend .g-NA,.pdf-legend .g-B{color:#7F949E}
+  table.pdfm{width:100%;border-collapse:collapse;table-layout:fixed;font-size:7.4pt}
+  table.pdfm thead{display:table-header-group}
+  table.pdfm tr{break-inside:avoid}
+  table.pdfm th,table.pdfm td{padding:1.15mm 1mm;vertical-align:top;text-align:center;
+    border-bottom:1px solid var(--pr2)}
+  table.pdfm thead th{border-bottom:1.2px solid var(--pi);font-size:7pt;font-weight:600;
+    line-height:1.2;vertical-align:bottom;color:var(--pi);padding-bottom:1.8mm}
+  table.pdfm th.pf-fac,table.pdfm td.pf-fac{text-align:left;padding-left:0}
+  /* vertical column heads keep every source on one page, even at 19 columns */
+  table.pdfm thead th.pf-c{height:25mm;vertical-align:bottom;padding:0 0 2mm}
+  table.pdfm thead th.pf-c span{writing-mode:vertical-rl;transform:rotate(180deg);
+    display:inline-block;white-space:nowrap;font-size:7pt;font-weight:600;letter-spacing:.01em}
+  table.pdfm td.pf-fac{font-weight:500}
+  table.pdfm td.pf-fac .fd{display:block;font-weight:300;color:var(--pm);font-size:6.6pt;
+    line-height:1.35;margin-top:.5mm}
+  table.pdfm th.pf-cov,table.pdfm td.pf-cov{text-align:right;padding-right:0}
+  table.pdfm td.pf-cov{font-weight:600;font-variant-numeric:tabular-nums}
+  table.pdfm td.pf-cov .cn{font-weight:300;color:var(--pm);font-size:6.6pt;margin-left:1.4mm}
+  table.pdfm td.pf-g{font-size:9.5pt;line-height:1}
+  table.pdfm .g-Y{color:#4C6E82}
+  table.pdfm .g-P{color:#B08C2E}
+  table.pdfm .g-N{color:#B9C7CE}
+  table.pdfm .g-NA,table.pdfm .g-B{color:#D7E0E4}
+  table.pdfm tr.pf-sec td{background:var(--pso);text-align:left;font-size:7.6pt;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--pa);padding:2.2mm 1mm;
+    border-bottom:1px solid var(--pr);border-top:1px solid var(--pr)}
+  .pdf-srckey{margin-top:6mm;break-inside:avoid}
+  .pdf-srckey ul{list-style:none;margin:2mm 0 0;padding:0;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1.4mm 7mm}
+  .pdf-srckey li{font-size:7.6pt;color:var(--pm);line-height:1.4}
+  .pdf-srckey li b{color:var(--pi);font-weight:600}
+
+  /* ---------- references ---------- */
+  .pdf-refs ol{margin:0;padding:0 0 0 9mm}
+  .pdf-refs li{margin-bottom:3.6mm;font-size:8.8pt;line-height:1.5;break-inside:avoid}
+  .pdf-refs li .rt{display:block;color:var(--pm)}
+  .pdf-refs li .ru{display:block;color:var(--pa);word-break:break-all;font-size:7.8pt;margin-top:.4mm}
+  .pdf-colophon{margin-top:9mm;padding-top:4mm;border-top:1px solid var(--pr);
+    font-size:7.8pt;color:var(--pm);line-height:1.6}
 }
 
 
@@ -422,7 +621,31 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
 /* ---------- reflow + target size ---------- */
 html,body{overflow-x:clip}                     /* decorative layers must never force sideways scrolling */
 @media (max-width:860px){
-  .hero::before,.bigp-zone,.bigp-sparks,.p-pattern{display:none}
+  /* the page-scoped rules that switch these on are more specific than a bare
+     class, so hiding them needs to out-rank body[data-page="…"] */
+  body[data-page] .hero::before,
+  body[data-page] .bigp-zone,
+  body[data-page] .bigp-sparks,
+  body[data-page] .p-pattern{display:none!important}
+}
+@media (max-width:560px){
+  /* minmax(0,1fr) rather than 1fr: an auto minimum lets a long finding blow the
+     track out past the viewport */
+  .findings,.stats{grid-template-columns:minmax(0,1fr)}
+  .find-col,.find-list li,.find-list .gname{min-width:0}
+  .tm-scale{flex-wrap:wrap;gap:6px 10px}
+  .tm-barwrap{flex:1 1 100%;min-width:0}
+  /* source names are long; let each wrap on its own line rather than run off */
+  .gloss-grid{flex-direction:column;gap:8px}
+  .gloss-grid>span{width:100%;min-width:0}
+  .gloss-grid>span,.gloss-grid .srclink{overflow-wrap:anywhere;white-space:normal}
+}
+/* the header is a single nowrap row; below this the Export PDF button was
+   pushed off-screen and, with overflow-x:clip, became unreachable */
+@media (max-width:620px){
+  .top-inner{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:10px;gap:8px 12px}
+  .page-nav{order:3;width:100%;margin:0;justify-content:flex-start;flex-wrap:wrap}
+  .top-pdf{margin-left:auto}
 }
 /* WCAG 2.5.8 - nothing interactive smaller than 24x24 */
 input[type=checkbox]{width:24px;height:24px;margin:2px;accent-color:var(--wine)}
@@ -517,7 +740,7 @@ body.a11y-dyslexia,body.a11y-dyslexia *,body.a11y-dyslexia body,body.a11y-dyslex
       <button class="pnav-btn active" data-page="guidelines" id="pnav-guidelines" aria-current="page">Access Guidelines</button>
       <button class="pnav-btn" data-page="calls" id="pnav-calls">Art-Based Open Calls</button>
     </nav>
-    <button class="top-pdf" type="button" onclick="window.print()">Export PDF</button>
+    <button class="top-pdf" type="button" id="pdfbtn" aria-haspopup="dialog">Export PDF</button>
   </div>
 </header>
 
@@ -600,6 +823,28 @@ body.a11y-dyslexia,body.a11y-dyslexia *,body.a11y-dyslexia body,body.a11y-dyslex
 </div></footer>
 
 <div id="tip"></div>
+
+<!-- ===== Academic PDF export: scope dialog + generated report host ===== -->
+<div id="pdfmodal" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+  <div class="pm-veil"></div>
+  <div class="pm-card">
+    <h2 id="pm-title">Export as PDF</h2>
+    <p class="pm-sub">A formatted report with a title page, contents, method note, coverage maps, complete matrices and a reference list. Choose how much to include.</p>
+    <label class="pm-opt"><input type="radio" name="pmscope" value="tab" id="pm-s1">
+      <span><b id="pm-l1"></b><span id="pm-d1"></span></span></label>
+    <label class="pm-opt"><input type="radio" name="pmscope" value="section" id="pm-s2">
+      <span><b id="pm-l2"></b><span id="pm-d2"></span></span></label>
+    <label class="pm-opt"><input type="radio" name="pmscope" value="all" id="pm-s3">
+      <span><b>The complete study</b><span id="pm-d3"></span></span></label>
+    <p class="pm-note">Opens your browser&rsquo;s print dialog &mdash; choose <b>Save as PDF</b> as the destination. Leave margins on Default and background graphics enabled. Body pages are portrait and the wide matrices turn landscape by themselves.</p>
+    <div class="pm-act">
+      <button type="button" id="pm-cancel">Cancel</button>
+      <button type="button" id="pm-go" class="pm-go">Prepare PDF</button>
+    </div>
+  </div>
+</div>
+<div id="pdfdoc" aria-hidden="true"></div>
+
 
 <!-- ===== Accessibility Widget (Open Calls page only) ===== -->
 <p id="sr-live" class="vhide" role="status" aria-live="polite"></p>
@@ -1225,6 +1470,405 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
   });
   zone.addEventListener('pointerleave',function(){
     wrap.classList.remove('is-on');
+  });
+})();
+</script>
+<script>
+/* ===================================================================
+   Academic PDF export
+   Builds a complete report document into #pdfdoc and prints that,
+   instead of printing the live page. Nothing is clipped by a scroll
+   container, the coverage map is re-laid-out at page size, and the
+   matrices carry every column.
+   =================================================================== */
+(function(){
+  var PE = function(t){return String(t==null?'':t)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');};
+
+  var META = {
+    guidelines:{
+      short:'Access Guidelines',
+      title:'Accessibility Best Practices Comparison',
+      sub:'Comparing what 12 international access guides recommend across four aspects of arts management. Each practice is marked Yes or No for every guide, with coverage rates showing how widely it is recommended.',
+      unit:'guide', unitP:'guides', item:'practice', itemP:'practices',
+      src:'ADWG Accessibility Best Practices Review'
+    },
+    calls:{
+      short:'Art-Based Open Calls',
+      title:'Art-Based Open Calls Comparison',
+      sub:'A review of public art opportunities analysed by accessibility, eligibility, application design and applicant support. Each factor is marked Yes, Partial or No across every call, with coverage rates aggregated by category.',
+      unit:'call', unitP:'calls', item:'factor', itemP:'factors',
+      src:'ADWG Open Calls Checklist'
+    }
+  };
+  var GL = {Y:{s:'●',t:'Yes'},P:{s:'◐',t:'Partial'},N:{s:'○',t:'No'},
+            NA:{s:'–',t:'Not applicable'},'':{s:'·',t:'Not recorded'}};
+
+  function dataFor(page){return page==='calls'?DATA:BP_DATA;}
+
+  /* which categories a given scope covers */
+  function unitsFor(scope){
+    var out=[];
+    if(scope==='tab'){
+      out.push({page:ACTIVE_PAGE,cat:getCurrentData()});
+    } else if(scope==='section'){
+      dataFor(ACTIVE_PAGE).forEach(function(c){out.push({page:ACTIVE_PAGE,cat:c});});
+    } else {
+      BP_DATA.forEach(function(c){out.push({page:'guidelines',cat:c});});
+      DATA.forEach(function(c){out.push({page:'calls',cat:c});});
+    }
+    return out;
+  }
+
+  function runHead(page,right){
+    return '<div class="pdf-rh"><span>'+PE(META[page].short)+'</span><span class="rh-r">'+PE(right)+'</span></div>';
+  }
+
+  /* ---------- coverage map, re-laid-out for the page ---------- */
+  function treemapSVG(cat,page){
+    var W=1160,H=620,M=META[page];
+    var root={name:cat.label,children:cat.sections.map(function(s){
+      return {name:s.name,children:s.factors.map(function(f){
+        return {name:f.name,pct:f.pct,value:1};})};})};
+    var r=d3.hierarchy(root).sum(function(d){return d.value;})
+             .sort(function(a,b){return b.value-a.value;});
+    d3.treemap().tile(d3.treemapSquarify.ratio(1.5)).size([W,H])
+      .paddingInner(3).paddingOuter(2)
+      .paddingTop(function(d){return d.depth===1?26:0;})
+      .round(true)(r);
+
+    var o=['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+
+           PE('Coverage map for '+cat.label+': every '+M.item+' as a tile, grouped by section and shaded by the share of '+M.unitP+' providing it.')+'">'];
+
+    r.children.forEach(function(sec){
+      var vals=sec.children.map(function(c){return c.data.pct;}).filter(function(x){return x!=null;});
+      var avg=vals.length?Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length):null;
+      o.push('<rect x="'+sec.x0+'" y="'+sec.y0+'" width="'+Math.max(0,sec.x1-sec.x0)+
+             '" height="'+Math.max(0,sec.y1-sec.y0)+'" fill="none" stroke="#C9D6DD" stroke-width="1"/>');
+      /* the band is only as wide as its section, so the label is trimmed to fit
+         and the average is dropped rather than allowed to run into the next one */
+      var bw=(sec.x1-sec.x0)-10;
+      if(bw>26){
+        var lbl=sec.data.name.toUpperCase(), suffix=avg!=null?('  '+avg+'% avg'):'';
+        var need=lbl.length*7.15+suffix.length*6.1;
+        if(need>bw){
+          suffix='';
+          var room=Math.floor(bw/7.15);
+          if(lbl.length>room)lbl=lbl.slice(0,Math.max(1,room-1)).replace(/[\s,.]+$/,'')+'\u2026';
+        }
+        o.push('<text x="'+(sec.x0+5)+'" y="'+(sec.y0+17)+'" fill="#5C7482" font-size="12" '+
+               'font-weight="600" letter-spacing="0.9" font-family="Poppins,sans-serif">'+
+               PE(lbl)+(suffix?'<tspan fill="#9BAAB3">'+PE(suffix)+'</tspan>':'')+'</text>');
+      }
+    });
+
+    r.leaves().forEach(function(d){
+      var w=d.x1-d.x0,h=d.y1-d.y0;
+      o.push('<rect x="'+d.x0+'" y="'+d.y0+'" width="'+Math.max(0,w)+'" height="'+Math.max(0,h)+
+             '" fill="'+colorFor(d.data.pct)+'" rx="2"/>');
+      var padX=7,maxChars=Math.floor((w-padX*2)/5.95);
+      if(w<34||h<20||maxChars<4)return;
+      var showPct=h>=42&&w>=40;
+      var room=h-13-(showPct?15:0);
+      var maxLines=Math.max(1,Math.min(3,Math.floor(room/13)));
+      var lines=wrapLines(d.data.name,maxChars,maxLines),yy=d.y0+15;
+      lines.forEach(function(ln){
+        o.push('<text x="'+(d.x0+padX)+'" y="'+yy+'" fill="'+textOn(d.data.pct)+
+               '" font-size="11" font-weight="400" font-family="Poppins,sans-serif">'+PE(ln)+'</text>');
+        yy+=13.4;
+      });
+      if(showPct)o.push('<text x="'+(d.x0+padX)+'" y="'+Math.min(yy+8,d.y1-6)+'" fill="'+textOn2(d.data.pct)+
+        '" font-size="12.5" font-weight="600" font-family="Poppins,sans-serif">'+
+        (d.data.pct==null?'n/a':d.data.pct+'%')+'</text>');
+    });
+    o.push('</svg>');
+    return o.join('');
+  }
+
+  /* ---------- full comparison matrix ---------- */
+  function matrixHTML(cat,page){
+    var M=META[page],n=cat.calls.length;
+    var fw=n>14?'40mm':(n>8?'48mm':'62mm');
+    var h=['<table class="pdfm" style="--fw:'+fw+'"><caption class="vhide">'+
+      PE(cat.label+' — whether each '+M.item+' is provided across '+n+' '+M.unitP+'.')+'</caption>'];
+    h.push('<colgroup><col style="width:'+fw+'">'+
+      new Array(n+1).join('<col>')+'<col style="width:17mm"></colgroup>');
+    h.push('<thead><tr><th scope="col" class="pf-fac">'+PE(cat.label)+' · '+PE(M.item)+'</th>');
+    cat.short.forEach(function(s){
+      h.push('<th scope="col" class="pf-c"><span>'+PE(s)+'</span></th>');});
+    h.push('<th scope="col" class="pf-cov">Coverage</th></tr></thead><tbody>');
+
+    cat.sections.forEach(function(sec){
+      if(!sec.factors.length)return;
+      h.push('<tr class="pf-sec"><td colspan="'+(n+2)+'">'+PE(sec.name)+'</td></tr>');
+      sec.factors.forEach(function(f){
+        h.push('<tr><td class="pf-fac">'+PE(f.name)+
+          (f.desc?'<span class="fd">'+PE(f.desc)+'</span>':'')+'</td>');
+        f.vals.forEach(function(v,i){
+          var g=GL[v]||GL[''];
+          h.push('<td class="pf-g"><span class="g-'+(v||'B')+'" title="'+
+            PE(cat.short[i]+': '+g.t)+'">'+g.s+'</span></td>');
+        });
+        var den=f.y+f.p+f.n;
+        h.push('<td class="pf-cov">'+(f.pct==null?'—':f.pct+'%')+
+          (f.pct!=null?'<span class="cn">'+(f.y+f.p)+'/'+den+'</span>':'')+'</td></tr>');
+      });
+    });
+    h.push('</tbody></table>');
+
+    h.push('<div class="pdf-srckey"><h4>Column key</h4><ul>'+
+      cat.short.map(function(s,i){
+        return '<li><b>'+PE(s)+'</b> &nbsp;'+PE(cat.calls[i])+'</li>';}).join('')+
+      '</ul></div>');
+    return h.join('');
+  }
+
+  /* ---------- category opener ---------- */
+  /* ---------- coverage by section ---------- */
+  function secBreakdown(cat,page){
+    var M=META[page];
+    var rows=cat.sections.map(function(sec){
+      var v=sec.factors.map(function(f){return f.pct;}).filter(function(x){return x!=null;});
+      var avg=v.length?Math.round(v.reduce(function(a,b){return a+b;},0)/v.length):null;
+      return {name:sec.name,n:sec.factors.length,avg:avg,
+              full:sec.factors.filter(function(f){return f.pct===100;}).length};
+    });
+    if(rows.length<2)return '';
+    return '<div class="pdf-secbd"><h3>Coverage by section</h3>'+
+      '<table class="pdf-sb"><thead><tr><th>Section</th>'+
+      '<th class="n">'+PE(M.itemP.charAt(0).toUpperCase()+M.itemP.slice(1))+'</th>'+
+      '<th class="n">At 100%</th><th class="n">Mean coverage</th></tr></thead><tbody>'+
+      rows.map(function(r){
+        return '<tr><td>'+PE(r.name)+'</td><td class="n">'+r.n+'</td>'+
+          '<td class="n">'+r.full+'</td><td class="n">'+(r.avg==null?'\u2014':r.avg+'%')+
+          (r.avg!=null?'<span class="sbar" style="width:'+r.avg+'%"></span>':'')+'</td></tr>';
+      }).join('')+'</tbody></table></div>';
+  }
+
+  function openerHTML(u,idx,total){
+    var cat=u.cat,page=u.page,M=META[page],ff=flatFactors(cat);
+    var scored=ff.filter(function(f){return f.pct!=null;});
+    /* a single-section category has no breakdown table under the lists, so the
+       lists run longer rather than leaving half the page blank */
+    var n=cat.sections.length<2?16:(cat.sections.length>6?7:9);
+    var top=scored.slice().sort(function(a,b){return b.pct-a.pct;}).slice(0,n);
+    var gaps=scored.slice().sort(function(a,b){return a.pct-b.pct;}).slice(0,n);
+    var avg=scored.length?Math.round(scored.reduce(function(a,b){return a+b.pct;},0)/scored.length):null;
+    var li=function(f){return '<li><span class="pc">'+(f.pct==null?'—':f.pct+'%')+
+      '</span><span class="nm">'+PE(f.name)+'</span></li>';};
+    return '<div class="pdf-page pp pbrk">'+
+      runHead(page,total>1?('Category '+(idx+1)+' of '+total):META[page].title)+
+      '<h2>'+PE(cat.label)+'</h2>'+
+      '<p class="lede">'+PE(ff.length+' '+(ff.length===1?M.item:M.itemP)+
+        ' compared across '+cat.calls.length+' '+(cat.calls.length===1?M.unit:M.unitP)+
+        (avg!=null?', with a mean coverage of '+avg+'%.':'.'))+'</p>'+
+      '<div class="pdf-catmeta">'+
+        '<div><div class="v">'+ff.length+'</div><div class="k">'+PE(M.itemP)+' compared</div></div>'+
+        '<div><div class="v">'+cat.calls.length+'</div><div class="k">'+PE(M.unitP)+' reviewed</div></div>'+
+        (avg!=null?'<div><div class="v">'+avg+'%</div><div class="k">Mean coverage</div></div>':'')+
+        '<div><div class="v">'+scored.filter(function(f){return f.pct===100;}).length+
+          '</div><div class="k">At full coverage</div></div>'+
+        '<div><div class="v">'+scored.filter(function(f){return f.pct<50;}).length+
+          '</div><div class="k">Below half</div></div>'+
+      '</div>'+
+      '<div class="pdf-finds">'+
+        '<section><h3>Most widely provided</h3><ol>'+top.map(li).join('')+'</ol></section>'+
+        '<section><h3>Largest gaps</h3><ol>'+gaps.map(li).join('')+'</ol></section>'+
+      '</div>'+secBreakdown(cat,page)+'</div>'+
+
+      '<div class="pdf-page pl pbrk pdf-map">'+
+        runHead(page,cat.label)+
+        '<div class="mapwrap"><h3>Coverage map — '+PE(cat.label)+'</h3>'+
+        '<div class="mapbox">'+treemapSVG(cat,page)+'</div></div>'+
+        '<p class="mapnote">Every '+PE(M.item)+' appears as one tile, grouped into its section and shaded by the share of '+
+        PE(M.unitP)+' that provide it — pale for rarely offered, deep for near-universal. '+
+        'The same values are listed exactly in the comparison matrix that follows.</p>'+
+      '</div>'+
+
+      '<div class="pdf-page pl pbrk">'+
+        runHead(page,cat.label)+
+        '<h3>Full comparison matrix — '+PE(cat.label)+'</h3>'+
+        '<div class="pdf-legend">'+
+          '<span><i class="g-Y">●</i>Yes</span>'+
+          (page==='calls'?'<span><i class="g-P">◐</i>Partial</span>':'')+
+          '<span><i class="g-N">○</i>No</span>'+
+          '<span><i class="g-NA">–</i>Not applicable</span>'+
+          '<span><i class="g-B">·</i>Not recorded</span>'+
+        '</div>'+
+        matrixHTML(cat,page)+
+      '</div>';
+  }
+
+  /* ---------- references ---------- */
+  function refsHTML(units){
+    var seen={},list=[];
+    units.forEach(function(u){u.cat.calls.forEach(function(nm){
+      if(seen[nm])return;seen[nm]=1;list.push(nm);});});
+    list.sort(function(a,b){return a.localeCompare(b,'en');});
+    return '<div class="pdf-page pp pbrk pdf-refs">'+
+      '<div class="pdf-rh"><span>Reference list</span><span class="rh-r">'+list.length+' source'+(list.length===1?'':'s')+'</span></div>'+
+      '<h2>Reference list</h2>'+
+      '<p class="lede">Every open call and access guide cited in this report, in alphabetical order. '+
+        'Web addresses were last verified in August 2026; calls are periodically withdrawn by their publishers.</p>'+
+      '<ol>'+list.map(function(nm){
+        var s=SOURCES[nm];
+        return '<li>'+PE(nm)+
+          (s?'<span class="rt">'+PE(s[1])+'</span><span class="ru">'+PE(s[0])+'</span>'
+            :'<span class="rt">No public listing available.</span>')+'</li>';
+      }).join('')+'</ol>'+
+      '<div class="pdf-colophon">Compiled from the Art &amp; Design Working Group review sheets, '+
+      'Smartwear Revolution, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; '+
+      '(sources where the item applies); not-applicable and unrecorded entries are excluded from the denominator. '+
+      'Generated from the interactive comparison at aynazraoufian-hub.github.io/smartwear-adwg.</div>'+
+      '</div>';
+  }
+
+  /* ---------- front matter ---------- */
+  function frontHTML(units,scope){
+    var multi={}, pages=[];
+    units.forEach(function(u){if(!multi[u.page]){multi[u.page]=1;pages.push(u.page);}});
+    var logo=(document.querySelector('.logo-light')||{}).src||'';
+    var d=new Date();
+    var date=d.toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric'});
+    var title,sub;
+    if(pages.length>1){
+      title='Accessibility in Arts Practice';
+      sub='A two-part comparative review: what international access guides recommend, and what art-based open calls actually provide.';
+    } else {
+      title=META[pages[0]].title;
+      sub=META[pages[0]].sub;
+    }
+    var scopeTxt = scope==='tab' ? units[0].cat.label+' — 1 of '+
+        dataFor(units[0].page).length+' categories in '+META[units[0].page].short
+      : scope==='section' ? 'All '+units.length+' categories in '+META[pages[0]].short
+      : 'Complete study — '+units.length+' categories across both reviews';
+
+    var totalItems=0,srcs={};
+    units.forEach(function(u){
+      totalItems+=flatFactors(u.cat).length;
+      u.cat.calls.forEach(function(c){srcs[c]=1;});
+    });
+    var nSrc=Object.keys(srcs).length;
+
+    var cover='<div class="pdf-page pp pdf-cover">'+
+      (logo?'<img class="cv-logo" src="'+PE(logo)+'" alt="Smartwear for Every Body">':'')+
+      '<div class="cv-main">'+
+      '<div class="cv-eyebrow">Art &amp; Design Working Group · University of Alberta</div>'+
+      '<h1>'+PE(title)+'</h1>'+
+      '<div class="cv-rule"></div>'+
+      '<p class="cv-sub">'+PE(sub)+'</p></div>'+
+      '<dl>'+
+        '<dt>Scope</dt><dd>'+PE(scopeTxt)+'</dd>'+
+        '<dt>Extent</dt><dd>'+totalItems+' items compared across '+nSrc+' sources</dd>'+
+        '<dt>Project</dt><dd>Smartwear Revolution — Smartwear for Every Body</dd>'+
+        '<dt>Compiled</dt><dd>'+PE(date)+'</dd>'+
+      '</dl></div>';
+
+    var toc='<div class="pdf-page pp pbrk pdf-toc">'+
+      '<div class="pdf-rh"><span>Contents</span><span class="rh-r">'+units.length+' categories</span></div>'+
+      '<h2>Contents</h2><ol>';
+    pages.forEach(function(pg){
+      var us=units.filter(function(u){return u.page===pg;});
+      toc+='<li><div class="t">'+PE(META[pg].title)+'</div>'+
+        '<div class="d">'+PE(META[pg].sub)+'</div><ul>'+
+        us.map(function(u){return '<li>'+PE(u.cat.label)+' — '+
+          flatFactors(u.cat).length+' '+PE(META[pg].itemP)+'</li>';}).join('')+
+        '</ul></li>';
+    });
+    toc+='<li><div class="t">Reference list</div>'+
+      '<div class="d">All '+nSrc+' cited sources with web addresses.</div></li></ol>'+
+      '<p style="margin-top:8mm;font-size:8pt;color:var(--pm)">Each category is presented over three pages: '+
+      'a summary with its widest provisions and largest gaps, a coverage map, and the complete comparison matrix. '+
+      'Page numbers can be added from the Headers&nbsp;and&nbsp;footers option in your print dialog.</p></div>';
+
+    var how='<div class="pdf-page pp pbrk">'+
+      '<div class="pdf-rh"><span>How to read this report</span><span class="rh-r">Method</span></div>'+
+      '<h2>How to read this report</h2>'+
+      '<div class="pdf-howto">'+
+      '<section><h4>Cell values</h4><ul class="pdf-key">'+
+        '<li><span class="kg g-Y">●</span><span class="kn">Yes</span><span class="kd">The source provides this in full.</span></li>'+
+        (pages.indexOf('calls')>=0?'<li><span class="kg g-P">◐</span><span class="kn">Partial</span><span class="kd">Provided, but incompletely or on request only.</span></li>':'')+
+        '<li><span class="kg g-N">○</span><span class="kn">No</span><span class="kd">Not provided.</span></li>'+
+        '<li><span class="kg g-NA">–</span><span class="kn">N/A</span><span class="kd">The item does not apply to this source.</span></li>'+
+        '<li><span class="kg g-B">·</span><span class="kn">Not recorded</span><span class="kd">No determination was made during review.</span></li>'+
+      '</ul></section>'+
+      '<section><h4>Coverage</h4><div class="pdf-formula"><b>Coverage&nbsp;% = (Yes + Partial) &divide; (sources where the item applies)</b>'+
+        'Not-applicable and unrecorded entries are excluded from the denominator, so a coverage figure never penalises a source for an item that could not apply to it. '+
+        'The figure beneath each percentage gives the raw counts.</div>'+
+        '<div class="pdf-ramp"><span>0% rarely offered</span><div class="rb"></div><span>100% universal</span></div>'+
+      '</section>'+
+      '<section><h4>The coverage map</h4><p>A treemap: one tile per item, bordered into its section, shaded on the scale above. '+
+        'It is a picture of the matrix that follows it, not additional data — every value shown there is listed exactly in the table.</p></section>'+
+      '<section><h4>The matrix</h4><p>Columns are abbreviated to keep every source on one page; each matrix is followed by a column key giving the full name, '+
+        'and the reference list at the back gives the specific call or guide cited and its web address. '+
+        'Matrices are always printed complete, in section order — filters and sorting applied on the website do not affect this document.</p></section>'+
+      '</div></div>';
+
+    /* a single-category export does not need a table of contents */
+    return units.length<2 ? (cover+how) : (cover+toc+how);
+  }
+
+  /* ---------- assemble + print ---------- */
+  function build(scope){
+    var units=unitsFor(scope);
+    var host=document.getElementById('pdfdoc');
+    var out=frontHTML(units,scope);
+    units.forEach(function(u,i){out+=openerHTML(u,i,units.length);});
+    out+=refsHTML(units);
+    host.innerHTML=out;
+    return units;
+  }
+
+  /* ---------- scope dialog ---------- */
+  var modal=document.getElementById('pdfmodal'), lastFocus=null;
+  function close(){
+    modal.classList.remove('open');
+    document.removeEventListener('keydown',onKey,true);
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+  function onKey(e){
+    if(e.key==='Escape'){e.preventDefault();close();return;}
+    if(e.key!=='Tab')return;
+    var f=modal.querySelectorAll('input,button');
+    if(!f.length)return;
+    var first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+  function open(){
+    var M=META[ACTIVE_PAGE], cat=getCurrentData(), sect=dataFor(ACTIVE_PAGE);
+    var nAll=BP_DATA.length+DATA.length;
+    var count=function(arr){var n=0;arr.forEach(function(c){n+=flatFactors(c).length;});return n;};
+    modal.querySelector('#pm-l1').innerHTML='This tab — <span class="hl">'+PE(cat.label)+'</span>';
+    modal.querySelector('#pm-d1').textContent=
+      'Everything in the tab you are on: summary, key findings, coverage map and the complete matrix of '+
+      flatFactors(cat).length+' '+M.itemP+' × '+cat.calls.length+' '+M.unitP+', plus its sources.';
+    modal.querySelector('#pm-l2').innerHTML='This section — <span class="hl">'+PE(M.short)+'</span>';
+    modal.querySelector('#pm-d2').textContent=
+      'All '+sect.length+' categories of '+M.short+' — '+count(sect)+' '+M.itemP+' in total.';
+    modal.querySelector('#pm-d3').textContent=
+      'Both reviews, all '+nAll+' categories — '+(count(BP_DATA)+count(DATA))+
+      ' practices and factors, with a single reference list.';
+    modal.querySelector('#pm-s1').checked=true;
+    lastFocus=document.activeElement;
+    modal.classList.add('open');
+    document.addEventListener('keydown',onKey,true);
+    modal.querySelector('#pm-s1').focus();
+  }
+
+  document.getElementById('pdfbtn').addEventListener('click',open);
+  modal.querySelector('.pm-veil').addEventListener('click',close);
+  modal.querySelector('#pm-cancel').addEventListener('click',close);
+  modal.querySelector('#pm-go').addEventListener('click',function(){
+    var v=(modal.querySelector('input[name=pmscope]:checked')||{}).value||'tab';
+    close();
+    build(v);
+    announce('Report prepared, opening the print dialog');
+    setTimeout(function(){window.print();},60);
+  });
+  window.addEventListener('afterprint',function(){
+    var h=document.getElementById('pdfdoc');if(h)h.innerHTML='';
   });
 })();
 </script>
