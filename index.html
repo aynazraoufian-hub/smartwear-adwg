@@ -317,16 +317,16 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
 #pdfmodal .pm-card{position:relative;width:min(520px,100%);max-height:90vh;overflow:auto;
   background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:16px;
   box-shadow:0 28px 70px rgba(31,54,66,.34);padding:24px 24px 20px}
-#pdfmodal h2{margin:0 0 4px;font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--navy-700)}
+#pdfmodal h2{margin:0 0 16px;font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--navy-700)}
 #pdfmodal .pm-sub{margin:0 0 18px;font-size:13px;color:var(--muted);line-height:1.5}
-#pdfmodal .pm-opt{display:flex;gap:11px;align-items:flex-start;padding:12px 13px;border:1px solid var(--line);
-  border-radius:11px;margin-bottom:9px;cursor:pointer;transition:border-color .15s,background .15s}
+#pdfmodal .pm-opt{display:flex;gap:11px;align-items:center;padding:13px;border:1px solid var(--line);
+  border-radius:11px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,background .15s}
 #pdfmodal .pm-opt:hover{border-color:var(--wine)}
 #pdfmodal .pm-opt:has(input:checked){border-color:var(--wine);background:var(--soft)}
-#pdfmodal .pm-opt input{margin:2px 0 0;width:18px;height:18px;flex:none;accent-color:var(--wine)}
+#pdfmodal .pm-opt input{margin:0;width:18px;height:18px;flex:none;accent-color:var(--wine)}
 #pdfmodal .pm-opt:focus-within{outline:2px solid var(--wine);outline-offset:2px}
-#pdfmodal .pm-opt b{display:block;font-size:13.5px;font-weight:600;margin-bottom:2px}
-#pdfmodal .pm-opt b .hl{color:var(--wine)}
+#pdfmodal .pm-opt b{display:block;font-size:13.5px;font-weight:600}
+#pdfmodal .pm-opt b .hl{display:inline;color:var(--wine)}
 #pdfmodal .pm-opt span{display:block;font-size:12px;color:var(--muted);line-height:1.45}
 #pdfmodal .pm-note{font-size:11.5px;color:var(--muted);line-height:1.5;margin:14px 0 0;
   padding-top:13px;border-top:1px solid var(--line-2)}
@@ -412,7 +412,7 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
   .pdf-toc ul{list-style:none;margin:2mm 0 0 7mm;padding:0;
     display:grid;grid-template-columns:1fr 1fr;gap:1.4mm 6mm}
   .pdf-toc ul li{font-size:8.6pt;color:var(--pm)}
-  .pdf-toc ul li::before{content:"—";color:var(--pr);margin-right:2mm}
+  .pdf-toc ul li::before{content:"\002022";color:var(--pr);margin-right:2mm}
 
   /* ---------- how to read ---------- */
   .pdf-howto{display:grid;grid-template-columns:1fr 1fr;gap:9mm 10mm;margin-top:7mm}
@@ -425,10 +425,15 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
   .pdf-formula{background:var(--pso);border-left:2px solid var(--pa);padding:4mm 5mm;font-size:8.8pt;
     line-height:1.6;break-inside:avoid}
   .pdf-formula b{display:block;font-size:9.4pt;margin-bottom:1.6mm}
-  .pdf-ramp{display:flex;align-items:center;gap:3mm;margin-top:2mm}
-  .pdf-ramp .rb{flex:1;height:5mm;border:1px solid var(--pr);
-    background:linear-gradient(90deg,#FBF9F2,#E8DFC0,#C9B57C,#9E8A4E)}
-  .pdf-ramp span{font-size:7.6pt;color:var(--pm);white-space:nowrap}
+  .pdf-ramp{margin-top:5mm}
+  .pdf-ramp .rb{height:3.4mm;border-radius:1.7mm;
+    background:linear-gradient(90deg,rgb(235,245,251) 0%,rgb(163,212,242) 40%,
+      rgb(76,110,130) 70%,rgb(31,54,66) 88%,rgb(242,214,122) 100%)}
+  .pdf-ramp .rt,.pdf-ramp .rl{display:flex;justify-content:space-between;margin-top:1.2mm}
+  .pdf-ramp .rt span{font-size:7.4pt;color:var(--pm);font-variant-numeric:tabular-nums}
+  .pdf-ramp .rt span:nth-child(2){margin-left:-2mm}
+  .pdf-ramp .rl span{font-size:7.4pt;color:var(--pa);font-weight:600;
+    letter-spacing:.07em;text-transform:uppercase}
 
   /* ---------- category opener ---------- */
   .pdf-catmeta{display:flex;gap:9mm;margin:0 0 7mm;padding:4mm 0;
@@ -464,7 +469,7 @@ td.pct .cnt{display:block;font-size:10.5px;color:var(--muted);font-weight:400;ma
   .pdf-map,.pdf-map .mapwrap{break-inside:avoid}
   /* A bare block-level <svg> is pushed to its own page by Chrome's print
      fragmenter, orphaning the heading. Inside a plainly-sized div it stays put. */
-  .pdf-map .mapbox{width:257mm;height:137.4mm;overflow:hidden}
+  .pdf-map .mapbox{width:257mm;height:152mm;overflow:hidden}
   .pdf-map .mapbox svg{display:block;width:100%;height:100%}
   .pdf-map .mapnote{font-size:8pt;color:var(--pm);margin-top:3.4mm;max-width:none}
 
@@ -829,14 +834,12 @@ body.a11y-dyslexia,body.a11y-dyslexia *,body.a11y-dyslexia body,body.a11y-dyslex
   <div class="pm-veil"></div>
   <div class="pm-card">
     <h2 id="pm-title">Export as PDF</h2>
-    <p class="pm-sub">A formatted report with a title page, contents, method note, coverage maps, complete matrices and a reference list. Choose how much to include.</p>
     <label class="pm-opt"><input type="radio" name="pmscope" value="tab" id="pm-s1">
-      <span><b id="pm-l1"></b><span id="pm-d1"></span></span></label>
+      <span><b id="pm-l1"></b></span></label>
     <label class="pm-opt"><input type="radio" name="pmscope" value="section" id="pm-s2">
-      <span><b id="pm-l2"></b><span id="pm-d2"></span></span></label>
+      <span><b id="pm-l2"></b></span></label>
     <label class="pm-opt"><input type="radio" name="pmscope" value="all" id="pm-s3">
-      <span><b>The complete study</b><span id="pm-d3"></span></span></label>
-    <p class="pm-note">Opens your browser&rsquo;s print dialog &mdash; choose <b>Save as PDF</b> as the destination. Leave margins on Default and background graphics enabled. Body pages are portrait and the wide matrices turn landscape by themselves.</p>
+      <span><b>The complete study</b></span></label>
     <div class="pm-act">
       <button type="button" id="pm-cancel">Cancel</button>
       <button type="button" id="pm-go" class="pm-go">Prepare PDF</button>
@@ -990,7 +993,7 @@ const SOURCES={
   "Open Style Lab":["https://www.openstylelab.org/incubator/2026-residency-application","AI Research Residency 2026"],
   "Multicultural Artists’ Coalition":["https://www.mac-cam.ca/artistinresidency","MAC-CAM: ART+ Artist in Residency"],
   "Open Style Lab — Dress Codes":["https://www.openstylelab.org/incubator/osl-summer-program/2026-fellowship-application","Dress Codes London 2026 Design Impact Fellowship"],
-  "Latitude53":["https://www.latitude53.org/","Latitude 53 \u2014 the specific call is no longer online"]
+  "Latitude53":["https://www.latitude53.org/","Latitude 53, the specific call is no longer online"]
 };
 let CUR=0,BP_CUR=0,ACTIVE_PAGE='guidelines';
 function getCurrentData(){return ACTIVE_PAGE==='calls'?DATA[CUR]:BP_DATA[BP_CUR];}
@@ -1527,7 +1530,7 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
 
   /* ---------- coverage map, re-laid-out for the page ---------- */
   function treemapSVG(cat,page){
-    var W=1160,H=620,M=META[page];
+    var W=1160,H=686,M=META[page];
     var root={name:cat.label,children:cat.sections.map(function(s){
       return {name:s.name,children:s.factors.map(function(f){
         return {name:f.name,pct:f.pct,value:1};})};})};
@@ -1591,7 +1594,7 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
     var M=META[page],n=cat.calls.length;
     var fw=n>14?'40mm':(n>8?'48mm':'62mm');
     var h=['<table class="pdfm" style="--fw:'+fw+'"><caption class="vhide">'+
-      PE(cat.label+' — whether each '+M.item+' is provided across '+n+' '+M.unitP+'.')+'</caption>'];
+      PE(cat.label+': whether each '+M.item+' is provided across '+n+' '+M.unitP+'.')+'</caption>'];
     h.push('<colgroup><col style="width:'+fw+'">'+
       new Array(n+1).join('<col>')+'<col style="width:17mm"></colgroup>');
     h.push('<thead><tr><th scope="col" class="pf-fac">'+PE(cat.label)+' · '+PE(M.item)+'</th>');
@@ -1611,7 +1614,7 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
             PE(cat.short[i]+': '+g.t)+'">'+g.s+'</span></td>');
         });
         var den=f.y+f.p+f.n;
-        h.push('<td class="pf-cov">'+(f.pct==null?'—':f.pct+'%')+
+        h.push('<td class="pf-cov">'+(f.pct==null?'\u2013':f.pct+'%')+
           (f.pct!=null?'<span class="cn">'+(f.y+f.p)+'/'+den+'</span>':'')+'</td></tr>');
       });
     });
@@ -1641,7 +1644,7 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
       '<th class="n">At 100%</th><th class="n">Mean coverage</th></tr></thead><tbody>'+
       rows.map(function(r){
         return '<tr><td>'+PE(r.name)+'</td><td class="n">'+r.n+'</td>'+
-          '<td class="n">'+r.full+'</td><td class="n">'+(r.avg==null?'\u2014':r.avg+'%')+
+          '<td class="n">'+r.full+'</td><td class="n">'+(r.avg==null?'\u2013':r.avg+'%')+
           (r.avg!=null?'<span class="sbar" style="width:'+r.avg+'%"></span>':'')+'</td></tr>';
       }).join('')+'</tbody></table></div>';
   }
@@ -1655,7 +1658,7 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
     var top=scored.slice().sort(function(a,b){return b.pct-a.pct;}).slice(0,n);
     var gaps=scored.slice().sort(function(a,b){return a.pct-b.pct;}).slice(0,n);
     var avg=scored.length?Math.round(scored.reduce(function(a,b){return a+b.pct;},0)/scored.length):null;
-    var li=function(f){return '<li><span class="pc">'+(f.pct==null?'—':f.pct+'%')+
+    var li=function(f){return '<li><span class="pc">'+(f.pct==null?'\u2013':f.pct+'%')+
       '</span><span class="nm">'+PE(f.name)+'</span></li>';};
     return '<div class="pdf-page pp pbrk">'+
       runHead(page,total>1?('Category '+(idx+1)+' of '+total):META[page].title)+
@@ -1679,16 +1682,13 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
 
       '<div class="pdf-page pl pbrk pdf-map">'+
         runHead(page,cat.label)+
-        '<div class="mapwrap"><h3>Coverage map — '+PE(cat.label)+'</h3>'+
+        '<div class="mapwrap"><h3>Coverage map</h3>'+
         '<div class="mapbox">'+treemapSVG(cat,page)+'</div></div>'+
-        '<p class="mapnote">Every '+PE(M.item)+' appears as one tile, grouped into its section and shaded by the share of '+
-        PE(M.unitP)+' that provide it — pale for rarely offered, deep for near-universal. '+
-        'The same values are listed exactly in the comparison matrix that follows.</p>'+
       '</div>'+
 
       '<div class="pdf-page pl pbrk">'+
         runHead(page,cat.label)+
-        '<h3>Full comparison matrix — '+PE(cat.label)+'</h3>'+
+        '<h3>Full comparison matrix</h3>'+
         '<div class="pdf-legend">'+
           '<span><i class="g-Y">●</i>Yes</span>'+
           (page==='calls'?'<span><i class="g-P">◐</i>Partial</span>':'')+
@@ -1709,18 +1709,12 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
     return '<div class="pdf-page pp pbrk pdf-refs">'+
       '<div class="pdf-rh"><span>Reference list</span><span class="rh-r">'+list.length+' source'+(list.length===1?'':'s')+'</span></div>'+
       '<h2>Reference list</h2>'+
-      '<p class="lede">Every open call and access guide cited in this report, in alphabetical order. '+
-        'Web addresses were last verified in August 2026; calls are periodically withdrawn by their publishers.</p>'+
       '<ol>'+list.map(function(nm){
         var s=SOURCES[nm];
         return '<li>'+PE(nm)+
           (s?'<span class="rt">'+PE(s[1])+'</span><span class="ru">'+PE(s[0])+'</span>'
             :'<span class="rt">No public listing available.</span>')+'</li>';
       }).join('')+'</ol>'+
-      '<div class="pdf-colophon">Compiled from the Art &amp; Design Working Group review sheets, '+
-      'Smartwear Revolution, University of Alberta. Coverage&nbsp;% = (Yes&nbsp;+&nbsp;Partial) &divide; '+
-      '(sources where the item applies); not-applicable and unrecorded entries are excluded from the denominator. '+
-      'Generated from the interactive comparison at aynazraoufian-hub.github.io/smartwear-adwg.</div>'+
       '</div>';
   }
 
@@ -1739,10 +1733,10 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
       title=META[pages[0]].title;
       sub=META[pages[0]].sub;
     }
-    var scopeTxt = scope==='tab' ? units[0].cat.label+' — 1 of '+
-        dataFor(units[0].page).length+' categories in '+META[units[0].page].short
-      : scope==='section' ? 'All '+units.length+' categories in '+META[pages[0]].short
-      : 'Complete study — '+units.length+' categories across both reviews';
+    var scopeTxt = scope==='tab' ? (units[0].cat.label+', one of '+
+        dataFor(units[0].page).length+' categories in '+META[units[0].page].short)
+      : scope==='section' ? ('All '+units.length+' categories in '+META[pages[0]].short)
+      : ('Complete study, '+units.length+' categories across both reviews');
 
     var totalItems=0,srcs={};
     units.forEach(function(u){
@@ -1759,9 +1753,10 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
       '<div class="cv-rule"></div>'+
       '<p class="cv-sub">'+PE(sub)+'</p></div>'+
       '<dl>'+
+        '<dt>Project</dt><dd>Co-designing the Smartwear Revolution \u2014 Smartwear for Every Body</dd>'+
+        '<dt>Researcher</dt><dd>Aynaz Raoufian</dd>'+
         '<dt>Scope</dt><dd>'+PE(scopeTxt)+'</dd>'+
         '<dt>Extent</dt><dd>'+totalItems+' items compared across '+nSrc+' sources</dd>'+
-        '<dt>Project</dt><dd>Smartwear Revolution — Smartwear for Every Body</dd>'+
         '<dt>Compiled</dt><dd>'+PE(date)+'</dd>'+
       '</dl></div>';
 
@@ -1772,37 +1767,46 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
       var us=units.filter(function(u){return u.page===pg;});
       toc+='<li><div class="t">'+PE(META[pg].title)+'</div>'+
         '<div class="d">'+PE(META[pg].sub)+'</div><ul>'+
-        us.map(function(u){return '<li>'+PE(u.cat.label)+' — '+
-          flatFactors(u.cat).length+' '+PE(META[pg].itemP)+'</li>';}).join('')+
+        us.map(function(u){return '<li>'+PE(u.cat.label)+' ('+
+          flatFactors(u.cat).length+' '+PE(META[pg].itemP)+')</li>';}).join('')+
         '</ul></li>';
     });
     toc+='<li><div class="t">Reference list</div>'+
       '<div class="d">All '+nSrc+' cited sources with web addresses.</div></li></ol>'+
-      '<p style="margin-top:8mm;font-size:8pt;color:var(--pm)">Each category is presented over three pages: '+
-      'a summary with its widest provisions and largest gaps, a coverage map, and the complete comparison matrix. '+
-      'Page numbers can be added from the Headers&nbsp;and&nbsp;footers option in your print dialog.</p></div>';
+      '</div>';
 
     var how='<div class="pdf-page pp pbrk">'+
       '<div class="pdf-rh"><span>How to read this report</span><span class="rh-r">Method</span></div>'+
       '<h2>How to read this report</h2>'+
       '<div class="pdf-howto">'+
-      '<section><h4>Cell values</h4><ul class="pdf-key">'+
-        '<li><span class="kg g-Y">●</span><span class="kn">Yes</span><span class="kd">The source provides this in full.</span></li>'+
-        (pages.indexOf('calls')>=0?'<li><span class="kg g-P">◐</span><span class="kn">Partial</span><span class="kd">Provided, but incompletely or on request only.</span></li>':'')+
-        '<li><span class="kg g-N">○</span><span class="kn">No</span><span class="kd">Not provided.</span></li>'+
-        '<li><span class="kg g-NA">–</span><span class="kn">N/A</span><span class="kd">The item does not apply to this source.</span></li>'+
-        '<li><span class="kg g-B">·</span><span class="kn">Not recorded</span><span class="kd">No determination was made during review.</span></li>'+
+      '<section><h4>Cell values</h4>'+
+        '<p>Each cell records a single coded judgement about one source against one item.</p>'+
+        '<ul class="pdf-key">'+
+        '<li><span class="kg g-Y">\u25CF</span><span class="kn">Yes</span><span class="kd">The provision is present and complete.</span></li>'+
+        (pages.indexOf('calls')>=0?'<li><span class="kg g-P">\u25D0</span><span class="kn">Partial</span><span class="kd">The provision is present but incomplete, conditional, or available only on request.</span></li>':'')+
+        '<li><span class="kg g-N">\u25CB</span><span class="kn">No</span><span class="kd">The provision is absent.</span></li>'+
+        '<li><span class="kg g-NA">\u2013</span><span class="kn">N/A</span><span class="kd">The item is not applicable to this source.</span></li>'+
+        '<li><span class="kg g-B">\u00B7</span><span class="kn">Not recorded</span><span class="kd">No determination was reached during review.</span></li>'+
       '</ul></section>'+
-      '<section><h4>Coverage</h4><div class="pdf-formula"><b>Coverage&nbsp;% = (Yes + Partial) &divide; (sources where the item applies)</b>'+
-        'Not-applicable and unrecorded entries are excluded from the denominator, so a coverage figure never penalises a source for an item that could not apply to it. '+
-        'The figure beneath each percentage gives the raw counts.</div>'+
-        '<div class="pdf-ramp"><span>0% rarely offered</span><div class="rb"></div><span>100% universal</span></div>'+
+      '<section><h4>Coverage</h4><div class="pdf-formula">'+
+        '<b>Coverage&nbsp;% = (Yes + Partial) &divide; (sources for which the item is applicable)</b>'+
+        'Entries coded as not applicable or not recorded are excluded from the denominator, so that no source is '+
+        'penalised for an item that could not reasonably apply to it. The figure set beside each percentage reports '+
+        'the underlying counts, allowing the reader to judge the weight of the proportion.</div>'+
+        '<div class="pdf-ramp"><div class="rb"></div><div class="rt"><span>0%</span><span>50%</span><span>100%</span></div>'+
+        '<div class="rl"><span>Rarely offered</span><span>Widely offered</span></div></div>'+
       '</section>'+
-      '<section><h4>The coverage map</h4><p>A treemap: one tile per item, bordered into its section, shaded on the scale above. '+
-        'It is a picture of the matrix that follows it, not additional data — every value shown there is listed exactly in the table.</p></section>'+
-      '<section><h4>The matrix</h4><p>Columns are abbreviated to keep every source on one page; each matrix is followed by a column key giving the full name, '+
-        'and the reference list at the back gives the specific call or guide cited and its web address. '+
-        'Matrices are always printed complete, in section order — filters and sorting applied on the website do not affect this document.</p></section>'+
+      '<section><h4>The coverage map</h4>'+
+        '<p>Each category is summarised as a treemap in which every item is represented by one tile, bounded within '+
+        'its parent section and shaded according to the scale above. The map is a graphical restatement of the matrix '+
+        'that follows it and introduces no additional data; every value it depicts is reported precisely in the table.</p>'+
+      '</section>'+
+      '<section><h4>The matrix</h4>'+
+        '<p>Source names are abbreviated in the column headings so that all sources remain visible on a single page. '+
+        'A key follows each matrix giving the full name of every column, and the reference list records the particular '+
+        'call or guide consulted together with its web address. Matrices are reproduced in full and in section order; '+
+        'any filtering or sorting applied to the interactive version has no bearing on this document.</p>'+
+      '</section>'+
       '</div></div>';
 
     /* a single-category export does not need a table of contents */
@@ -1840,16 +1844,8 @@ m.addEventListener('transitionend',function(e){if(e.propertyName==='max-height'&
     var M=META[ACTIVE_PAGE], cat=getCurrentData(), sect=dataFor(ACTIVE_PAGE);
     var nAll=BP_DATA.length+DATA.length;
     var count=function(arr){var n=0;arr.forEach(function(c){n+=flatFactors(c).length;});return n;};
-    modal.querySelector('#pm-l1').innerHTML='This tab — <span class="hl">'+PE(cat.label)+'</span>';
-    modal.querySelector('#pm-d1').textContent=
-      'Everything in the tab you are on: summary, key findings, coverage map and the complete matrix of '+
-      flatFactors(cat).length+' '+M.itemP+' × '+cat.calls.length+' '+M.unitP+', plus its sources.';
-    modal.querySelector('#pm-l2').innerHTML='This section — <span class="hl">'+PE(M.short)+'</span>';
-    modal.querySelector('#pm-d2').textContent=
-      'All '+sect.length+' categories of '+M.short+' — '+count(sect)+' '+M.itemP+' in total.';
-    modal.querySelector('#pm-d3').textContent=
-      'Both reviews, all '+nAll+' categories — '+(count(BP_DATA)+count(DATA))+
-      ' practices and factors, with a single reference list.';
+    modal.querySelector('#pm-l1').innerHTML='This tab: <span class="hl">'+PE(cat.label)+'</span>';
+    modal.querySelector('#pm-l2').innerHTML='This section: <span class="hl">'+PE(M.short)+'</span>';
     modal.querySelector('#pm-s1').checked=true;
     lastFocus=document.activeElement;
     modal.classList.add('open');
